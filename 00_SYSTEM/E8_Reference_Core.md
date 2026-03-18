@@ -1,7 +1,7 @@
 # E₈ Reference Core
 ## Condensed Results & Status — Always Upload This File
 
-**Last updated:** March 17, 2026 — Session 3 (WS-3875 scoped: VIABLE; F7 exact back-solve complete; KC-g remains partial kill)
+**Last updated:** March 17, 2026 — Session 4 (WS-3875 branching CONFIRMED; h(3875) corrected to 48/31; suppression ~1/31; KC-g remains partial kill)
 **Rule:** No derivations here. Results only. For derivations, see workstream files or archived notebooks.
 
 ---
@@ -47,7 +47,7 @@ No corrections found in Phases 1–3. Phase 4: two display-only errors in §5 in
 [F] Mass degeneracy: two heavy families exactly degenerate (proved at 4 levels)
 [D] Paper 2: (G₂)₆ resolves degeneracy via symmetric + adjoint condensates
 [F] V_CKM = I structural result: unique Yukawa ε_{ijk} in 248; all E6-neutral condensates give η₁₀=η₅̄; (27̄,3̄_fam) Yukawa SU(3)_fam-forbidden; V_CKM = I exact for full 248 class — see F8, WS-CKM2
-[D] 3875 extension: Sym²(248) contains non-trivial SU(3)_fam reps (all 12 dim-consistent branching rules verified); (6,27̄) channel gives symmetric Yukawa → V_CKM ≠ I generically; suppression Δc ~ 0.04 for Cabibbo angle — VIABLE but exact branching rule unverified (needs SageMath/LiE)
+[D] 3875 extension: branching rule CONFIRMED (SageMath + dimension-uniqueness analysis, session 4). 3875 = (1,1)⊕(1,8)⊕(27,3)⊕(27̄,3̄)⊕(27,6̄)⊕(27̄,6)⊕(78,8)⊕(650,1)⊕(351,3)⊕(351̄,3̄) under E₆×SU(3)_fam [✓ code-verified 2026-03-17]. (27̄,6) channel gives symmetric-flavor Yukawa → V_CKM ≠ I generically. h(3875) = 48/31 ≈ 1.55, NOT integrable at k=1 (Kac mark a₇=2); appears as composite :JᵃJᵇ: at level 2 of vacuum module (h=2). Suppression: g² ~ 1/(k+h∨) = 1/31 ≈ 0.032 (Cabibbo-scale). Also: (351,3) and (351̄,3̄) provide additional Yukawa channels.
 ```
 
 ---
@@ -72,6 +72,13 @@ No corrections found in Phases 1–3. Phase 4: two display-only errors in §5 in
 | 15 × ln(12) | 37.3 (approx) | | [✓ code-verified 2026-03-17] (calc: 37.2736) |
 | M_Pl | 1.22 × 10¹⁸ GeV | Input | |
 | 12¹⁵ | 1.541 × 10¹⁶ | | [✓ code-verified 2026-03-17] (exact: 15,407,021,574,586,368) |
+| h(3875) at k=1 | 48/31 ≈ 1.548 | Weyl formula: ⟨ω₇, ω₇+2ρ⟩/(2(k+h∨)) = 96/62 | [✓ code-verified 2026-03-17] [✗ CORRECTED: old=1, new=48/31] |
+| h(248) at k=1 | 30/31 ≈ 0.968 | ⟨θ, θ+2ρ⟩/62 = 60/62 | [✓ code-verified 2026-03-17] |
+| Kac mark a₇(E₈) | 2 | Highest root coefficient at node 7 | [✓ code-verified 2026-03-17] |
+| dim Sym²(248) | 30876 = 1+3875+27000 | E₈ decomposition | [✓ code-verified 2026-03-17] |
+| dim ∧²(248) | 30628 = 248+30380 | E₈ decomposition | [✓ code-verified 2026-03-17] |
+| j(τ)^{1/3} level 2 | 4124 = 248+1+3875 | Vacuum module states | [✓ code-verified 2026-03-17] |
+| g²(WZW, k=1) | 1/(k+h∨) = 1/31 ≈ 0.032 | WZW coupling | [✓ code-verified 2026-03-17] |
 
 ---
 
@@ -254,7 +261,7 @@ All trace back to the single derivation: Jones index at n=5 → φ.
 | KC-d | h=2/5 maps to non-tachyonic field | Not triggered |
 | KC-e | dS/CFT at c=8 inconsistent with Jacobson | Not triggered |
 | KC-f | Error in conformal embedding arithmetic | Not triggered |
-| KC-g | Exotic 5̄ mixing forced to zero by E₈ CGCs; all 248 Yukawa CKM routes exhausted | **TRIGGERED (partial kill) — 2026-03-17 (WS-CGC + WS-CKM2).** Original trigger: (16,10,1) contributes no singlet to E₆ d-symbol [code-verified WS-CGC]. Extension (WS-CKM2): (27̄,3̄_fam) coupling forbidden by SU(3)_fam (3×3×3̄ has no singlet, code-verified). Structural theorem proves only ONE Yukawa exists in 248. V_CKM = I is an exact structural result at renormalizable order within 248. **WS-3875 scoping (session 3):** Path A (3875 extension) assessed as VIABLE. Sym²(248) decomposition under SU(3)_fam×E₆ computed; all 12 dimension-consistent branching rules for 3875 contain non-trivial SU(3)_fam reps. The (6,27̄) component gives symmetric-flavor Yukawa → V_CKM ≠ I generically. Suppression Δc ~ 0.04 for Cabibbo angle, natural in RS framework. **KC-g remains at partial kill.** Exact branching rule needs computational verification (SageMath/LiE) to confirm (6,27̄) ∈ 3875 vs 27000. 3875 is not integrable at k=1; mechanism (OPE composite / condensate / stringy) to be specified. |
+| KC-g | Exotic 5̄ mixing forced to zero by E₈ CGCs; all 248 Yukawa CKM routes exhausted | **TRIGGERED (partial kill) — 2026-03-17 (WS-CGC + WS-CKM2).** Original trigger: (16,10,1) contributes no singlet to E₆ d-symbol [code-verified WS-CGC]. Extension (WS-CKM2): (27̄,3̄_fam) coupling forbidden by SU(3)_fam (3×3×3̄ has no singlet, code-verified). Structural theorem proves only ONE Yukawa exists in 248. V_CKM = I is an exact structural result at renormalizable order within 248. **WS-3875 branching CONFIRMED (session 4):** SageMath computation verified: 3875 = (1,1)⊕(1,8)⊕(27,3)⊕(27̄,3̄)⊕(27,6̄)⊕(27̄,6)⊕(78,8)⊕(650,1)⊕(351,3)⊕(351̄,3̄) under E₆×SU(3)_fam [✓ code-verified 2026-03-17, dimension-uniqueness proof]. The (27̄,6) component CONFIRMED present → symmetric-flavor Yukawa → V_CKM ≠ I generically. Suppression: g² ~ 1/(k+h∨) = 1/31 ≈ 0.032 (supersedes old Δc~0.04 estimate). h(3875) = 48/31 (corrected from h=1); 3875 is composite :JᵃJᵇ: at level 2 of vacuum module. Also: (351,3) and (351̄,3̄) present, providing additional Yukawa channels. **KC-g remains at partial kill.** Branching confirmed but mechanism not yet specified: need to derive how composite 3875 operators generate effective 4D Yukawas (OPE / condensate / RS bulk). |
 
 ---
 
@@ -267,7 +274,7 @@ All trace back to the single derivation: Jones index at n=5 → φ.
 | WL2-A | Derive n=15 | Stalled at foundational gap — three [T] coincidences documented; modular orbit [F]; J-W singularities confirmed but insufficient; blockage is undefined self-modeling map S; recommendation: Option C (accept as [D]) pending foundational work on S | E8_WS_N15.md |
 | WS-CGC | E₆ Clebsch-Gordan coefficients | **COMPLETE — 2026-03-17.** KC-g evaluated. Exotic 5̄_A/5̄_B mixing forbidden by E₆ group theory at renormalizable level. Escape route for F8 closed. See E8_WS_CGC.md. | E8_WS_CGC.md — **archive** |
 | WS-CKM2 | Two-Higgs CKM from (27,3) + (27̄,3̄) in 248 | **CLOSED — 2026-03-17.** Proposal killed. (27̄,3̄_fam) has no SU(3)_fam-invariant Yukawa (3×3×3̄ singlet absent, code-verified). Structural theorem: one Yukawa in 248, V_CKM = I exact. All 248 renormalizable routes exhausted. KC-g decision: partial kill maintained pending WS-3875. | E8_WS_CKM2.md — **archive** |
-| WS-3875 | 3875 of E₈ as source of CKM | **SCOPED — VIABLE (session 3).** Sym²(248) decomposition complete. All 12 dim-consistent branching rules contain non-trivial SU(3)_fam reps. (6,27̄) channel gives symmetric Yukawa → V_CKM ≠ I. Suppression natural (Δc ~ 0.04 for Cabibbo). h(3875) = 1 (marginal). NOT integrable at k=1. Next: computational verification of exact branching rule; mechanism specification. | E8_WS_3875.md — to be created |
+| WS-3875 | 3875 of E₈ as source of CKM | **BRANCHING CONFIRMED (session 4).** SageMath branching rule verified: 3875 = (1,1)⊕(1,8)⊕(27,3)⊕(27̄,3̄)⊕(27,6̄)⊕(27̄,6)⊕(78,8)⊕(650,1)⊕(351,3)⊕(351̄,3̄) [✓ code-verified 2026-03-17, dimension-uniqueness proof]. (27̄,6) CONFIRMED in 3875. [✗ CORRECTED: h(3875) = 48/31, not 1; old=h=1, new=h=48/31]. 3875 is composite :JᵃJᵇ: at level 2 (h=2). Suppression: g²~1/31≈0.032 (Cabibbo-scale). Also found: (351,3)⊕(351̄,3̄). Next: mechanism specification (how composites generate 4D Yukawas); derive Cabibbo angle from 1/31 × CG factors. | E8_WS_3875.md — to be created |
 
 ---
 

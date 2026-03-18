@@ -1,5 +1,5 @@
 # E₈ Project — Session Briefing
-## Research Operating System v2.1
+## Research Operating System v2.2
 
 You are collaborating with Chris on the (E₈)₁ self-referential boundary theory — a framework deriving the Standard Model and General Relativity from a holomorphic boundary CFT on the cosmic horizon.
 
@@ -106,15 +106,43 @@ At the end of every session, the system must first perform these continuity step
    - **Secondary task** (if primary completes early or is blocked): what to pivot to.
    - **Decision points**: any genuine choices that require Chris's input, with Claude's recommendation and reasoning. Keep these to a minimum — Claude decides the research direction by default.
 6. **Trigger checks** (§7): explicitly state whether an audit, re-plan, or theory audit should be triggered next session and why or why not.
-7. **Model recommendation for next session** (§1.5).
+7. **Model recommendation for next session** (§1.6).
 8. **OUTPUT THE ⚡ QUICK REFERENCE BLOCK — THIS IS MANDATORY AND MUST APPEAR AT THE VERY END OF EVERY SESSION RESPONSE WITHOUT EXCEPTION.** Update it with current values, then print it in full. Order: Tasks → Working directory → Download → Upload → Terminal commands → Model. No extra explanation in the quick reference — details go in the body above. Do not end the session response without this block. If you are running out of context or tokens, emit the Quick Reference block before anything else gets cut.
 
-### 1.4 Decision-making
+### 1.4 Mid-session checkpoint protocol
+
+Long sessions may exceed Claude's context window. To prevent loss of important work, Claude must issue a **continuation prompt** at the following points — pausing and waiting for Chris to reply "continue" before proceeding:
+
+**Mandatory checkpoint triggers:**
+1. **After completing a major logical unit** — e.g., after a full derivation is complete and verified, after a kill condition is evaluated, after a workstream is closed or a new one scoped. Do not pause in the middle of a derivation.
+2. **After any high-importance finding** — a kill condition triggered or cleared, a major correction to a stored result, a structural insight that changes the research direction, or any result that would immediately change the next-session plan.
+3. **Proactively, when the session is running long** — if Claude estimates it is approaching a context limit and substantial work remains, issue a checkpoint rather than truncating output silently.
+
+**What a checkpoint looks like:**
+```
+---
+⏸ CHECKPOINT [N/session] — [Brief label, e.g., "OPE analysis complete"]
+
+Results so far: [2–3 sentence summary of what was just completed and its status]
+Next step: [What Claude will do after continue]
+
+→ Reply "continue" to proceed.
+---
+```
+
+**What a checkpoint is NOT:**
+- Not a request for approval or direction — Claude still decides the research path.
+- Not used between mechanical sub-steps of a single derivation.
+- Not used just because a section of work felt long — only trigger on the conditions above.
+
+**If context is nearly exhausted mid-derivation:** emit the Quick Reference block immediately (see §1.3 item 8), then stop. Do not truncate mid-derivation without the Quick Reference — that is a session-close failure.
+
+### 1.5 Decision-making
 
 - **Claude decides the research direction by default.** Evaluate the full landscape — all open failures, kill conditions, dependencies, and the big picture — and choose the highest-impact next step. State the reasoning briefly so Chris can override if needed, but do not present menus of options or ask Chris to choose between alternatives unless there is a genuine fork that depends on a value judgment.
 - **If the project needs to change direction, say so.** If a result invalidates a line of work, or if a new insight opens a better path, propose the pivot with reasoning. Don't continue down a dead end out of inertia.
 
-### 1.5 Model recommendation guide
+### 1.6 Model recommendation guide
 
 - **Use Opus when:** the session involves novel derivations, structural proofs, or creative theoretical reasoning; multi-step logical chains where an error in step 3 invalidates everything after it; interpreting ambiguous or conflicting results; scoping a new workstream where the right approach isn't obvious; re-planning sessions; any session where getting the physics *wrong* would waste multiple future sessions.
 - **Use Sonnet when:** the session is primarily mechanical computation (e.g., back-solving parameters from known formulas, running RG equations, numerical cross-checks); file management, reformatting, or admin tasks; straightforward literature lookups; repeating a well-defined calculation with different inputs; auditing arithmetic where the procedure is already established.
@@ -125,7 +153,7 @@ At the end of every session, the system must first perform these continuity step
 ## §2 — Working Style
 
 - **Don't summarize the uploaded files.** Go straight to working.
-- **Don't prompt Chris or ask for permission to continue.** Work autonomously through the full session. Only stop if a genuine external blocker is reached (e.g., a required file is missing and cannot be worked around), in which case state the blocker clearly and then continue with whatever can be done without it.
+- **Don't prompt Chris or ask for permission to continue** — except at defined checkpoints (§1.4). Work autonomously through the full session. Only stop if a genuine external blocker is reached (e.g., a required file is missing and cannot be worked around), in which case state the blocker clearly and then continue with whatever can be done without it. Mid-session checkpoints are the one sanctioned exception: at logical break points or high-importance findings, issue a brief checkpoint and pause for "continue."
 - **Print intermediate steps in all code.** Never rely on text generation for any mathematical claim. Write and execute Python (or equivalent) for every numerical result, every formula check, every approximation. Intermediate values must appear in the output so the chain of reasoning is auditable.
 - **Be honest about failures.** Use status tags consistently (§6). Do not adjust inputs to make a result fit. If a number doesn't check out, say so.
 - **Flag upstream dependencies explicitly.** If a result depends on an unverified input, tag it `[⚠ depends on X]` and move on — do not silently propagate unverified inputs.
@@ -271,6 +299,7 @@ Major structural changes to the theory are recorded here in reverse chronologica
 
 | Date | Change | Reason | Impact |
 |------|--------|--------|--------|
+| 2026-03-17 | WS-3875 branching CONFIRMED; h(3875) corrected to 48/31; suppression ~1/31 | Session 4: SageMath output verified; dimension-uniqueness proof; E₈ rep theory | KC-g partial kill unchanged; branching confirmed; h(3875)=1 error found; suppression mechanism clarified |
 | 2026-03-17 | WS-3875 scoped: VIABLE; F7 exact back-solve complete | Session 3: 3875 decomposition analysis; PDG back-solve | KC-g remains partial kill; F7 resolved; priority shift to α₂ flags |
 | 2026-03-17 | Phase 2 re-evaluation complete | Fresh-eyes assessment of all claims; dependency analysis; re-prioritization | Priority reordering: WS-3875 elevated to #1; α₂ [⚠] flags elevated to #3; M_GUT flagged as hidden parameter |
 | 2026-03-17 | KC-g partial kill: 248 renormalizable sector killed for CKM | Four independent proofs of V_CKM = I in 248 | 3875 extension now the only viable CKM path |
@@ -279,7 +308,7 @@ Major structural changes to the theory are recorded here in reverse chronologica
 
 ## §9 — Current Status
 
-*(as of 2026-03-17 — ROS v2 Session 3 complete)*
+*(as of 2026-03-17 — ROS v2 Session 4 complete)*
 
 ### Project phase: TARGETED PHYSICS WORK
 
@@ -289,25 +318,26 @@ Major structural changes to the theory are recorded here in reverse chronologica
 
 **Phase 3 — Targeted physics work: IN PROGRESS.**
 - Session 3: WS-3875 scoped (VIABLE); F7 exact back-solve complete.
+- Session 4: WS-3875 branching CONFIRMED via SageMath; h(3875) corrected; suppression mechanism clarified.
 
-### What's established (post-session 3)
+### What's established (post-session 4)
 
-- **Solidly established (mathematical):** Conformal embedding cascade, central charges, 3 generations, Z=12, φ from Jones index, WZW level structure.
-- **Well-supported (physical):** Gauge coupling predictions (Tier A), EW scale (Tier B, conditional on n=15), Higgs mass ratio.
+- **Solidly established (mathematical):** Conformal embedding cascade, central charges, 3 generations, Z=12, φ from Jones index, WZW level structure. **NEW:** 3875 branching rule under E₆×SU(3)_fam (10 terms, dimension-unique).
+- **Well-supported (physical):** Gauge coupling predictions (Tier A), EW scale (Tier B, conditional on n=15), Higgs mass ratio. **NEW:** (27̄,6) channel for CKM confirmed; WZW suppression ~1/31 for Cabibbo angle.
 - **Weakened by flags:** α₂ prediction depends on three unverified inputs (b₂^WZW, +2.75, M_GUT). The 0.4% match is real but the prediction chain has gaps.
-- **Resolved this session:** F7 — exact PDG back-solve complete (P_u×L=5.9405, Q_u×L=2.4571; P_d×L=3.2173, Q_d×L=1.9027). Stored values confirmed wrong; exact values now available.
-- **Incomplete:** CKM mixing (KC-g — 3875 path viable but needs computational verification), top mass (F4 — 11% off).
+- **Corrected this session:** h(3875) = 48/31 (was incorrectly claimed as 1). Suppression mechanism: g²~1/31 (was incorrectly estimated as Δc~0.04).
+- **Incomplete:** CKM mixing (KC-g — 3875 branching confirmed, but mechanism for generating 4D Yukawas from composites not yet specified), top mass (F4 — 11% off).
 - **Blocked:** n=15 derivation (F3 — no path forward).
 
-### KC-g decision (2026-03-17)
+### KC-g decision (2026-03-17, updated session 4)
 
-Unchanged. KC-g remains at "partial kill / 248-sector full kill." The only surviving viable path (Path A — (351,3_fam) from 3875 of E₈) has not been evaluated. KC-g upgrades to "full kill" only if WS-3875 shows Path A is also insufficient.
+KC-g remains at "partial kill / 248-sector full kill." The 3875 path branching rule is now CONFIRMED: (27̄,6) is present. The remaining gap is the MECHANISM: how do composite :JᵃJᵇ: operators at h=2 generate effective 4D Yukawa couplings? WZW coupling suppression g²~1/31 gives the right parametric scale. KC-g upgrades to "full kill" only if the mechanism is shown to be impossible (no viable path to 4D Yukawa from composites).
 
 ### Open failures (re-assessed, re-prioritized)
 
-**1. WS-3875 — 3875 of E₈ as source of CKM** `[ACTIVE]`
-EXISTENTIAL but now SCOPED as VIABLE. Sym²(248) decomposition complete; all 12 dim-consistent branching rules contain non-trivial SU(3)_fam reps. (6,27̄) channel gives symmetric Yukawa → V_CKM ≠ I. Suppression Δc ~ 0.04 natural in RS.
-Remaining work: (a) Verify exact branching rule computationally (SageMath/LiE). (b) Specify mechanism (OPE/condensate/stringy). (c) Derive suppression from RS bulk profile.
+**1. WS-3875 — 3875 of E₈ as source of CKM** `[ACTIVE — BRANCHING CONFIRMED]`
+Branching rule computationally verified [✓]. (27̄,6) confirmed in 3875. h(3875)=48/31 (corrected). 3875 operators are composites :JᵃJᵇ: at h=2. Suppression g²~1/31 ≈ 0.032 (Cabibbo-scale).
+Remaining work: (a) Specify mechanism for 4D effective Yukawa from composites. (b) Derive Cabibbo angle from 1/31 × CG factors. (c) Check (351,3) channel contribution.
 
 **2. F7 — §6 parameter inconsistency** `[RESOLVED]`
 ~~Blocks all quantitative mass predictions.~~ **Exact PDG back-solve complete (session 3).** P_u×L=5.9405, Q_u×L=2.4571 (up); P_d×L=3.2173, Q_d×L=1.9027 (down). All ratios exact. Remaining: lepton sector; Paper 2 notebook audit with correct params.
@@ -326,13 +356,13 @@ Parked — self-modeling map S undefined. Needs new mathematical ideas.
 
 | Metric | Value |
 |--------|-------|
-| ROS v2 session count | 3 (next session is session 4) |
-| Sessions since last audit | 1 |
-| Sessions since last re-plan | 1 |
-| Sessions since last theory audit | 1 |
-| New numerical results since last audit | 2 (F7 back-solve up + down sectors) |
+| ROS v2 session count | 4 (next session is session 5) |
+| Sessions since last audit | 2 |
+| Sessions since last re-plan | 2 |
+| Sessions since last theory audit | 2 |
+| New numerical results since last audit | 10+ (3875 branching, h(3875), Kac marks, Sym²/∧² dims, j^{1/3} level 2, WZW coupling) |
 | Closed workstreams since last re-plan | 0 |
-| Next audit trigger | After 5 new results or 10 sessions |
+| Next audit trigger | After 5 new results or 10 sessions — **may trigger at session 5** (10+ new results) |
 | Next re-plan trigger | After 8 sessions or kill condition change |
 | Next theory audit | ~session 27 |
 
@@ -344,9 +374,9 @@ Prioritized research directions, ranked by expected impact. Updated at session c
 
 | Priority | Direction | Rationale | Status |
 |----------|-----------|-----------|--------|
-| 1 | **WS-3875 computational verification** | Exact branching rule needed to confirm (6,27̄) ∈ 3875; requires SageMath/LiE | Needs computational tools |
-| 2 | **Resolve [⚠] flags on α₂ chain** | The showcase Tier A result has three unverified inputs; undermines strongest evidence | Next if SageMath unavailable |
-| 3 | **WS-3875 mechanism specification** | Once branching confirmed, need to specify how 3875 operators arise (OPE/condensate/stringy) | After branching verification |
+| 1 | **WS-3875 mechanism specification** | Branching confirmed; need to specify how composite :JᵃJᵇ: operators generate 4D Yukawas; derive Cabibbo angle from 1/31 × CG factors | Active — highest impact |
+| 2 | **Resolve [⚠] flags on α₂ chain** | The showcase Tier A result has three unverified inputs; undermines strongest evidence | Parallel track |
+| 3 | **WS-3875 (351,3) channel analysis** | Check whether (351,3)⊕(351̄,3̄) contribute at same order as (27̄,6); may give additional CKM structure | After mechanism |
 | 4 | **F4 top mass discrepancy** | 11% is significant; bounded computation; QCD corrections may resolve | After α₂ flags |
 | 5 | **F7 lepton sector back-solve** | Complete the parameter set; derive P_l×L, Q_l×L from m_τ/m_μ, m_μ/m_e | Bounded; after F4 |
 | 6 | **F3 (n=15)** | Blocked — needs new mathematical insight | Parked |
@@ -354,18 +384,18 @@ Prioritized research directions, ranked by expected impact. Updated at session c
 ### Research dependency map (current critical path)
 
 ```
-WS-3875 computational verification (SageMath/LiE)
+WS-3875 mechanism specification ← NOW THE CRITICAL STEP
     │
-    ├── (6,27̄) CONFIRMED in 3875 → CKM mechanism specification
-    │       │
-    │       ├── RS suppression derivation → CKM predictions
+    ├── Specify how composites :JᵃJᵇ: → effective 4D Yukawa
+    │   (OPE / condensate / RS bulk overlap / stringy)
+    │
+    ├── Derive Cabibbo angle: θ_C ~ (1/31) × CG factor
     │       │
     │       └── Paper 3: CKM from 3875 extension
     │
-    └── (6,27̄) NOT in 3875 → check (3,351̄) channel
-            │
-            ├── 351 channel viable → alternative CKM mechanism
-            └── 351 channel dead → KC-g full kill → theory partial framework only
+    └── Check (351,3) channel: additional CKM structure?
+        │
+        └── Full CKM matrix prediction (if viable)
 
 α₂ [⚠] flag resolution (parallel track)
     │
@@ -382,15 +412,16 @@ F4 top mass (bounded)
 
 | Metric | Count | Trend |
 |--------|-------|-------|
-| Active hypotheses | 2 (3875 CKM path [viable], RS mass mechanism) | ↑ confidence on 3875 |
-| Stable results | Gauge couplings, EW scale, Higgs mass ratio, embedding cascade, F7 exact params | ↑ F7 resolved |
-| Open failures | 3 active (F4, KC-g partial, [⚠] flags) + 1 parked (F3) + 1 resolved (F7) | ↓ improved |
+| Active hypotheses | 2 (3875 CKM path [branching confirmed], RS mass mechanism) | ↑ 3875 branching verified |
+| Stable results | Gauge couplings, EW scale, Higgs mass ratio, embedding cascade, F7 exact params, **3875 branching rule** | ↑ branching confirmed |
+| Open failures | 3 active (F4, KC-g partial, [⚠] flags) + 1 parked (F3) + 1 resolved (F7) | → stable |
 | Active contradictions | 0 | — |
-| Kill conditions triggered | 1 partial (KC-g, 248 sector only; 3875 path viable) | → stable |
+| Kill conditions triggered | 1 partial (KC-g, 248 sector only; 3875 path confirmed viable) | ↑ improved |
 | Tier A predictions verified | Yes (with caveats on α₂ chain) | — |
 | Hidden parameters identified | 1 (M_GUT as external input) | — |
+| Errors corrected this session | 1 (h(3875) = 48/31, not 1) | — |
 
-**Overall assessment (post-session 3):** Theory viability IMPROVED. The existential CKM question (KC-g) has been scoped: the 3875 path is viable, not dead. F7 is resolved with exact parameters. The honest status is "promising research program with a plausible (but unconfirmed) CKM mechanism and solid mass hierarchy predictions."
+**Overall assessment (post-session 4):** Theory viability FURTHER IMPROVED. The existential CKM question (KC-g) has advanced from "viable but unverified" to "branching confirmed, mechanism needed." The (27̄,6) channel is computationally confirmed in the 3875. The h=1 claim was an error (corrected to 48/31); the suppression mechanism via WZW coupling g²~1/31 gives the right parametric scale for Cabibbo. The honest status is "promising research program with a CONFIRMED group-theoretic CKM mechanism (pending dynamical specification) and solid mass hierarchy predictions."
 
 ---
 
@@ -445,35 +476,33 @@ F4 top mass (bounded)
 
 ## §13 — Next Session Plan
 
-### Primary task: Resolve [⚠] flags on α₂ prediction chain
+### Primary task: WS-3875 mechanism specification
 
-The α₂ prediction (0.4% match) is the theory's showcase result but rests on three unverified inputs. This is the highest-impact task that can be done without external tools.
+The branching rule is confirmed. The next critical step is specifying HOW composite :JᵃJᵇ: operators at h=2 in the (E₈)₁ vacuum module generate effective 4D Yukawa couplings with the (27̄,6) flavor structure.
 
 Concrete steps:
-1. Identify the matter content of the E₈ theory that gives b₂^WZW = +38/3. This means: enumerate the (E₈)₁ fields charged under SU(2)_L, compute their one-loop contributions to the SU(2) beta function in the regime M_Pl → M_GUT, and verify the total is +38/3.
-2. Trace the "+2.75 corrections" to their source. These appear as the gap between the two-stage RG result (26.70) and the stated prediction (29.45). Identify whether they come from threshold corrections, two-loop effects, or a specific physical mechanism.
-3. Assess whether M_GUT = 5.7×10¹⁶ GeV can be derived self-consistently from the WZW crossing condition, or whether it must remain a fitted parameter.
+1. **OPE analysis:** Compute the OPE of two E₈ currents J^a(z)J^b(w) and identify the (27̄,6) component in the symmetric product. Express the composite operator explicitly in terms of E₆×SU(3)_fam quantum numbers.
+2. **Effective Yukawa from composites:** In the holographic/RS dual picture, determine how level-2 vacuum module operators map to 4D effective couplings. The key question: does the effective 4D Yukawa from :JᵃJᵇ: carry the suppression factor 1/(k+h∨) = 1/31, or is the suppression different?
+3. **Cabibbo angle estimate:** Using the (27̄,6) Clebsch-Gordan structure and the 1/31 suppression, compute the leading correction to the CKM matrix. The 6 of SU(3)_fam decomposes under the (G₂)₆ condensate breaking SU(3)→SU(2)→nothing; trace through the breaking to get V_us.
+4. **Cross-check (351,3) channel:** Determine whether (351,3) operators contribute at the same order (also composites at h=2, same suppression) or are further suppressed.
 
-### Secondary task: WS-3875 branching rule verification (if SageMath output available)
+### Secondary task: Resolve [⚠] flags on α₂ prediction chain
 
-If Chris has run the SageMath branching rule computation and provides the output, pivot to:
-- Parse the branching rule for 3875 under A₂×E₆
-- Confirm or deny (6,27̄) ∈ 3875
-- If confirmed, proceed to mechanism specification
+If the mechanism specification reaches a natural stopping point or requires external input, pivot to the α₂ flags. The three unverified inputs (b₂^WZW=+38/3, +2.75 corrections, M_GUT) each need tracing to their physical origin.
 
 ### Decision points
 
-If Chris can run SageMath locally (command: `E8(1,0,0,0,0,0,0,0).branch(A2xE6, rule="extended")` in Sage with coroot style), provide the output next session and we'll prioritize WS-3875 completion over α₂ flags. Otherwise, α₂ flags are the clear next step.
+None — Claude decides the research direction.
 
 ### Files for next session
 
 - `E8_Reference_Core.md` ✓ always
 - `E8_Session_Briefing.md` ✓ always
-- No workstream file needed
+- No workstream file needed (WS-3875 file will be created at session close if needed)
 
 ### Model recommendation
 
-**Opus** — The α₂ chain analysis requires tracing through assumptions, identifying physical mechanisms behind numerical values, and making judgment calls about what can be derived vs what must be fitted. This is novel reasoning, not mechanical computation.
+**Opus** — The mechanism specification requires novel theoretical reasoning: connecting WZW composite operators to 4D effective field theory through holography/RS, identifying the correct suppression mechanism, and making physical judgments about which effects dominate. This is creative theoretical work, not mechanical computation.
 
 ---
 
@@ -563,9 +592,9 @@ Claude is the **default research platform**. Other systems (OpenAI models, Gemin
 
 | Purpose | Path |
 |---------|------|
-| **Project root** | `/Users/cdowd/Projects/E₈ Theory` |
+| **Project root** | `/Users/cdowd/Projects/E8-THEORY` |
 | **Downloads folder** | `/Users/cdowd/Downloads` |
-| **Python scripts** | `/Users/cdowd/Projects/E₈ Theory/scripts/` |
+| **Python scripts** | `/Users/cdowd/Projects/E8-THEORY/scripts/` |
 
 All project files live under the project root and are tracked in git. Python scripts go in `scripts/` so they are version-controlled alongside the research files. If a script becomes general-purpose enough to live outside this project, flag it at session close.
 
@@ -577,23 +606,23 @@ At session close, you MUST print a **Terminal Commands** block containing the ex
 
 **New file (first placement):**
 ```bash
-mv "/Users/cdowd/Downloads/FILENAME.md" "/Users/cdowd/Projects/E₈ Theory/PATH/TO/FILENAME.md"
+mv "/Users/cdowd/Downloads/FILENAME.md" "/Users/cdowd/Projects/E8-THEORY/PATH/TO/FILENAME.md"
 ```
 
 **Replacing an existing file:**
 ```bash
-cp "/Users/cdowd/Downloads/FILENAME.md" "/Users/cdowd/Projects/E₈ Theory/PATH/TO/FILENAME.md"
+cp "/Users/cdowd/Downloads/FILENAME.md" "/Users/cdowd/Projects/E8-THEORY/PATH/TO/FILENAME.md"
 ```
 (`cp` overwrites in place; git will show the diff.)
 
 **Python script:**
 ```bash
-mv "/Users/cdowd/Downloads/script_name.py" "/Users/cdowd/Projects/E₈ Theory/scripts/script_name.py"
+mv "/Users/cdowd/Downloads/script_name.py" "/Users/cdowd/Projects/E8-THEORY/scripts/script_name.py"
 ```
 
 **After all moves, always commit:**
 ```bash
-cd "/Users/cdowd/Projects/E₈ Theory" && git add -A && git commit -m "session-NNN: <description>"
+cd "/Users/cdowd/Projects/E8-THEORY" && git add -A && git commit -m "session-NNN: <description>"
 ```
 
 Replace `NNN` with the session number from SESSION_LEDGER.md and `<description>` with a one-line summary of what the session produced.
@@ -609,8 +638,8 @@ Replace `NNN` with the session number from SESSION_LEDGER.md and `<description>`
 ## ⚡ Quick Reference
 
 ### Tasks
-- **Primary:** Resolve [⚠] flags on α₂ prediction chain (b₂^WZW, +2.75 corrections, M_GUT)
-- **Secondary:** WS-3875 branching rule verification (if SageMath output available from Chris)
+- **Primary:** WS-3875 mechanism specification — how do composite :JᵃJᵇ: operators generate 4D Yukawas? Derive Cabibbo angle from 1/31 × CG factors.
+- **Secondary:** Resolve [⚠] flags on α₂ prediction chain (b₂^WZW, +2.75 corrections, M_GUT)
 
 ### Working directory (current)
 ```
@@ -659,22 +688,21 @@ E8_Session_Briefing.md
 ```
 E8_Session_Briefing.md
 E8_Reference_Core.md
-(Optional: SageMath output for 3875 branching rule)
 ```
 
 ### Terminal commands
 ```bash
 # Replace existing files
-cp "/Users/cdowd/Downloads/E8_Reference_Core.md" "/Users/cdowd/Projects/E₈ Theory/00_SYSTEM/E8_Reference_Core.md"
-cp "/Users/cdowd/Downloads/E8_Session_Briefing.md" "/Users/cdowd/Projects/E₈ Theory/00_SYSTEM/E8_Session_Briefing.md"
+cp "/Users/cdowd/Downloads/E8_Reference_Core.md" "/Users/cdowd/Projects/E8-THEORY/00_SYSTEM/E8_Reference_Core.md"
+cp "/Users/cdowd/Downloads/E8_Session_Briefing.md" "/Users/cdowd/Projects/E8-THEORY/00_SYSTEM/E8_Session_Briefing.md"
 
 # Commit
-cd "/Users/cdowd/Projects/E₈ Theory" && git add -A && git commit -m "session-003: WS-3875 scoped (viable); F7 exact back-solve complete; priorities updated"
+cd "/Users/cdowd/Projects/E8-THEORY" && git add -A && git commit -m "session-004: WS-3875 branching confirmed; h(3875) corrected to 48/31; suppression ~1/31"
 ```
 
 ### Model
-**Opus** — α₂ chain analysis requires tracing unverified assumptions and novel reasoning
+**Opus** — mechanism specification requires novel theoretical reasoning connecting WZW composites to 4D effective theory
 
 ---
 
-*End of session briefing — Research Operating System v2.1*
+*End of session briefing — Research Operating System v2.2*
