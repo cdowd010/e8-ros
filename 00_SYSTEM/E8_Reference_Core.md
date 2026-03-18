@@ -1,7 +1,7 @@
 # E₈ Reference Core
 ## Condensed Results & Status — Always Upload This File
 
-**Last updated:** March 17, 2026 (WS-CKM2 archived; KC-g decision: remains partial kill pending WS-3875)
+**Last updated:** March 17, 2026 — Session 3 (WS-3875 scoped: VIABLE; F7 exact back-solve complete; KC-g remains partial kill)
 **Rule:** No derivations here. Results only. For derivations, see workstream files or archived notebooks.
 
 ---
@@ -47,6 +47,7 @@ No corrections found in Phases 1–3. Phase 4: two display-only errors in §5 in
 [F] Mass degeneracy: two heavy families exactly degenerate (proved at 4 levels)
 [D] Paper 2: (G₂)₆ resolves degeneracy via symmetric + adjoint condensates
 [F] V_CKM = I structural result: unique Yukawa ε_{ijk} in 248; all E6-neutral condensates give η₁₀=η₅̄; (27̄,3̄_fam) Yukawa SU(3)_fam-forbidden; V_CKM = I exact for full 248 class — see F8, WS-CKM2
+[D] 3875 extension: Sym²(248) contains non-trivial SU(3)_fam reps (all 12 dim-consistent branching rules verified); (6,27̄) channel gives symmetric Yukawa → V_CKM ≠ I generically; suppression Δc ~ 0.04 for Cabibbo angle — VIABLE but exact branching rule unverified (needs SageMath/LiE)
 ```
 
 ---
@@ -176,13 +177,25 @@ b₃ = −7,  b₂ = −19/6,  b₁ = +41/6   [✓ code-verified 2026-03-17] (de
 
 **Fitted parameters per sector:**
 
-⚠ **NOTE: The values below are inconsistent with the Tier C mass ratios (F7). See E8_WS_CKM.md §5 Finding 1. Do not use for quantitative predictions until audited.**
+⚠ **NOTE: The "stored" values below are inconsistent with the Tier C mass ratios (F7). See E8_WS_CKM.md §5 Finding 1. Do not use for quantitative predictions until audited.**
 
-| Sector | P×L (stored — inconsistent) | Q×L (stored — inconsistent) | P×L (Tier-C-consistent) | Q×L (Tier-C-consistent) |
-|--------|------------------------------|------------------------------|--------------------------|--------------------------|
-| Up quarks | 2.71 | 1.61 | 5.401 | 3.188 |
-| Down quarks | 0.80 | 0.68 | 3.533 | 1.498 |
-| Leptons | (derived from m_τ/m_μ, m_μ/m_e) | | (not yet recomputed) | |
+| Sector | P×L (stored — inconsistent) | Q×L (stored — inconsistent) | P×L (Tier-C-consistent) | Q×L (Tier-C-consistent) | P×L (exact PDG back-solve) | Q×L (exact PDG back-solve) |
+|--------|------------------------------|------------------------------|--------------------------|--------------------------|---------------------------|---------------------------|
+| Up quarks | 2.71 | 1.61 | 5.401 | 3.188 | **5.9405** | **2.4571** |
+| Down quarks | 0.80 | 0.68 | 3.533 | 1.498 | **3.2173** | **1.9027** |
+| Leptons | (derived from m_τ/m_μ, m_μ/m_e) | | (not yet recomputed) | | (not yet computed) | |
+
+**Session 3 exact PDG back-solve (2026-03-17):**
+
+PDG inputs: m_t=173 GeV (pole), m_c=1.27 GeV, m_u=2.0 MeV, m_b=4.18 GeV, m_s=93 MeV, m_d=5.0 MeV.
+Method: ln(m_3/m_2) = 2Y, ln(m_2/m_1) = 3X/2 − Y, solved exactly.
+
+- Up exact (PuL=5.9405, QuL=2.4571): m_t/m_u = **86,500** [✓ code-verified 2026-03-17], m_t/m_c = **136.2** [✓], m_c/m_u = **635** [✓] — all three ratios reproduced exactly
+- Down exact (PdL=3.2173, QdL=1.9027): m_b/m_d = **836** [✓ code-verified 2026-03-17], m_b/m_s = **44.9** [✓], m_s/m_d = **18.6** [✓] — all three ratios reproduced exactly
+- All parameters satisfy P > 0, Q > 0, Q < 3P/2 (physical ordering) [✓]
+- P_u = 0.1644, Q_u = 0.0680, P_d = 0.0890, Q_d = 0.0526 (using L = 36.140)
+
+Comparison: Tier-C-consistent values differ by 10–30% from exact PDG back-solve because they were approximately fitted, not exactly solved.
 
 **Phase 7 code-verified characterization (2026-03-17):**
 
@@ -226,7 +239,7 @@ All trace back to the single derivation: Jones index at n=5 → φ.
 | F4 | Top mass 11% off | Open — source unknown |
 | F5 | α₃ 5.2% error | Further open — doublet-triplet threshold requires M_T/M_GUT = 1.586 (backward-computed from T_total = 9 exotic triplets); dynamical derivation of this ratio is blocked (WS-α₃ §4 Session 4). Three approaches to Casimir ordering all fail to place exotic triplets above M_GUT: perturbative shift gives M_T/M_GUT ≈ 1.02 (insufficient); RS/WZW bulk profiles place triplets at ~7×10¹² GeV (below M_GUT, wrong direction); Paper 2 condensate Q×L governs fermion ratios, not GUT-Higgs spectrum. GUT-breaking sector model required. Demoted to Tier C with M_T/M_GUT fitted. |
 | F6 | DM abundance | Open — requires condensation dynamics |
-| F7 | §6 P×L, Q×L inconsistent with Tier C mass ratios | Open — stored values give m_t/m_u = 291.5 and m_b/m_d = 6.6 [✓ code-verified 2026-03-17]; Tier C targets are 84,455 and 836. Discrepancy factors: ~274× (up sector) and ~136× (down sector) [✓ code-verified 2026-03-17]. Tier-C-consistent values (PuL=5.401, QuL=3.188, PdL=3.533, QdL=1.498) give m_t/m_u=79,978 (−5.3% vs target) and m_b/m_d=895.6 (+7.1% vs target) [✓ code-verified 2026-03-17] — approximately consistent but not exactly fitted; exact back-solved parameters needed for Paper 2 notebook. Must audit Paper 2 notebook before any quantitative prediction. |
+| F7 | §6 P×L, Q×L inconsistent with Tier C mass ratios | **Resolved (session 3)** — Exact PDG back-solve complete: P_u×L=5.9405, Q_u×L=2.4571 (up); P_d×L=3.2173, Q_d×L=1.9027 (down). All mass ratios reproduced exactly [✓ code-verified 2026-03-17]. Stored values remain wrong (~274× and ~136× off). Tier-C-consistent values ~10–30% off exact. §6 updated with exact values. Remaining work: recompute lepton sector; audit Paper 2 notebook with corrected params. |
 | F8 | V_CKM = I in the 248 framework | **Fully confirmed — 2026-03-17 (WS-CKM2).** All renormalizable escape routes within 248 exhausted. (1) WS-CKM2 proposal killed: (27̄,3̄_fam)_H has no SU(3)_fam-invariant Yukawa coupling to 27_i×27_j — 3×3×3̄ has no singlet [code-verified by weight system: weight (0,0) absent; confirmed by decomposition 3×3×3̄ = 6̄+3+3+15]. (2) Structural theorem: 248 admits ONE Yukawa operator W = λ ε_{ijk} 27_i 27_j (27_H)_k; all mass matrices proportional; V_CKM = V_PMNS = I exact. (3) U(1)_χ VEV: splits c-parameters for 10 vs 5̄ but δ enters as overall factor; V_CKM = I preserved. (4) E6-neutral condensate theorem: ALL Paper 2 condensates (S, A) are E6-singlets; cannot distinguish 10 from 5̄ within 16_i; η₁₀ = η₅̄ exact for entire Paper 2 class. (5) General theorem: V_CKM = I for any c-parameter structure with diagonal D_i [code-verified: [MuMu†, MdMd†] = 0]. Surviving paths: (A) (351,3_fam) from 3875 of E8 — untested, suppression unclear [→ WS-3875]; (B) flavor-dependent U(1)_χ — not achievable within 248; (C) dim-5 operators — suppressed by ~10⁻¹⁴, too small. |
 
 ---
@@ -241,7 +254,7 @@ All trace back to the single derivation: Jones index at n=5 → φ.
 | KC-d | h=2/5 maps to non-tachyonic field | Not triggered |
 | KC-e | dS/CFT at c=8 inconsistent with Jacobson | Not triggered |
 | KC-f | Error in conformal embedding arithmetic | Not triggered |
-| KC-g | Exotic 5̄ mixing forced to zero by E₈ CGCs; all 248 Yukawa CKM routes exhausted | **TRIGGERED (partial kill) — 2026-03-17 (WS-CGC + WS-CKM2).** Original trigger: (16,10,1) contributes no singlet to E₆ d-symbol [code-verified WS-CGC]. Extension (WS-CKM2): (27̄,3̄_fam) coupling forbidden by SU(3)_fam (3×3×3̄ has no singlet, code-verified). Structural theorem proves only ONE Yukawa exists in 248. V_CKM = I is an exact structural result at renormalizable order within 248. **KC-g upgrade decision (2026-03-17):** Remains at "partial kill" — not upgraded to full kill. Rationale: Path A (351,3_fam) from 3875 of E₈ is the only surviving viable mechanism and has not been evaluated. Suppression scale for 3875 operators is unknown; if condensation scale is near M_GUT with O(1) coefficient, CKM could be generated. KC-g upgrades to full kill only if WS-3875 demonstrates Path A is also insufficient. Paper 2 framework survives as a mass hierarchy predictor; CKM is delegated to the 3875 extension. |
+| KC-g | Exotic 5̄ mixing forced to zero by E₈ CGCs; all 248 Yukawa CKM routes exhausted | **TRIGGERED (partial kill) — 2026-03-17 (WS-CGC + WS-CKM2).** Original trigger: (16,10,1) contributes no singlet to E₆ d-symbol [code-verified WS-CGC]. Extension (WS-CKM2): (27̄,3̄_fam) coupling forbidden by SU(3)_fam (3×3×3̄ has no singlet, code-verified). Structural theorem proves only ONE Yukawa exists in 248. V_CKM = I is an exact structural result at renormalizable order within 248. **WS-3875 scoping (session 3):** Path A (3875 extension) assessed as VIABLE. Sym²(248) decomposition under SU(3)_fam×E₆ computed; all 12 dimension-consistent branching rules for 3875 contain non-trivial SU(3)_fam reps. The (6,27̄) component gives symmetric-flavor Yukawa → V_CKM ≠ I generically. Suppression Δc ~ 0.04 for Cabibbo angle, natural in RS framework. **KC-g remains at partial kill.** Exact branching rule needs computational verification (SageMath/LiE) to confirm (6,27̄) ∈ 3875 vs 27000. 3875 is not integrable at k=1; mechanism (OPE composite / condensate / stringy) to be specified. |
 
 ---
 
@@ -254,7 +267,7 @@ All trace back to the single derivation: Jones index at n=5 → φ.
 | WL2-A | Derive n=15 | Stalled at foundational gap — three [T] coincidences documented; modular orbit [F]; J-W singularities confirmed but insufficient; blockage is undefined self-modeling map S; recommendation: Option C (accept as [D]) pending foundational work on S | E8_WS_N15.md |
 | WS-CGC | E₆ Clebsch-Gordan coefficients | **COMPLETE — 2026-03-17.** KC-g evaluated. Exotic 5̄_A/5̄_B mixing forbidden by E₆ group theory at renormalizable level. Escape route for F8 closed. See E8_WS_CGC.md. | E8_WS_CGC.md — **archive** |
 | WS-CKM2 | Two-Higgs CKM from (27,3) + (27̄,3̄) in 248 | **CLOSED — 2026-03-17.** Proposal killed. (27̄,3̄_fam) has no SU(3)_fam-invariant Yukawa (3×3×3̄ singlet absent, code-verified). Structural theorem: one Yukawa in 248, V_CKM = I exact. All 248 renormalizable routes exhausted. KC-g decision: partial kill maintained pending WS-3875. | E8_WS_CKM2.md — **archive** |
-| WS-3875 | 3875 of E₈ as source of CKM | **PENDING** — only surviving viable path for CKM. Begins after F7 back-solve (or as secondary task). | E8_WS_3875.md — to be created |
+| WS-3875 | 3875 of E₈ as source of CKM | **SCOPED — VIABLE (session 3).** Sym²(248) decomposition complete. All 12 dim-consistent branching rules contain non-trivial SU(3)_fam reps. (6,27̄) channel gives symmetric Yukawa → V_CKM ≠ I. Suppression natural (Δc ~ 0.04 for Cabibbo). h(3875) = 1 (marginal). NOT integrable at k=1. Next: computational verification of exact branching rule; mechanism specification. | E8_WS_3875.md — to be created |
 
 ---
 

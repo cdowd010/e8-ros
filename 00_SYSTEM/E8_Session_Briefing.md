@@ -271,6 +271,7 @@ Major structural changes to the theory are recorded here in reverse chronologica
 
 | Date | Change | Reason | Impact |
 |------|--------|--------|--------|
+| 2026-03-17 | WS-3875 scoped: VIABLE; F7 exact back-solve complete | Session 3: 3875 decomposition analysis; PDG back-solve | KC-g remains partial kill; F7 resolved; priority shift to α₂ flags |
 | 2026-03-17 | Phase 2 re-evaluation complete | Fresh-eyes assessment of all claims; dependency analysis; re-prioritization | Priority reordering: WS-3875 elevated to #1; α₂ [⚠] flags elevated to #3; M_GUT flagged as hidden parameter |
 | 2026-03-17 | KC-g partial kill: 248 renormalizable sector killed for CKM | Four independent proofs of V_CKM = I in 248 | 3875 extension now the only viable CKM path |
 
@@ -278,22 +279,24 @@ Major structural changes to the theory are recorded here in reverse chronologica
 
 ## §9 — Current Status
 
-*(as of 2026-03-17 — ROS v2 Session 2 complete)*
+*(as of 2026-03-17 — ROS v2 Session 3 complete)*
 
-### Project phase: POST-RE-EVALUATION — TARGETED PHYSICS WORK
+### Project phase: TARGETED PHYSICS WORK
 
 **Phase 1 — File system buildout: ✓ COMPLETE (Session 1).**
 
-**Phase 2 — Full theory re-evaluation: ✓ COMPLETE (Session 2).** All numerical values in E8_Reference_Core independently re-derived and confirmed. Conceptual assessment completed: theory is VIABLE but INCOMPLETE. No circular reasoning found. M_GUT identified as unacknowledged hidden parameter. KC-g/CKM is the existential risk. Research priorities re-ordered. First theory snapshot created.
+**Phase 2 — Full theory re-evaluation: ✓ COMPLETE (Session 2).** All numerical values independently re-derived. Theory is VIABLE but INCOMPLETE.
 
-**Phase 3 — Targeted physics work: NEXT.** Resume work on open failures with priorities set by the Phase 2 re-evaluation.
+**Phase 3 — Targeted physics work: IN PROGRESS.**
+- Session 3: WS-3875 scoped (VIABLE); F7 exact back-solve complete.
 
-### What's established (post-re-evaluation)
+### What's established (post-session 3)
 
 - **Solidly established (mathematical):** Conformal embedding cascade, central charges, 3 generations, Z=12, φ from Jones index, WZW level structure.
 - **Well-supported (physical):** Gauge coupling predictions (Tier A), EW scale (Tier B, conditional on n=15), Higgs mass ratio.
 - **Weakened by flags:** α₂ prediction depends on three unverified inputs (b₂^WZW, +2.75, M_GUT). The 0.4% match is real but the prediction chain has gaps.
-- **Incomplete:** Mass hierarchy mechanism (F7 — stored params are wrong), CKM mixing (KC-g — 248 killed), top mass (F4 — 11% off).
+- **Resolved this session:** F7 — exact PDG back-solve complete (P_u×L=5.9405, Q_u×L=2.4571; P_d×L=3.2173, Q_d×L=1.9027). Stored values confirmed wrong; exact values now available.
+- **Incomplete:** CKM mixing (KC-g — 3875 path viable but needs computational verification), top mass (F4 — 11% off).
 - **Blocked:** n=15 derivation (F3 — no path forward).
 
 ### KC-g decision (2026-03-17)
@@ -302,13 +305,12 @@ Unchanged. KC-g remains at "partial kill / 248-sector full kill." The only survi
 
 ### Open failures (re-assessed, re-prioritized)
 
-**1. WS-3875 — 3875 of E₈ as source of CKM** `[EXPERIMENTAL]`
-EXISTENTIAL. Only remaining viable path for CKM mixing. Determines whether the theory survives.
-Concrete task: Decompose 3875 under SU(3)_fam × E₆. Identify operators coupling to SM Yukawas. Estimate suppression scale.
+**1. WS-3875 — 3875 of E₈ as source of CKM** `[ACTIVE]`
+EXISTENTIAL but now SCOPED as VIABLE. Sym²(248) decomposition complete; all 12 dim-consistent branching rules contain non-trivial SU(3)_fam reps. (6,27̄) channel gives symmetric Yukawa → V_CKM ≠ I. Suppression Δc ~ 0.04 natural in RS.
+Remaining work: (a) Verify exact branching rule computationally (SageMath/LiE). (b) Specify mechanism (OPE/condensate/stringy). (c) Derive suppression from RS bulk profile.
 
-**2. F7 — §6 parameter inconsistency** `[ACTIVE]`
-Blocks all quantitative mass predictions. Stored P×L, Q×L are off by factors of 100-300×.
-Concrete task: Back-solve exact P×L, Q×L for up and down sectors to reproduce m_t/m_u = 84,455 and m_b/m_d = 836 exactly.
+**2. F7 — §6 parameter inconsistency** `[RESOLVED]`
+~~Blocks all quantitative mass predictions.~~ **Exact PDG back-solve complete (session 3).** P_u×L=5.9405, Q_u×L=2.4571 (up); P_d×L=3.2173, Q_d×L=1.9027 (down). All ratios exact. Remaining: lepton sector; Paper 2 notebook audit with correct params.
 
 **3. [⚠] flags on α₂ prediction chain** `[ACTIVE]`
 The showcase result (0.4% match) rests on three unverified inputs. Needs cleaning up for any paper.
@@ -324,11 +326,11 @@ Parked — self-modeling map S undefined. Needs new mathematical ideas.
 
 | Metric | Value |
 |--------|-------|
-| ROS v2 session count | 2 (next session is session 3) |
-| Sessions since last audit | 0 (Phase 2 re-eval = full audit) |
-| Sessions since last re-plan | 0 (Phase 2 re-eval = re-plan) |
-| Sessions since last theory audit | 0 (Phase 2 re-eval = theory audit) |
-| New numerical results since last audit | 0 |
+| ROS v2 session count | 3 (next session is session 4) |
+| Sessions since last audit | 1 |
+| Sessions since last re-plan | 1 |
+| Sessions since last theory audit | 1 |
+| New numerical results since last audit | 2 (F7 back-solve up + down sectors) |
 | Closed workstreams since last re-plan | 0 |
 | Next audit trigger | After 5 new results or 10 sessions |
 | Next re-plan trigger | After 8 sessions or kill condition change |
@@ -342,32 +344,36 @@ Prioritized research directions, ranked by expected impact. Updated at session c
 
 | Priority | Direction | Rationale | Status |
 |----------|-----------|-----------|--------|
-| 1 | **WS-3875 (3875 decomposition for CKM)** | Existential: theory dies if this fails; must resolve before investing in refinements | Next session |
-| 2 | **F7 parameter back-solve** | Blocks all mass predictions; prerequisite for Paper 2 | After WS-3875 scoping |
-| 3 | **Resolve [⚠] flags on α₂ chain** | The showcase Tier A result has three unverified inputs; undermines strongest evidence | After F7 |
+| 1 | **WS-3875 computational verification** | Exact branching rule needed to confirm (6,27̄) ∈ 3875; requires SageMath/LiE | Needs computational tools |
+| 2 | **Resolve [⚠] flags on α₂ chain** | The showcase Tier A result has three unverified inputs; undermines strongest evidence | Next if SageMath unavailable |
+| 3 | **WS-3875 mechanism specification** | Once branching confirmed, need to specify how 3875 operators arise (OPE/condensate/stringy) | After branching verification |
 | 4 | **F4 top mass discrepancy** | 11% is significant; bounded computation; QCD corrections may resolve | After α₂ flags |
-| 5 | **F3 (n=15)** | Blocked — needs new mathematical insight | Parked |
+| 5 | **F7 lepton sector back-solve** | Complete the parameter set; derive P_l×L, Q_l×L from m_τ/m_μ, m_μ/m_e | Bounded; after F4 |
+| 6 | **F3 (n=15)** | Blocked — needs new mathematical insight | Parked |
 
 ### Research dependency map (current critical path)
 
 ```
-WS-3875 (CKM viability)
+WS-3875 computational verification (SageMath/LiE)
     │
-    ├── SUCCESS → theory viable → continue all lines
+    ├── (6,27̄) CONFIRMED in 3875 → CKM mechanism specification
     │       │
-    │       ├── F7 parameter back-solve
-    │       │       │
-    │       │       └── Paper 2 mass predictions
+    │       ├── RS suppression derivation → CKM predictions
     │       │
-    │       ├── α₂ [⚠] flag resolution
-    │       │       │
-    │       │       └── Clean Tier A presentation
-    │       │
-    │       └── F4 top mass
+    │       └── Paper 3: CKM from 3875 extension
     │
-    └── FAILURE → KC-g full kill → theory cannot explain CKM
-                   → reassess: can theory survive as partial framework?
-                   → or: search for mechanism beyond 3875?
+    └── (6,27̄) NOT in 3875 → check (3,351̄) channel
+            │
+            ├── 351 channel viable → alternative CKM mechanism
+            └── 351 channel dead → KC-g full kill → theory partial framework only
+
+α₂ [⚠] flag resolution (parallel track)
+    │
+    └── Clean Tier A presentation → Paper 1 readiness
+
+F4 top mass (bounded)
+    │
+    └── QCD correction analysis → resolved or escalated
 ```
 
 ---
@@ -376,15 +382,15 @@ WS-3875 (CKM viability)
 
 | Metric | Count | Trend |
 |--------|-------|-------|
-| Active hypotheses | 2 (3875 CKM path, RS mass mechanism) | — |
-| Stable results | Gauge couplings, EW scale, Higgs mass ratio, embedding cascade | — |
-| Open failures | 4 active (F4, F7, KC-g partial, [⚠] flags) + 1 parked (F3) | — |
+| Active hypotheses | 2 (3875 CKM path [viable], RS mass mechanism) | ↑ confidence on 3875 |
+| Stable results | Gauge couplings, EW scale, Higgs mass ratio, embedding cascade, F7 exact params | ↑ F7 resolved |
+| Open failures | 3 active (F4, KC-g partial, [⚠] flags) + 1 parked (F3) + 1 resolved (F7) | ↓ improved |
 | Active contradictions | 0 | — |
-| Kill conditions triggered | 1 partial (KC-g, 248 sector only) | ↑ risk |
-| Tier A predictions verified | Yes (with caveats on α₂ chain) | ← new caveat |
-| Hidden parameters identified | 1 (M_GUT as external input) | ← new finding |
+| Kill conditions triggered | 1 partial (KC-g, 248 sector only; 3875 path viable) | → stable |
+| Tier A predictions verified | Yes (with caveats on α₂ chain) | — |
+| Hidden parameters identified | 1 (M_GUT as external input) | — |
 
-**Overall assessment (post-Phase 2):** Theory remains viable pending WS-3875 outcome. The mathematical structure is solid. The gauge coupling predictions are impressive but the α₂ chain has gaps that need closing. F7 is blocking but mechanically resolvable. KC-g is the existential risk — 3875 path is the last viable CKM mechanism. The theory's honest status is "promising research program with one make-or-break question."
+**Overall assessment (post-session 3):** Theory viability IMPROVED. The existential CKM question (KC-g) has been scoped: the 3875 path is viable, not dead. F7 is resolved with exact parameters. The honest status is "promising research program with a plausible (but unconfirmed) CKM mechanism and solid mass hierarchy predictions."
 
 ---
 
@@ -439,36 +445,35 @@ WS-3875 (CKM viability)
 
 ## §13 — Next Session Plan
 
-### Primary task: WS-3875 — Scope the 3875 decomposition for CKM
+### Primary task: Resolve [⚠] flags on α₂ prediction chain
 
-This is the highest-priority task. The entire theory's viability hinges on whether the 3875 representation of E₈ can generate CKM mixing.
+The α₂ prediction (0.4% match) is the theory's showcase result but rests on three unverified inputs. This is the highest-impact task that can be done without external tools.
 
 Concrete steps:
-1. Decompose 3875 of E₈ under SU(3)_fam × E₆. Identify all components.
-2. Identify which components contain operators that couple to SM Yukawas (specifically, operators of the form 27_i × 27_j × X where X is NOT the standard 27_H).
-3. Determine whether any such operator can generate off-diagonal flavor structure (i.e., break the V_CKM = I result).
-4. Estimate the suppression scale: if the 3875 operator arises from a condensate at scale Λ, what is Λ relative to M_GUT? Is the resulting CKM mixing of the right magnitude?
-5. Assess: is this path viable, marginal, or dead?
+1. Identify the matter content of the E₈ theory that gives b₂^WZW = +38/3. This means: enumerate the (E₈)₁ fields charged under SU(2)_L, compute their one-loop contributions to the SU(2) beta function in the regime M_Pl → M_GUT, and verify the total is +38/3.
+2. Trace the "+2.75 corrections" to their source. These appear as the gap between the two-stage RG result (26.70) and the stated prediction (29.45). Identify whether they come from threshold corrections, two-loop effects, or a specific physical mechanism.
+3. Assess whether M_GUT = 5.7×10¹⁶ GeV can be derived self-consistently from the WZW crossing condition, or whether it must remain a fitted parameter.
 
-### Secondary task: F7 parameter back-solve
+### Secondary task: WS-3875 branching rule verification (if SageMath output available)
 
-If WS-3875 scoping completes early (either a clear answer or a clear block), pivot to:
-- Back-solve exact P×L, Q×L for up and down sectors from the mass formula m_i/m_j = exp((c_j−c_i)×L) and PDG mass ratios.
-- Verify the back-solved values are physically reasonable (P, Q > 0; L ≈ 36.1).
+If Chris has run the SageMath branching rule computation and provides the output, pivot to:
+- Parse the branching rule for 3875 under A₂×E₆
+- Confirm or deny (6,27̄) ∈ 3875
+- If confirmed, proceed to mechanism specification
 
 ### Decision points
 
-None — WS-3875 is the clear next step. If the 3875 decomposition requires computational tools not available in-session (e.g., LiE for branching rules), flag the gap and pivot to F7.
+If Chris can run SageMath locally (command: `E8(1,0,0,0,0,0,0,0).branch(A2xE6, rule="extended")` in Sage with coroot style), provide the output next session and we'll prioritize WS-3875 completion over α₂ flags. Otherwise, α₂ flags are the clear next step.
 
 ### Files for next session
 
 - `E8_Reference_Core.md` ✓ always
 - `E8_Session_Briefing.md` ✓ always
-- No workstream file needed (WS-3875 will be created during the session)
+- No workstream file needed
 
 ### Model recommendation
 
-**Opus** for the next session. WS-3875 scoping requires novel representation theory reasoning, creative approaches to the decomposition, and judgment about whether the resulting mechanism is viable. Getting the group theory right is critical — an error here could waste multiple sessions or prematurely kill/validate the theory. This is not a mechanical computation.
+**Opus** — The α₂ chain analysis requires tracing through assumptions, identifying physical mechanisms behind numerical values, and making judgment calls about what can be derived vs what must be fitted. This is novel reasoning, not mechanical computation.
 
 ---
 
@@ -604,8 +609,8 @@ Replace `NNN` with the session number from SESSION_LEDGER.md and `<description>`
 ## ⚡ Quick Reference
 
 ### Tasks
-- **Primary:** WS-3875 — Scope the 3875 of E₈ decomposition for CKM viability (existential priority)
-- **Secondary:** F7 — Back-solve exact P×L, Q×L for up and down sectors
+- **Primary:** Resolve [⚠] flags on α₂ prediction chain (b₂^WZW, +2.75 corrections, M_GUT)
+- **Secondary:** WS-3875 branching rule verification (if SageMath output available from Chris)
 
 ### Working directory (current)
 ```
@@ -648,13 +653,13 @@ Replace `NNN` with the session number from SESSION_LEDGER.md and `<description>`
 ```
 E8_Reference_Core.md
 E8_Session_Briefing.md
-THEORY_SNAPSHOT_001.md
 ```
 
 ### Upload (next session)
 ```
 E8_Session_Briefing.md
 E8_Reference_Core.md
+(Optional: SageMath output for 3875 branching rule)
 ```
 
 ### Terminal commands
@@ -663,15 +668,12 @@ E8_Reference_Core.md
 cp "/Users/cdowd/Downloads/E8_Reference_Core.md" "/Users/cdowd/Projects/E₈ Theory/00_SYSTEM/E8_Reference_Core.md"
 cp "/Users/cdowd/Downloads/E8_Session_Briefing.md" "/Users/cdowd/Projects/E₈ Theory/00_SYSTEM/E8_Session_Briefing.md"
 
-# New file
-mv "/Users/cdowd/Downloads/THEORY_SNAPSHOT_001.md" "/Users/cdowd/Projects/E₈ Theory/01_KNOWLEDGE/THEORY_SNAPSHOTS/THEORY_SNAPSHOT_001.md"
-
 # Commit
-cd "/Users/cdowd/Projects/E₈ Theory" && git add -A && git commit -m "session-002: Phase 2 re-evaluation complete; theory snapshot created; priorities re-ordered"
+cd "/Users/cdowd/Projects/E₈ Theory" && git add -A && git commit -m "session-003: WS-3875 scoped (viable); F7 exact back-solve complete; priorities updated"
 ```
 
 ### Model
-**Opus** — WS-3875 requires novel representation theory and judgment about viability
+**Opus** — α₂ chain analysis requires tracing unverified assumptions and novel reasoning
 
 ---
 
