@@ -85,7 +85,7 @@ Parked — self-modeling map S undefined.
 | New numerical results since last audit | 18+ (sessions 4–6) |
 | **Audit status** | **⚠ MAY BE WARRANTED — 18+ results since last audit (trigger = 5)** |
 | Next re-plan trigger | After 8 sessions or kill condition change |
-| Next theory audit | ~Session 27 |
+| Next theory audit | **Session 15** (first scheduled audit) |
 
 ---
 

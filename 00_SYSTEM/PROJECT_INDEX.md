@@ -54,7 +54,7 @@ This file should remain **short, stable, and easy to scan**. Detailed workflow r
 | `HYPOTHESIS_TREE.md` | Competing theoretical paths and their status | When hypothesis states change |
 | `CONCEPT_REGISTRY.md` | Canonical definitions of theoretical objects | When new concepts are defined |
 | `PARAMETER_REGISTRY.md` | Constants, couplings, parameters and provenance | When parameters are updated |
-| `THEORY_EVOLUTION_GRAPH.md` | Major theory revisions in reverse chronological order | When structural changes occur |
+| `THEORY_AUDIT_CHECKLIST.md` | Theory-specific audit targets — highest-risk claims, KC proximity, PDG benchmarks, literature topics. Updated after each theory audit. | When a theory audit runs |
 | `RESEARCH_DEPENDENCY_GRAPH.md` | Dependency map + research radar | When dependencies or priorities change |
 | `THEORY_SNAPSHOTS/` | Theory snapshots at major milestones | At major structural changes |
 
