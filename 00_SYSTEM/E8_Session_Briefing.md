@@ -299,6 +299,7 @@ Major structural changes to the theory are recorded here in reverse chronologica
 
 | Date | Change | Reason | Impact |
 |------|--------|--------|--------|
+| 2026-03-18 | WS-3875 mechanism SPECIFIED: CKM from (27̄,6) symmetric Yukawa; KZ equation solved; Cabibbo angle V_us ~ 0.2–0.3 | Session 5: OPE analysis, KZ equation, vacuum block decomposition, (351,3) channel analysis | KC-g upgraded: mechanism specified; suppression corrected from 1/31 to geometric √(162/4124); (351,3) shown to preserve V_CKM=I |
 | 2026-03-17 | WS-3875 branching CONFIRMED; h(3875) corrected to 48/31; suppression ~1/31 | Session 4: SageMath output verified; dimension-uniqueness proof; E₈ rep theory | KC-g partial kill unchanged; branching confirmed; h(3875)=1 error found; suppression mechanism clarified |
 | 2026-03-17 | WS-3875 scoped: VIABLE; F7 exact back-solve complete | Session 3: 3875 decomposition analysis; PDG back-solve | KC-g remains partial kill; F7 resolved; priority shift to α₂ flags |
 | 2026-03-17 | Phase 2 re-evaluation complete | Fresh-eyes assessment of all claims; dependency analysis; re-prioritization | Priority reordering: WS-3875 elevated to #1; α₂ [⚠] flags elevated to #3; M_GUT flagged as hidden parameter |
@@ -308,7 +309,7 @@ Major structural changes to the theory are recorded here in reverse chronologica
 
 ## §9 — Current Status
 
-*(as of 2026-03-17 — ROS v2 Session 4 complete)*
+*(as of 2026-03-18 — ROS v2 Session 5 complete)*
 
 ### Project phase: TARGETED PHYSICS WORK
 
@@ -319,25 +320,31 @@ Major structural changes to the theory are recorded here in reverse chronologica
 **Phase 3 — Targeted physics work: IN PROGRESS.**
 - Session 3: WS-3875 scoped (VIABLE); F7 exact back-solve complete.
 - Session 4: WS-3875 branching CONFIRMED via SageMath; h(3875) corrected; suppression mechanism clarified.
+- Session 5: WS-3875 mechanism SPECIFIED. CKM from (27̄,6) symmetric Yukawa. KZ equation solved exactly. Cabibbo angle V_us ~ 0.2–0.3 predicted. (351,3) shown to preserve V_CKM = I.
 
-### What's established (post-session 4)
+### What's established (post-session 5)
 
-- **Solidly established (mathematical):** Conformal embedding cascade, central charges, 3 generations, Z=12, φ from Jones index, WZW level structure. **NEW:** 3875 branching rule under E₆×SU(3)_fam (10 terms, dimension-unique).
-- **Well-supported (physical):** Gauge coupling predictions (Tier A), EW scale (Tier B, conditional on n=15), Higgs mass ratio. **NEW:** (27̄,6) channel for CKM confirmed; WZW suppression ~1/31 for Cabibbo angle.
+- **Solidly established (mathematical):** Conformal embedding cascade, central charges, 3 generations, Z=12, φ from Jones index, WZW level structure, 3875 branching rule, level-2 vacuum module structure (4124 = 1+248+3875; 27000 null). **NEW:** KZ equation exact solution F(z) = [z(z−1)]^{−60/31}; (351,3) antisymmetric coupling analysis.
+- **Well-supported (physical):** Gauge coupling predictions (Tier A), EW scale (Tier B, conditional on n=15), Higgs mass ratio. **NEW:** 3875 CKM mechanism fully specified — (27̄,6) symmetric Yukawa generates V_CKM ≠ I with Cabibbo-scale suppression √(162/4124) ~ 0.2.
 - **Weakened by flags:** α₂ prediction depends on three unverified inputs (b₂^WZW, +2.75, M_GUT). The 0.4% match is real but the prediction chain has gaps.
-- **Corrected this session:** h(3875) = 48/31 (was incorrectly claimed as 1). Suppression mechanism: g²~1/31 (was incorrectly estimated as Δc~0.04).
-- **Incomplete:** CKM mixing (KC-g — 3875 branching confirmed, but mechanism for generating 4D Yukawas from composites not yet specified), top mass (F4 — 11% off).
+- **Corrected this session:** Suppression mechanism: NOT simply g²=1/31; the KZ vacuum block coefficient is O(1), actual suppression is geometric projection factor √(dim(27̄,6)/dim(level-2)) ~ 0.2. Cabibbo estimate upgraded from V_us ~ 0.03 to V_us ~ 0.2–0.3.
+- **Incomplete:** CKM mixing (KC-g — mechanism specified but exact CG coefficients and full CKM matrix not yet computed), top mass (F4 — 11% off).
 - **Blocked:** n=15 derivation (F3 — no path forward).
 
-### KC-g decision (2026-03-17, updated session 4)
+### KC-g decision (2026-03-18, updated session 5)
 
-KC-g remains at "partial kill / 248-sector full kill." The 3875 path branching rule is now CONFIRMED: (27̄,6) is present. The remaining gap is the MECHANISM: how do composite :JᵃJᵇ: operators at h=2 generate effective 4D Yukawa couplings? WZW coupling suppression g²~1/31 gives the right parametric scale. KC-g upgrades to "full kill" only if the mechanism is shown to be impossible (no viable path to 4D Yukawa from composites).
+KC-g remains at "partial kill / 248-sector full kill." The 3875 mechanism is now SPECIFIED:
+- (27̄,6) component of 3875 gives symmetric Yukawa → V_CKM ≠ I. This is the UNIQUE CKM source.
+- (351,3) component gives antisymmetric Yukawa → preserves V_CKM = I. Does NOT contribute to mixing.
+- KZ equation gives exact vacuum conformal block. Level-2 coefficient c₂ = 2730/961 ≈ 2.84.
+- Semi-quantitative Cabibbo estimate: V_us ~ 0.33 (dimension-weighted CG), observed 0.226, within 50%.
+- KC-g upgrades to "full kill" only if the exact CG coefficient computation shows the (27̄,6) coupling vanishes or gives wrong parametric scale.
 
 ### Open failures (re-assessed, re-prioritized)
 
-**1. WS-3875 — 3875 of E₈ as source of CKM** `[ACTIVE — BRANCHING CONFIRMED]`
-Branching rule computationally verified [✓]. (27̄,6) confirmed in 3875. h(3875)=48/31 (corrected). 3875 operators are composites :JᵃJᵇ: at h=2. Suppression g²~1/31 ≈ 0.032 (Cabibbo-scale).
-Remaining work: (a) Specify mechanism for 4D effective Yukawa from composites. (b) Derive Cabibbo angle from 1/31 × CG factors. (c) Check (351,3) channel contribution.
+**1. WS-3875 — 3875 of E₈ as source of CKM** `[ACTIVE — MECHANISM SPECIFIED]`
+Branching rule verified [✓]. Mechanism specified (session 5): (27̄,6) symmetric Yukawa via level-2 vacuum composite. KZ equation solved. V_us ~ 0.2–0.3 predicted. (351,3) shown to not contribute to CKM.
+Remaining work: (a) Compute exact CG coefficient for (27̄,6) Yukawa coupling (requires E8 weight system computation). (b) Derive full CKM matrix using RS profile differences. (c) Predict V_cb and V_ub.
 
 **2. F7 — §6 parameter inconsistency** `[RESOLVED]`
 ~~Blocks all quantitative mass predictions.~~ **Exact PDG back-solve complete (session 3).** P_u×L=5.9405, Q_u×L=2.4571 (up); P_d×L=3.2173, Q_d×L=1.9027 (down). All ratios exact. Remaining: lepton sector; Paper 2 notebook audit with correct params.
@@ -356,13 +363,13 @@ Parked — self-modeling map S undefined. Needs new mathematical ideas.
 
 | Metric | Value |
 |--------|-------|
-| ROS v2 session count | 4 (next session is session 5) |
-| Sessions since last audit | 2 |
-| Sessions since last re-plan | 2 |
-| Sessions since last theory audit | 2 |
-| New numerical results since last audit | 10+ (3875 branching, h(3875), Kac marks, Sym²/∧² dims, j^{1/3} level 2, WZW coupling) |
+| ROS v2 session count | 5 (next session is session 6) |
+| Sessions since last audit | 3 |
+| Sessions since last re-plan | 3 |
+| Sessions since last theory audit | 3 |
+| New numerical results since last audit | 15+ (session 4 results + KZ c₂, C₂(3875), 27000 null, V_us estimate) |
 | Closed workstreams since last re-plan | 0 |
-| Next audit trigger | After 5 new results or 10 sessions — **may trigger at session 5** (10+ new results) |
+| Next audit trigger | After 5 new results or 10 sessions — **audit may be warranted soon** (15+ new results) |
 | Next re-plan trigger | After 8 sessions or kill condition change |
 | Next theory audit | ~session 27 |
 
@@ -374,9 +381,9 @@ Prioritized research directions, ranked by expected impact. Updated at session c
 
 | Priority | Direction | Rationale | Status |
 |----------|-----------|-----------|--------|
-| 1 | **WS-3875 mechanism specification** | Branching confirmed; need to specify how composite :JᵃJᵇ: operators generate 4D Yukawas; derive Cabibbo angle from 1/31 × CG factors | Active — highest impact |
-| 2 | **Resolve [⚠] flags on α₂ chain** | The showcase Tier A result has three unverified inputs; undermines strongest evidence | Parallel track |
-| 3 | **WS-3875 (351,3) channel analysis** | Check whether (351,3)⊕(351̄,3̄) contribute at same order as (27̄,6); may give additional CKM structure | After mechanism |
+| 1 | **Resolve [⚠] flags on α₂ chain** | The showcase Tier A result has three unverified inputs; undermines strongest evidence; directly Paper 1 relevant | Active — next session primary |
+| 2 | **WS-3875 exact CG coefficient** | Compute (27̄,6) Yukawa CG from E8 weight system to get precise V_us | Needs SageMath/LiE; after α₂ |
+| 3 | **WS-3875 full CKM matrix** | Use RS profile differences to predict V_cb, V_ub; Wolfenstein parametrization | After exact CG |
 | 4 | **F4 top mass discrepancy** | 11% is significant; bounded computation; QCD corrections may resolve | After α₂ flags |
 | 5 | **F7 lepton sector back-solve** | Complete the parameter set; derive P_l×L, Q_l×L from m_τ/m_μ, m_μ/m_e | Bounded; after F4 |
 | 6 | **F3 (n=15)** | Blocked — needs new mathematical insight | Parked |
@@ -384,22 +391,25 @@ Prioritized research directions, ranked by expected impact. Updated at session c
 ### Research dependency map (current critical path)
 
 ```
-WS-3875 mechanism specification ← NOW THE CRITICAL STEP
+α₂ [⚠] flag resolution ← NOW THE CRITICAL STEP (Paper 1 readiness)
     │
-    ├── Specify how composites :JᵃJᵇ: → effective 4D Yukawa
-    │   (OPE / condensate / RS bulk overlap / stringy)
+    ├── Identify b₂^WZW = +38/3 from E₈ matter content
     │
-    ├── Derive Cabibbo angle: θ_C ~ (1/31) × CG factor
-    │       │
-    │       └── Paper 3: CKM from 3875 extension
+    ├── Identify +2.75 corrections origin
     │
-    └── Check (351,3) channel: additional CKM structure?
+    └── Derive M_GUT self-consistently from WZW crossing
         │
-        └── Full CKM matrix prediction (if viable)
+        └── Clean Tier A presentation → Paper 1 readiness
 
-α₂ [⚠] flag resolution (parallel track)
+WS-3875 exact CG and full CKM (parallel track)
     │
-    └── Clean Tier A presentation → Paper 1 readiness
+    ├── Compute (27̄,6) CG coefficient via E8 weight system
+    │       │
+    │       └── Precise V_us prediction
+    │
+    └── RS profile corrections → V_cb, V_ub
+            │
+            └── Full CKM matrix → Paper 3: CKM from 3875 extension
 
 F4 top mass (bounded)
     │
@@ -412,16 +422,16 @@ F4 top mass (bounded)
 
 | Metric | Count | Trend |
 |--------|-------|-------|
-| Active hypotheses | 2 (3875 CKM path [branching confirmed], RS mass mechanism) | ↑ 3875 branching verified |
-| Stable results | Gauge couplings, EW scale, Higgs mass ratio, embedding cascade, F7 exact params, **3875 branching rule** | ↑ branching confirmed |
+| Active hypotheses | 2 (3875 CKM path [mechanism specified], RS mass mechanism) | ↑ mechanism specified |
+| Stable results | Gauge couplings, EW scale, Higgs mass ratio, embedding cascade, F7 exact params, 3875 branching rule, **KZ vacuum block, (351,3) antisymmetry, CKM mechanism** | ↑ three new |
 | Open failures | 3 active (F4, KC-g partial, [⚠] flags) + 1 parked (F3) + 1 resolved (F7) | → stable |
 | Active contradictions | 0 | — |
-| Kill conditions triggered | 1 partial (KC-g, 248 sector only; 3875 path confirmed viable) | ↑ improved |
+| Kill conditions triggered | 1 partial (KC-g, 248 sector only; 3875 mechanism now specified) | ↑ improved |
 | Tier A predictions verified | Yes (with caveats on α₂ chain) | — |
 | Hidden parameters identified | 1 (M_GUT as external input) | — |
-| Errors corrected this session | 1 (h(3875) = 48/31, not 1) | — |
+| Errors corrected this session | 1 (suppression mechanism: not g²=1/31, but geometric √(162/4124) combined with O(1) OPE coefficient) | — |
 
-**Overall assessment (post-session 4):** Theory viability FURTHER IMPROVED. The existential CKM question (KC-g) has advanced from "viable but unverified" to "branching confirmed, mechanism needed." The (27̄,6) channel is computationally confirmed in the 3875. The h=1 claim was an error (corrected to 48/31); the suppression mechanism via WZW coupling g²~1/31 gives the right parametric scale for Cabibbo. The honest status is "promising research program with a CONFIRMED group-theoretic CKM mechanism (pending dynamical specification) and solid mass hierarchy predictions."
+**Overall assessment (post-session 5):** Theory viability FURTHER IMPROVED. The existential CKM question (KC-g) has advanced from "mechanism needed" to "mechanism specified, Cabibbo scale predicted." The (27̄,6) channel is now understood as the UNIQUE CKM source — the (351,3) was shown to preserve V_CKM = I (important structural insight). The KZ equation was solved exactly, giving a clean mathematical foundation for the coupling. The semi-quantitative Cabibbo estimate (V_us ~ 0.33, observed 0.226, within 50%) is encouraging but depends on approximate CG coefficients. The honest status is "promising research program with a SPECIFIED CKM mechanism, confirmed group-theoretic structure, and Cabibbo-scale predictions pending exact CG computation."
 
 ---
 
@@ -476,19 +486,18 @@ F4 top mass (bounded)
 
 ## §13 — Next Session Plan
 
-### Primary task: WS-3875 mechanism specification
+### Primary task: Resolve [⚠] flags on α₂ prediction chain
 
-The branching rule is confirmed. The next critical step is specifying HOW composite :JᵃJᵇ: operators at h=2 in the (E₈)₁ vacuum module generate effective 4D Yukawa couplings with the (27̄,6) flavor structure.
+The α₂ prediction (0.4% match) is the showcase Tier A result but rests on three unverified inputs. This session should trace each to its physical origin:
 
 Concrete steps:
-1. **OPE analysis:** Compute the OPE of two E₈ currents J^a(z)J^b(w) and identify the (27̄,6) component in the symmetric product. Express the composite operator explicitly in terms of E₆×SU(3)_fam quantum numbers.
-2. **Effective Yukawa from composites:** In the holographic/RS dual picture, determine how level-2 vacuum module operators map to 4D effective couplings. The key question: does the effective 4D Yukawa from :JᵃJᵇ: carry the suppression factor 1/(k+h∨) = 1/31, or is the suppression different?
-3. **Cabibbo angle estimate:** Using the (27̄,6) Clebsch-Gordan structure and the 1/31 suppression, compute the leading correction to the CKM matrix. The 6 of SU(3)_fam decomposes under the (G₂)₆ condensate breaking SU(3)→SU(2)→nothing; trace through the breaking to get V_us.
-4. **Cross-check (351,3) channel:** Determine whether (351,3) operators contribute at the same order (also composites at h=2, same suppression) or are further suppressed.
+1. **b₂^WZW = +38/3:** Identify what E₈ matter content produces this beta function coefficient above M_GUT. The WZW model has specific field content descending from the E₈ adjoint — enumerate the fields active above M_GUT and compute their contribution to b₂. If b₂^WZW cannot be derived from the field content, flag it as a fitted parameter.
+2. **+2.75 corrections:** The gap between the two-stage RG result (26.70) and the observed 1/α₂ = 29.57 requires ~2.75 in corrections. Identify the source: threshold corrections at M_GUT? Two-loop effects? Non-perturbative WZW contributions? Each possibility gives a different number; find which one (if any) matches 2.75.
+3. **M_GUT = 5.7×10¹⁶ GeV:** Currently taken as input. The self-consistent WZW crossing (α₃ = α₂ at some scale) gives 2.2×10¹⁶. Determine whether the 5.7 value can be derived from the theory or must be treated as a free parameter, which would downgrade α₂ from Tier A.
 
-### Secondary task: Resolve [⚠] flags on α₂ prediction chain
+### Secondary task: WS-3875 exact CG coefficient
 
-If the mechanism specification reaches a natural stopping point or requires external input, pivot to the α₂ flags. The three unverified inputs (b₂^WZW=+38/3, +2.75 corrections, M_GUT) each need tracing to their physical origin.
+If α₂ flags reach a natural stopping point, pivot to computing the exact (27̄,6) CG coefficient in the 3875 Yukawa. This requires E8 weight system computation (SageMath/LiE-level work). The goal is to replace the dimension-weighted estimate (V_us ~ 0.33) with a precise prediction.
 
 ### Decision points
 
@@ -498,11 +507,11 @@ None — Claude decides the research direction.
 
 - `E8_Reference_Core.md` ✓ always
 - `E8_Session_Briefing.md` ✓ always
-- No workstream file needed (WS-3875 file will be created at session close if needed)
+- No workstream file needed
 
 ### Model recommendation
 
-**Opus** — The mechanism specification requires novel theoretical reasoning: connecting WZW composite operators to 4D effective field theory through holography/RS, identifying the correct suppression mechanism, and making physical judgments about which effects dominate. This is creative theoretical work, not mechanical computation.
+**Opus** — The α₂ flag resolution requires tracing physical origins of specific numerical values through gauge coupling RG, WZW matter content, and GUT-scale physics. This involves judgment calls about which effects are dominant and creative identification of the source of the +2.75 corrections. If pivoting to exact CG computation, this also requires novel reasoning about E8 representation theory.
 
 ---
 
@@ -638,8 +647,8 @@ Replace `NNN` with the session number from SESSION_LEDGER.md and `<description>`
 ## ⚡ Quick Reference
 
 ### Tasks
-- **Primary:** WS-3875 mechanism specification — how do composite :JᵃJᵇ: operators generate 4D Yukawas? Derive Cabibbo angle from 1/31 × CG factors.
-- **Secondary:** Resolve [⚠] flags on α₂ prediction chain (b₂^WZW, +2.75 corrections, M_GUT)
+- **Primary:** Resolve [⚠] flags on α₂ prediction chain — trace b₂^WZW=+38/3, +2.75 corrections, and M_GUT=5.7×10¹⁶ to their physical origins
+- **Secondary:** WS-3875 exact CG coefficient for (27̄,6) Yukawa (requires E8 weight system computation)
 
 ### Working directory (current)
 ```
@@ -697,11 +706,11 @@ cp "/Users/cdowd/Downloads/E8_Reference_Core.md" "/Users/cdowd/Projects/E8-THEOR
 cp "/Users/cdowd/Downloads/E8_Session_Briefing.md" "/Users/cdowd/Projects/E8-THEORY/00_SYSTEM/E8_Session_Briefing.md"
 
 # Commit
-cd "/Users/cdowd/Projects/E8-THEORY" && git add -A && git commit -m "session-004: WS-3875 branching confirmed; h(3875) corrected to 48/31; suppression ~1/31"
+cd "/Users/cdowd/Projects/E8-THEORY" && git add -A && git commit -m "session-005: WS-3875 mechanism specified; KZ equation solved; Cabibbo V_us~0.2-0.3; (351,3) preserves V_CKM=I"
 ```
 
 ### Model
-**Opus** — mechanism specification requires novel theoretical reasoning connecting WZW composites to 4D effective theory
+**Opus** — α₂ flag resolution requires tracing physical origins of numerical values through RG flow and WZW structure; creative theoretical reasoning needed
 
 ---
 
