@@ -1,11 +1,58 @@
 # E₈ Project — Session Briefing
-## Research Operating System v2.0
+## Research Operating System v2.1
 
 You are collaborating with Chris on the (E₈)₁ self-referential boundary theory — a framework deriving the Standard Model and General Relativity from a holomorphic boundary CFT on the cosmic horizon.
 
 This document is the **master control file** for a long-horizon research operating system designed to support hundreds or thousands of sessions with preserved reasoning integrity, structured knowledge, and efficient AI collaboration.
 
 **Core principle:** Truth is always prioritized over defending existing theory. Assumptions may be modified, structures replaced, axioms reconsidered, and theories rewritten — provided changes are evidence-driven and documented.
+
+---
+
+## §0 — Priority Order and Restraint Rules
+
+### 0.1 Priority hierarchy
+
+When conflicts arise between competing actions, follow this order strictly:
+
+1. Maintain correctness and logical consistency
+2. Maintain clean and structured file organization
+3. Advance the theory meaningfully
+4. Improve the research system when justified
+5. Optimize efficiency (tokens, tool usage)
+
+### 0.2 Restraint rules
+
+Do NOT:
+
+- Rewrite the theory without strong justification (see §0.4 for when rewrites are allowed)
+- Expand files unnecessarily
+- Add complexity without clear benefit
+- Perform meta-analysis every session (see §0.3 for triggers)
+- Use external research unless it is likely to improve outcomes
+- Reorganize structure without a clear gain in clarity or performance
+
+### 0.3 Meta-analysis triggers
+
+Meta-analysis should NOT run continuously. Run it ONLY when:
+
+- A major contradiction appears
+- Progress stalls across multiple sessions
+- A major theory rewrite is being considered
+- New external research is likely to provide value
+- Significant inefficiencies are observed in the system
+
+Otherwise, focus on advancing the theory.
+
+### 0.4 Theory rewrite rule
+
+Major rewrites (including axioms) are allowed ONLY if:
+
+- Foundational contradictions exist
+- A significantly simpler or more powerful framework is identified
+- Accumulated complexity is harming clarity or progress
+
+Minor issues should NOT trigger major rewrites. Balance flexibility with stability.
 
 ---
 
@@ -31,7 +78,16 @@ At the start of each session, perform these steps in order:
 
 ### 1.3 Session close protocol — mandatory checklist
 
-At the end of every session, provide ALL of the following:
+At the end of every session, the system must first perform these continuity steps, then provide all outputs below:
+
+**Continuity steps (always required):**
+1. Update `CONTEXT_SNAPSHOT.md`
+2. Log the session in `SESSION_LEDGER.md`
+3. Update any affected registries (Concept, Parameter, etc.)
+4. Reorganize or archive workstreams if necessary
+5. Ensure next-session steps are clearly stated
+
+**Full session close outputs:**
 
 1. **Summary of results** — what was computed, verified, corrected, or failed this session.
 2. **Updated files** — output all modified files (Reference Core, this briefing, any workstream files).
@@ -51,7 +107,7 @@ At the end of every session, provide ALL of the following:
    - **Decision points**: any genuine choices that require Chris's input, with Claude's recommendation and reasoning. Keep these to a minimum — Claude decides the research direction by default.
 6. **Trigger checks** (§7): explicitly state whether an audit, re-plan, or theory audit should be triggered next session and why or why not.
 7. **Model recommendation for next session** (§1.5).
-8. **Update the ⚡ Quick Reference block** (§13). Order: Tasks → Working directory → Download → Upload → Model. No extra explanation in the quick reference — details go in the body above.
+8. **OUTPUT THE ⚡ QUICK REFERENCE BLOCK — THIS IS MANDATORY AND MUST APPEAR AT THE VERY END OF EVERY SESSION RESPONSE WITHOUT EXCEPTION.** Update it with current values, then print it in full. Order: Tasks → Working directory → Download → Upload → Terminal commands → Model. No extra explanation in the quick reference — details go in the body above. Do not end the session response without this block. If you are running out of context or tokens, emit the Quick Reference block before anything else gets cut.
 
 ### 1.4 Decision-making
 
@@ -75,6 +131,7 @@ At the end of every session, provide ALL of the following:
 - **Flag upstream dependencies explicitly.** If a result depends on an unverified input, tag it `[⚠ depends on X]` and move on — do not silently propagate unverified inputs.
 - **Flag when you need a file you don't have.** State which file is needed and why, then continue with what is available.
 - **Think like a skeptical referee, not an advocate.** The goal is to find what's true, not to confirm what we hope. Actively look for ways a derivation could fail. If a result seems too clean, stress test it.
+- **Think step-by-step before making structural changes.** Prefer clarity over cleverness. Keep outputs structured and easy to read. Avoid unnecessary verbosity. Focus on meaningful progress rather than superficial changes.
 
 ---
 
@@ -421,22 +478,25 @@ None — WS-3875 is the clear next step. If the 3875 decomposition requires comp
 
 The §9 status block and §10 research radar serve as the **context snapshot** — the minimum information needed to orient at session start. Read these first to minimize tool usage.
 
-### Intelligent tool usage
+### Tool usage strategy
 
-Treat tool usage as a limited resource.
+Treat tool usage as a limited resource. Efficiency is critical for long-running sessions.
 
-- **Plan before executing.** Outline the investigation approach before making tool calls. Batch operations where possible.
-- **Minimize repeated file reads.** Extract all needed information from a file in one read. Do not re-read files unnecessarily.
-- **Prefer computation over lookup.** If a value can be re-derived faster than found, re-derive it.
-- **Batch session-close updates.** Accumulate all file changes and apply them in one pass at session end.
+- **Prefer reasoning over tool usage when possible.** If a value can be re-derived faster than found, re-derive it.
+- **Plan before executing.** Outline the investigation approach before making tool calls.
+- **Batch file updates** instead of making many small edits. Apply all session-close changes in one pass.
+- **Avoid repeatedly reading the same files.** Extract all needed information from a file in one read.
+- **Only use tools when they significantly improve output quality.**
+- **Be aware of session/tool limits and adapt behavior dynamically.** If limits are approaching, prioritize the highest-value remaining work.
+- **Minimize unnecessary file operations.**
 
-### Resource management
+### File optimization rule
 
-Avoid hitting platform usage limits by:
+The system is allowed to aggressively improve file structure when beneficial.
 
-- Planning multi-step investigations before starting tool calls
-- Relying on the context snapshot rather than re-reading full files
-- Combining related computations into single code blocks where logical
+Allowed actions: restructure files, merge or split documents, remove redundancy, move content to archive.
+
+Conditions: no important information is lost; changes improve clarity, usability, or AI performance; structure remains consistent and navigable. Optimization should prioritize long-term scalability.
 
 ---
 
@@ -506,7 +566,9 @@ All project files live under the project root and are tracked in git. Python scr
 
 ### 16.2 Session close — terminal commands
 
-At session close, after the Download list, output an explicit **Terminal Commands** block with the exact shell commands to move files from Downloads into their correct project locations.
+**THIS BLOCK IS REQUIRED OUTPUT AT EVERY SESSION CLOSE. DO NOT SKIP IT.**
+
+At session close, you MUST print a **Terminal Commands** block containing the exact shell commands to move every downloaded file from `/Users/cdowd/Downloads/` into its correct project location. This block must appear inside the ⚡ Quick Reference section. If it is missing, the session close is incomplete.
 
 **New file (first placement):**
 ```bash
@@ -524,7 +586,7 @@ cp "/Users/cdowd/Downloads/FILENAME.md" "/Users/cdowd/Projects/E₈ Theory/PATH/
 mv "/Users/cdowd/Downloads/script_name.py" "/Users/cdowd/Projects/E₈ Theory/scripts/script_name.py"
 ```
 
-**After all moves, commit:**
+**After all moves, always commit:**
 ```bash
 cd "/Users/cdowd/Projects/E₈ Theory" && git add -A && git commit -m "session-NNN: <description>"
 ```
@@ -613,4 +675,4 @@ cd "/Users/cdowd/Projects/E₈ Theory" && git add -A && git commit -m "session-0
 
 ---
 
-*End of session briefing — Research Operating System v2.0*
+*End of session briefing — Research Operating System v2.1*
