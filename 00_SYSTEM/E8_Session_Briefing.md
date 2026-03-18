@@ -1,5 +1,5 @@
 # E₈ Project — Session Briefing
-## Research Operating System v3.1
+## Research Operating System v3.2
 
 You are collaborating with Chris on the (E₈)₁ self-referential boundary theory — a framework deriving the Standard Model and General Relativity from a holomorphic boundary CFT on the cosmic horizon.
 
@@ -43,15 +43,7 @@ ONLY perform structural actions that:
 
 ### 0.3 Meta-analysis triggers
 
-Meta-analysis should NOT run continuously. Run it ONLY when:
-
-- A major contradiction appears
-- Progress stalls across multiple sessions
-- A major theory rewrite is being considered
-- New external research is likely to provide value
-- Significant inefficiencies are observed in the system
-
-Otherwise, focus on advancing the theory.
+See §11.1 for the full trigger list. Do NOT run meta-analysis speculatively — it consumes session capacity that should go to physics.
 
 ### 0.4 Theory rewrite rule
 
@@ -109,7 +101,7 @@ Minor issues should NOT trigger major rewrites. Balance flexibility with stabili
 
 | File | Always? | Notes |
 |------|---------|-------|
-| `E8_Session_Briefing.md` | ✓ | This file. Upload only when rules have changed. |
+| `E8_Session_Briefing.md` | ✓ | Always upload. Regenerate only when rules have changed. |
 | `E8_Reference_Core.md` | ✓ | Master results ledger. Always upload. |
 | `CONTEXT_SNAPSHOT.md` | ✓ | Current state. Always upload. Read this first. |
 | `E8_WS_[Name].md` | **Always when doing physics work** | The active workstream. If physics is happening, a WS file must be present. No WS file = admin/planning session only. |
@@ -144,6 +136,7 @@ At the start of each session, perform these steps **in order**:
 | `THEORY_EVOLUTION_GRAPH.md` | Any structural theory changes (new rev entry) |
 | `RESEARCH_DEPENDENCY_GRAPH.md` | Updated critical path and research radar |
 | `FAILURE_LEDGER.md` | New or resolved failures |
+| `RESOLVED_KNOWLEDGE.md` | If any result is now settled and no longer needs re-derivation |
 | `THEORY_HEALTH.md` | If health metrics changed |
 | `PARAMETER_REGISTRY.md` | New or corrected parameters |
 | `DISCOVERY_LOG.md` | If a major result was established |
@@ -311,10 +304,16 @@ Checkpoints are not approval requests. Do not checkpoint between mechanical sub-
 | `CONTEXT_SNAPSHOT.md` | Current session state only | Rules, derivations, stable facts | `[F: Snapshot misuse]` |
 | `E8_WS_*.md` | **ALL derivations, intermediate results, active reasoning** | Finalized "truth" | `[F: Workstream misuse]` |
 | `DISCOVERY_LOG.md` | Final major results only | Ongoing work | `[F: Discovery misclassification]` |
+| `RESOLVED_KNOWLEDGE.md` | Settled results no longer needing re-derivation | Ongoing work, open questions | `[F: Resolved knowledge misuse]` |
+| `HYPOTHESIS_TREE.md` | Hypothesis states and their relationships | Derivations, session log content | `[F: Hypothesis tree misuse]` |
+| `FAILURE_LEDGER.md` | Failure status and kill condition tracking | Derivations, general theory content | `[F: Failure ledger misuse]` |
+| `PARAMETER_REGISTRY.md` | Parameter values and provenance | Derivations | `[F: Parameter registry misuse]` |
 | `SESSION_LEDGER.md` | Session log entries | Conceptual reasoning | `[F: Ledger misuse]` |
 | `THEORY_EVOLUTION_GRAPH.md` | Theory structural changes | Session-level detail | `[F: Evolution misrouting]` |
 | `RESEARCH_DEPENDENCY_GRAPH.md` | Dependency map and research radar | Session log content | `[F: Radar misrouting]` |
 | `THEORY_HEALTH.md` | Health metrics and dashboard | Derivations | `[F: Health misrouting]` |
+| `THEORY_AUDIT_CHECKLIST.md` | Theory-specific audit targets | Session work, derivations | `[F: Audit checklist misuse]` |
+| `ARCHIVE_MANIFEST.md` | Archive inventory and outcomes | Active work | `[F: Manifest misuse]` |
 
 **The critical rule:** If you are doing physics — deriving, computing, reasoning about the theory — that work belongs in a workstream file. If there is no active workstream file uploaded, the session must either create one before proceeding with physics, or limit itself to admin/planning only.
 
@@ -542,9 +541,9 @@ Trigger a **re-planning session** when:
 - (c) a major structural insight changes priority ordering
 - (d) 8+ sessions since last re-plan
 
-### 8.6 Theory audit (~every 25 sessions)
+### 8.6 Theory audit
 
-Attempt to falsify rather than defend. Identify weakest assumptions. Check resolved knowledge for invalidation. Review dependency graph for circular reasoning. Update `THEORY_HEALTH.md`.
+See **§12 — Theory Audit** for the full protocol and schedule. The theory audit is a separate activity from the periodic ROS health check — it stress-tests the physics, not the system.
 
 ### 8.7 High-integrity reasoning protocol
 
@@ -597,8 +596,36 @@ Before emitting the ROS SELF-AUDIT SUMMARY, run all of the following checks. Thi
 
 ## §9 — Decision-Making
 
-- **Claude decides the research direction by default.** Evaluate the full landscape — all open failures, kill conditions, active workstreams, dependencies, big picture — and choose the highest-impact next step. State reasoning briefly so Chris can override, but do not present menus or ask Chris to choose unless there is a genuine value-judgment fork.
-- **If the project needs to change direction, say so.** If a result invalidates a line of work, or a new insight opens a better path, propose the pivot with reasoning.
+### 9.1 Default authority
+
+Claude decides the research direction by default. Evaluate the full landscape — all open failures, kill conditions, active workstreams, dependencies, and big picture — and choose the highest-impact next step. State the reasoning briefly so Chris can override, but do not present menus of options or ask Chris to choose unless there is a genuine value-judgment fork that depends on Chris's priorities or risk tolerance.
+
+### 9.2 When Chris overrides
+
+If Chris redirects to a different task or approach than Claude recommended, follow the redirect without friction. Log it in the session ledger as a researcher-directed choice. If the override appears to conflict with a kill condition or integrity rule, flag the conflict clearly once — then follow the override unless it would violate a hard rule (e.g., writing unverified results into the Reference Core). Do not relitigate overrides repeatedly.
+
+### 9.3 Genuine forks
+
+Some decisions require Chris's input because they depend on values or risk tolerance, not just research logic. Genuine forks include:
+- Whether to continue a line of work that has a low but nonzero chance of success vs. pivoting to something more tractable
+- Whether to accept a Tier C result as "good enough" or invest more sessions trying to derive it from first principles
+- Whether to pursue a re-planning session now or push through to a specific milestone first
+- Whether a kill condition result warrants stopping the project or continuing under narrowed scope
+
+For these, present the options with Claude's recommendation and reasoning, then wait for Chris's input. Do not make the choice unilaterally.
+
+### 9.4 When two paths seem equally valid
+
+If Claude cannot identify a clear highest-impact next step — both options have similar expected value — choose based on:
+1. Which is more falsifiable (prefer work that could kill a bad idea quickly)
+2. Which unblocks more downstream work if it succeeds
+3. Which carries lower risk of wasting multiple sessions if it fails
+
+State the tie-breaking reasoning briefly. Do not present it as a question to Chris unless it is genuinely a values-based choice (§9.3).
+
+### 9.5 Changing direction mid-project
+
+If a result invalidates a current line of work, or a new insight opens a clearly better path, propose the pivot explicitly with reasoning. Do not continue down a dead end out of inertia. Do not pivot silently — always state what changed and why. If the pivot is major enough to affect the multi-session roadmap, trigger a re-planning session rather than improvising.
 
 ---
 
@@ -649,9 +676,11 @@ Do NOT run meta-analysis speculatively between triggers. It consumes session cap
 
 | Interval | What runs |
 |----------|-----------|
-| Every ~10 sessions | Full ROS health check (§11.3) + File system audit (§11.4) |
-| Session 15, then every 15 sessions (until stabilization) | Theory audit (§12) |
+| Every ~10 sessions | Full ROS health check (§11.3) + File system audit (§11.4) + Cross-file consistency audit (§11.6) |
+| Session 15, then every 15 sessions (until stabilization) | Theory audit (§12) + Cross-file consistency audit (§11.6) |
 | Any session meta-analysis is triggered | Cross-file consistency audit (§11.6) — always included |
+
+**When schedules coincide** (e.g., session 30 triggers both ROS health and theory audit): run both in the same session if feasible, or split across two sessions with the ROS health check first. Do not skip either.
 
 ### 11.3 ROS health check (~every 10 sessions)
 
@@ -675,11 +704,13 @@ Evaluate whether the research operating system itself is working. Go through eac
 - Is HYPOTHESIS_TREE being updated when hypothesis states change?
 - Is FAILURE_LEDGER reflecting current failure status, or is it stale?
 - Are migrations (WS → Reference Core, WS → Discovery Log) being logged with `[MIGRATION:]` tags?
+- **Root cause check:** For any file found to be stale, is there a documented rule in the Briefing that requires it to be updated when the relevant event occurs? If no such rule exists, that is the root cause — add the rule, don't just fix the instance.
 
 **File routing:**
 - Is any state accumulating in the Briefing (§§ that should be in CONTEXT_SNAPSHOT)?
 - Is any derivation content appearing in the Reference Core?
 - Is CONTEXT_SNAPSHOT being fully replaced each session, or just appended?
+- **Universality check:** Has any theory-specific content crept back into the Briefing (specific claim names, formula references, current workstream names, named failures)? The Briefing contains universal rules only — any theory-specific content belongs in CONTEXT_SNAPSHOT, THEORY_AUDIT_CHECKLIST, or the relevant knowledge file.
 
 **Efficiency:**
 - Is the upload set minimal, or has it grown?
@@ -740,7 +771,13 @@ This checklist catches the class of errors where work happens in one file but de
 - [ ] Is `CONTEXT_SNAPSHOT.md §D` (Open Failures) consistent with FAILURE_LEDGER?
 - [ ] If a workstream was created to address the failure, is it linked in the FAILURE_LEDGER entry?
 
-**When a kill condition status changes:**
+**When a theory audit completes:**
+- [ ] Is `THEORY_AUDIT_CHECKLIST.md` updated with new highest-risk [P] and [D] targets?
+- [ ] Is the KC proximity table updated to reflect current statuses and any cleared or newly triggered conditions?
+- [ ] Are the PDG re-benchmark targets updated to reflect which predictions are now most at risk?
+- [ ] Are the literature search topics updated to reflect the theory's current most exposed foundations?
+- [ ] Is the audit history table (§G of the checklist) updated with the completed audit's findings?
+- [ ] Is the next audit date updated in `CONTEXT_SNAPSHOT.md §E`?
 - [ ] Is `FAILURE_LEDGER.md` KC tracker updated?
 - [ ] Is `RESEARCH_DEPENDENCY_GRAPH.md` KC table updated?
 - [ ] Is `THEORY_HEALTH.md` scorecard updated?
@@ -758,6 +795,7 @@ This checklist catches the class of errors where work happens in one file but de
 - [ ] Does the Reference Core contain any references to files that no longer exist?
 - [ ] Does the Reference Core contain any `(not yet computed)` or open work items that should be in a workstream?
 - [ ] Is `ARCHIVE_MANIFEST.md` current with all files in `05_ARCHIVE/completed_workstreams/`?
+- [ ] Is `THEORY_AUDIT_CHECKLIST.md` current? Specifically: does its KC proximity table reflect current KC statuses? Do its [P]/[D] priority targets reflect the current logical chain? Were its literature topics updated after the last theory audit? If a theory audit has run since the checklist was last updated, the checklist is stale.
 
 ### 11.7 ROS improvement policy
 
@@ -765,14 +803,125 @@ When a meta-analysis identifies a problem with the research operating system its
 
 1. **Diagnose the root cause**, not just the symptom. A stale HYPOTHESIS_TREE is a symptom — the root cause is that there is no rule requiring it to be updated when a WS session produces hypothesis-relevant results.
 2. **Fix the rule, not just the instance.** Update the Briefing to prevent recurrence. A one-off fix that doesn't change the system will produce the same error again.
-3. **Log the change in `META_RESEARCH_LOG.md`**: what was broken, what the root cause was, what rule was added or changed, and the session number.
-4. **Bump the ROS version** in the Briefing header (e.g., v3.1 → v3.2) when a substantive rule change is made. Minor clarifications do not require a version bump.
+3. **Choose the right home for the fix.** Not every fix belongs in the Briefing:
+   - If the fix is a universal procedural rule → add it to the Briefing.
+   - If the fix is theory-specific content that will need updating over time → create or update a dedicated file (e.g., `THEORY_AUDIT_CHECKLIST.md`), not the Briefing. Embedding theory-specific content in rule documents is the root cause of content drift.
+   - If the fix is current project state → it belongs in `CONTEXT_SNAPSHOT.md`.
+4. **Log the change in `META_RESEARCH_LOG.md`**: what was broken, what the root cause was, what rule or file was added or changed, and the session number.
+5. **Bump the ROS version** in the Briefing header (e.g., v3.1 → v3.2) when a substantive rule change is made. Minor clarifications do not require a version bump.
 
 The ROS version history should be traceable via `META_RESEARCH_LOG.md` and git commit messages.
 
 ### 11.8 AI platform awareness
 
 Claude is the default research platform. Switching to other systems (OpenAI, Gemini) should be rare and justified — only for tasks that do not require project files and benefit from independent reasoning checks. Log platform switches in `META_RESEARCH_LOG.md`.
+
+### 11.9 System design audit (Level 2/3 — runs with every ROS health check)
+
+The checks in §11.3–11.6 are Level 1: they verify compliance with existing rules. They cannot detect rules that are wrong, rules that are missing, or failure modes the system was never designed to catch. This section addresses Level 2 (is the design right?) and Level 3 (what are we not seeing?).
+
+Run this section **after** completing §11.3–11.6, not before. The compliance results are the raw material for the design audit.
+
+**Run these five techniques in order:**
+
+---
+
+**Technique 1 — Fresh-eyes simulation**
+
+Before reviewing any session outputs or compliance results, write a one-paragraph answer to this question from a cold start:
+
+> *"If a researcher joined this project today with no prior context, what would confuse them, seem poorly organized, or prompt immediate questions about how the system works?"*
+
+This must be written before re-reading any project files — context contaminates the perspective. The goal is to surface what is invisible to someone inside the system.
+
+Then check: is any item raised by this simulation currently unaddressed? If yes, it is a gap.
+
+---
+
+**Technique 2 — Failure mode enumeration (inversion)**
+
+For each major component of the ROS, ask: *"How could this fail silently, without anyone noticing until significant damage is done?"* Do not ask whether it is working — ask how it could break invisibly.
+
+Components to invert:
+
+| Component | Key inversion question |
+|-----------|----------------------|
+| Workstream protocol | How could physics work happen outside workstreams without triggering a violation flag? |
+| Knowledge file tracking | How could verified results fail to reach RESOLVED_KNOWLEDGE, HYPOTHESIS_TREE, or FAILURE_LEDGER without detection? |
+| File routing | How could the wrong content accumulate in the wrong file across many sessions without being caught? |
+| Reference Core | How could the prediction ledger silently drift out of sync with actual current theory state? |
+| Meta-analysis itself | How could a meta-analysis run and appear to pass while missing a major systemic problem? |
+| Theory audit | How could the THEORY_AUDIT_CHECKLIST become stale and misdirect a theory audit without anyone noticing? |
+| Session close protocol | How could a session close appear complete while leaving a significant gap in the file system? |
+
+For each component: enumerate the top 1–2 silent failure modes. Then check: does the current system have a detection mechanism for each one? If not, that is a gap. Add the rule or check that would catch it.
+
+---
+
+**Technique 3 — Adversarial audit of the audit**
+
+After completing §11.3–11.6 and Techniques 1–2, ask:
+
+> *"What did this meta-analysis not check? What questions did it not ask? What would a critic of this meta-analysis say was missed?"*
+
+Write the answer explicitly — do not just think it. If the answer is "nothing," the audit has not been adversarial enough. A well-functioning meta-analysis should reliably surface at least one gap in itself.
+
+Then ask: is the gap a one-time miss, or evidence of a structural blind spot in how the meta-analysis is designed? If structural, add it to the known blind spots register (§11.9 output below).
+
+---
+
+**Technique 4 — Historical pattern scan**
+
+Review `SESSION_LEDGER.md` and `META_RESEARCH_LOG.md` for the last 10 sessions. Look for:
+
+- The same routing violation appearing more than once
+- The same file going stale repeatedly
+- Problems that were fixed in a previous meta-analysis but have reappeared
+- Friction points mentioned across multiple sessions
+- Rules that are consistently not being followed despite being documented
+
+A single violation is an individual failure. The same violation appearing twice is a pattern. A pattern means the rule that was supposed to prevent it is either unclear, missing, or insufficient. Identify the pattern, diagnose the rule gap, fix the rule.
+
+---
+
+**Technique 5 — The researcher question test**
+
+Ask:
+
+> *"Are there questions about how this system is working that a thoughtful researcher stepping back would ask — questions that the current meta-analysis has no mechanism to surface or answer?"*
+
+This is the most open-ended technique and the most important. It directly asks whether the system is examining itself from the right angles. The most valuable improvements to this ROS have come from questions asked from outside it, not from compliance checks run inside it.
+
+If yes — add a check, a question, or a technique that would surface those questions in future meta-analyses. The goal is to gradually transfer the researcher's perspective-shifting ability into the system itself.
+
+---
+
+**§11.9 Output (required at every ROS health check):**
+
+Log the following in `META_RESEARCH_LOG.md` under the current session entry:
+
+1. **Fresh-eyes paragraph** — the one-paragraph simulation output, verbatim
+2. **Silent failure modes found** — any failure modes from Technique 2 that lack a detection mechanism, with the gap and the fix
+3. **Adversarial audit findings** — what the meta-analysis missed, and whether it is a one-time miss or a structural blind spot
+4. **Patterns identified** — any recurring problems from Technique 4, with root cause and rule change
+5. **New researcher questions** — any questions from Technique 5 that the system couldn't previously answer, with the mechanism added to surface them in future
+
+If all five outputs are "none found," log that explicitly with brief reasoning. Do not skip the output step — an undocumented finding is a lost finding.
+
+**Known blind spots register:**
+
+`META_RESEARCH_LOG.md` maintains a running section called `## Known Blind Spots` at the top of the file. When Technique 3 reveals a structural blind spot — a category of problem the system was not designed to see — log it here:
+
+```
+### BS-NNN: [Short label]
+**Discovered:** Session N, [date]
+**Description:** What the blind spot was — what category of problem was invisible
+**Root cause:** Why the system couldn't see it
+**Detection mechanism added:** What rule, check, or technique was added
+**Status:** [OPEN — no fix yet | ADDRESSED — fix added session N]
+```
+
+This register is the institutional memory of the system's self-improvement. It answers the question "have we been here before?" when a new meta-analysis finds something unexpected.
 
 ---
 
@@ -799,6 +948,7 @@ Before beginning the audit, read and have in context:
 - `RESEARCH_DEPENDENCY_GRAPH.md` — the full dependency map
 - `FAILURE_LEDGER.md` — all open and resolved failures
 - `HYPOTHESIS_TREE.md` — all active and rejected hypotheses
+- `THEORY_AUDIT_CHECKLIST.md` — the current theory-specific audit targets (highest-risk claims, KC proximity, PDG benchmarks, literature topics)
 
 Do not begin any audit step without these files in context. An audit performed from memory is not an audit.
 
@@ -984,11 +1134,12 @@ Every theory audit session must produce all of the following before closing:
    - Any new kill conditions proposed
    - Any kill conditions proposed for removal (with reasoning)
    - Recommendation: is the theory stronger or weaker than at the last audit? Why?
-4. **Updated `FAILURE_LEDGER.md`** — any status changes from Step 6 (§12.8)
-5. **Updated `REFERENCE_CORE.md`** — any tier changes, corrections, or new flags
-6. **Next audit date** — stated explicitly in `CONTEXT_SNAPSHOT.md §E`
+4. **Updated `FAILURE_LEDGER.md`** — any status changes from Step 7 (§12.8)
+5. **Updated `E8_Reference_Core.md`** — any tier changes, corrections, or new flags
+6. **Updated `THEORY_AUDIT_CHECKLIST.md`** — refreshed with new highest-risk targets, current KC proximity estimates, updated PDG benchmark list, and updated literature topics. The checklist must reflect the theory's state *after* this audit, not before it.
+7. **Next audit date** — stated explicitly in `CONTEXT_SNAPSHOT.md §E`
 
 ---
 
-*End of session briefing — Research Operating System v3.1*
+*End of session briefing — Research Operating System v3.2*
 *This file contains operating rules only. Current project state is in CONTEXT_SNAPSHOT.md.*
