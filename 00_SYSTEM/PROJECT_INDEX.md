@@ -1,183 +1,130 @@
 # PROJECT_INDEX.md
-Research Project Navigation Map
+## Research Project Navigation Map
+
+**Last updated:** 2026-03-18 (Session 6 — ROS v3.1)
 
 ---
 
-# Purpose
+## Purpose
 
-This document provides a **high-level map of the research project structure**.
+High-level map of the research project structure. Allows both the researcher and AI systems to quickly understand where information is stored, which files are important for each session, and how the research operating system is organized.
 
-It allows both the researcher and AI systems to quickly understand:
-
-- where information is stored
-- which files are important for each session
-- how the research operating system is organized
-
-This file should remain **short, stable, and easy to scan**.
-
-Detailed workflow rules are defined in:
-
-`E8_Session_Briefing.md`
+This file should remain **short, stable, and easy to scan**. Detailed workflow rules are in `E8_Session_Briefing.md`. Current project state is in `CONTEXT_SNAPSHOT.md`.
 
 ---
 
-# Core System Files
+## Session Startup — What to Read and Upload
 
-Location: `00_SYSTEM/`
+### Upload set (every session)
+| File | Location | Purpose |
+|------|----------|---------|
+| `E8_Session_Briefing.md` | `00_SYSTEM/` | Operating rules — rarely changes |
+| `E8_Reference_Core.md` | `00_SYSTEM/` | Master results ledger |
+| `CONTEXT_SNAPSHOT.md` | `00_SYSTEM/` | **Current session state — read this first** |
+| `E8_WS_[Name].md` | `02_WORKSTREAMS/` | **Active workstream — always upload when doing physics** |
 
-These files define the **research operating system**.
+**Rule:** If physics work is happening, a workstream file must be in the upload set. No workstream = admin/planning session only.
 
-- `E8_Session_Briefing.md`  
-  Main research workflow and session instructions.
-
-- `E8_Reference_Core.md`  
-  Condensed results, key numbers, prediction ledger, status. Always upload.
-
-- `CONTEXT_SNAPSHOT.md`  
-  Short summary of the current state of the project.  
-  This file should be read at the **start of every session**.
-
-- `THEORY_HEALTH.md`  
-  Overview of the current status of the theory.
-
-- `PROJECT_INDEX.md`  
-  This navigation document.
+### Session start reading order
+1. `CONTEXT_SNAPSHOT.md` — orientation, active WS files, open failures, next plan
+2. Active workstream file — current derivation state and next steps
+3. `E8_Reference_Core.md` — prediction ledger
+4. Other files from repo only if specifically needed
 
 ---
 
-# Knowledge Layer
+## File System Architecture
 
-Location: `01_KNOWLEDGE/`
+### `00_SYSTEM/` — Research Operating System
 
-These files contain **structured knowledge generated during research**.
+| File | Role | Changes |
+|------|------|---------|
+| `E8_Session_Briefing.md` | Operating rules and protocols (ROS v3.1) | Rarely — only when rules change |
+| `E8_Reference_Core.md` | Stable verified results and predictions | Every session (new results) |
+| `CONTEXT_SNAPSHOT.md` | Current session state + active WS list | Every session (full replacement) |
+| `THEORY_HEALTH.md` | Theory health dashboard | When health metrics change |
+| `PROJECT_INDEX.md` | This navigation document | When structure changes |
 
-- `DISCOVERY_LOG.md`  
-  Records major discoveries made during the research process.
+### `01_KNOWLEDGE/` — Structured Knowledge
 
-- `RESOLVED_KNOWLEDGE.md`  
-  Contains results considered stable and no longer needing re-derivation.
+| File | Role | Changes |
+|------|------|---------|
+| `DISCOVERY_LOG.md` | Final major results only | When a major result is established |
+| `RESOLVED_KNOWLEDGE.md` | Settled facts no longer needing re-derivation | When knowledge is settled |
+| `HYPOTHESIS_TREE.md` | Competing theoretical paths and their status | When hypothesis states change |
+| `CONCEPT_REGISTRY.md` | Canonical definitions of theoretical objects | When new concepts are defined |
+| `PARAMETER_REGISTRY.md` | Constants, couplings, parameters and provenance | When parameters are updated |
+| `THEORY_EVOLUTION_GRAPH.md` | Major theory revisions in reverse chronological order | When structural changes occur |
+| `RESEARCH_DEPENDENCY_GRAPH.md` | Dependency map + research radar | When dependencies or priorities change |
+| `THEORY_SNAPSHOTS/` | Theory snapshots at major milestones | At major structural changes |
 
-- `HYPOTHESIS_TREE.md`  
-  Tracks competing theoretical paths and their current status.
+### `02_WORKSTREAMS/` — Active Physics Work
 
-- `CONCEPT_REGISTRY.md`  
-  Canonical definitions of important theoretical objects.
+**Every active line of investigation has a workstream file. All derivations live here.**
 
-- `PARAMETER_REGISTRY.md`  
-  Registry of constants, couplings, and parameters used in the theory.
+| File | Title | Status | Priority |
+|------|-------|--------|----------|
+| `E8_WS_3875.md` | CKM Mixing from the 3875 Representation | **ACTIVE** | 1 — critical path |
+| `E8_WS_F4_TopMass.md` | Top Mass 11% Discrepancy — QCD Correction | OPEN | 3 |
 
-- `THEORY_EVOLUTION_GRAPH.md`  
-  Tracks major revisions and structural changes in the theory.
+See `CONTEXT_SNAPSHOT.md §B` for current workstream status and upload instructions.
 
-- `RESEARCH_DEPENDENCY_GRAPH.md`  
-  Maps dependencies between axioms, assumptions, derivations, predictions, and tests.
+Workstream lifecycle: OPEN → ACTIVE → (BLOCKED) → CLOSED → `05_ARCHIVE/completed_workstreams/`
 
-- `THEORY_SNAPSHOTS/`  
-  Contains snapshots of the theory at major milestones. First snapshot to be created during Phase 2 re-evaluation.
+Full workstream protocol in `E8_Session_Briefing.md §6`.
 
----
+### `03_REFERENCE/` — External References
 
-# Active Research Workstreams
+| File | Role |
+|------|------|
+| `PAPER_INDEX.md` | Citation index with arXiv/DOI links — **no copyrighted content** |
+| `NOTES/` | Original research notes only |
 
-Location: `02_WORKSTREAMS/`
+### `04_META/` — Research Process Tracking
 
-Each workstream represents a **focused research investigation**.
+| File | Role | Changes |
+|------|------|---------|
+| `SESSION_LEDGER.md` | Log of research sessions (one row per session) | Every session |
+| `FAILURE_LEDGER.md` | Unresolved problems and theoretical failures | When failures open or close |
+| `CONTRADICTION_TRACKER.md` | Conflicts between theoretical results | When contradictions found/resolved |
+| `META_RESEARCH_LOG.md` | Improvements to the research operating system | When ROS changes made |
 
-Currently empty — `E8_WS_CKM2.md` pending move to archive. New workstreams (e.g., `E8_WS_3875.md`) will be created after Phase 2 re-evaluation.
+### `05_ARCHIVE/` — Historical Material
 
----
-
-# Reference Materials
-
-Location: `03_REFERENCE/`
-
-Contains external reference tracking and original research notes.
-
-- `PAPER_INDEX.md`  
-  Citation index with arXiv/DOI links. **No copyrighted content stored.**
-
-- `NOTES/`  
-  Original research notes only — no third-party content.
-
----
-
-# Meta Research Layer
-
-Location: `04_META/`
-
-Tracks the **research process itself**.
-
-- `SESSION_LEDGER.md`  
-  Log of research sessions.
-
-- `FAILURE_LEDGER.md`  
-  Records unresolved problems or theoretical failures.
-
-- `CONTRADICTION_TRACKER.md`  
-  Tracks conflicts between theoretical results.
-
-- `META_RESEARCH_LOG.md`  
-  Records improvements to the research operating system or workflow.
+| Folder | Contents |
+|--------|----------|
+| `completed_workstreams/` | E8_WS_Alpha3.md, E8_WS_CGC.md, E8_WS_CKM.md, E8_WS_N15.md, E8_WS_CKM2.md |
+| `deprecated_theories/` | Future use |
+| `old_theory_snapshots/` | Future use |
 
 ---
 
-# Archive
+## File Ownership Rules (Summary)
 
-Location: `05_ARCHIVE/`
+Every piece of content belongs to exactly one file:
 
-Stores historical material to keep the active workspace clean.
+| Content type | Belongs in |
+|-------------|-----------|
+| Active derivations, reasoning, intermediate results | `E8_WS_*.md` (workstream) |
+| Stable, verified, finalized results | `E8_Reference_Core.md` |
+| Current project state, open failures, next plan | `CONTEXT_SNAPSHOT.md` |
+| Theory structural changes | `THEORY_EVOLUTION_GRAPH.md` |
+| Research priorities and dependency map | `RESEARCH_DEPENDENCY_GRAPH.md` |
+| Operating rules | `E8_Session_Briefing.md` |
 
-- `completed_workstreams/`  
-  Archived workstream files (E8_WS_Alpha3.md, E8_WS_CGC.md, E8_WS_CKM.md, E8_WS_N15.md, E8_WS_CKM2.md).
-
-- `deprecated_theories/`  
-  Future use.
-
-- `old_theory_snapshots/`  
-  Future use.
-
----
-
-# Session Startup Priority
-
-At the beginning of each research session review:
-
-1. `CONTEXT_SNAPSHOT.md`
-2. `PROJECT_INDEX.md`
-3. `SESSION_LEDGER.md`
-4. `FAILURE_LEDGER.md`
-
-This provides orientation for continuing the research.
+Full routing rules and violation tags: `E8_Session_Briefing.md §5`.
+Full workstream protocol: `E8_Session_Briefing.md §6`.
 
 ---
 
-# Research Philosophy
+## Repository Policy
 
-The research system is designed to support:
-
-- long-horizon theoretical exploration
-- structured hypothesis development
-- high-integrity reasoning
-- efficient AI-assisted collaboration
-
-The theory is allowed to evolve significantly if evidence justifies it.
-
-Major structural changes should always be:
-
-- documented
-- justified
-- tracked in the theory evolution systems
+- **No copyrighted material** — no PDFs, paper text, book excerpts.
+- **No secrets or credentials.**
+- **No large binary files** — text-only repo.
+- **Commit messages reference session numbers:** `session-007: WS-3875 CG coefficient computed`
+- Python scripts go in `scripts/` for version control alongside research files.
 
 ---
 
-# Maintenance Rules
-
-Keep this document:
-
-- concise
-- accurate
-- aligned with the current folder structure
-
-Avoid adding detailed research notes here.
-
-This file should remain a **navigation map**, not a research log.
+*Keep this document concise and accurate. It is a navigation map, not a research log.*
