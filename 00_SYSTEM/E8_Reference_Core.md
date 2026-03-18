@@ -1,21 +1,14 @@
 # E₈ Reference Core
 ## Condensed Results & Status — Always Upload This File
 
-**Last updated:** March 17, 2026 (Phase 2 re-evaluation complete — all numerical values independently confirmed; no new errors found; conceptual assessment and dependency analysis added)
+**Last updated:** March 17, 2026 (WS-CKM2 archived; KC-g decision: remains partial kill pending WS-3875)
 **Rule:** No derivations here. Results only. For derivations, see workstream files or archived notebooks.
 
 ---
 
 ## 0. Audit Status
 
-**Numerical audit COMPLETE** — all entries in §2–§7 tagged. Phase 2 re-evaluation (ROS v2 Session 2) independently re-derived all numerical values. No new errors found.
-
-**Phase 2 re-evaluation findings (2026-03-17, Session 2):**
-- All §2–§7 numerical values confirmed by independent re-derivation.
-- No new errors beyond those already documented (d_{(2,0)} correction, Δ formula display corrections).
-- Three [⚠] flags remain open: b₂^WZW=+38/3 origin, +2.75 corrections origin, M_GUT self-consistency. These are now elevated to Priority 3 in the research plan.
-- Dependency analysis: No circular reasoning found. M_GUT as an external input (not self-consistently derived) is flagged as an unacknowledged degree of freedom in the Tier A coupling predictions.
-- Conceptual assessment: Theory is VIABLE but INCOMPLETE. KC-g/CKM is existential risk. See THEORY_SNAPSHOT_001 for full assessment.
+**Numerical audit COMPLETE** — all entries in §2–§7 tagged. See `E8_Validation_Briefing.md` for full history.
 
 | Phase | Section | Status | Date |
 |-------|---------|--------|------|
@@ -27,7 +20,6 @@
 | Phase 6 | §7 φ Audit | ✓ COMPLETE — 1 error found (d_{(2,0)} claim incorrect) | 2026-03-17 |
 | Phase 7 | §6 Paper 2 Parameters | ✓ COMPLETE — stored params confirmed; Tier-C params ~5–7% off targets (noted) | 2026-03-17 |
 | Phase 8 | §4 Tier A rows 11–12, §4 Tier C rows 16–21 | ✓ COMPLETE — 1 unverified flag added (m_ν); all others verified | 2026-03-17 |
-| **ROS v2 Phase 2** | **Full re-evaluation** | **✓ COMPLETE — all values independently re-derived; no new errors** | **2026-03-17** |
 
 No corrections found in Phases 1–3. Phase 4: two display-only errors in §5 intermediate values (Δ formulas corrected; no effect on physics). Phase 5: all stated numeric values verified; three unverified flags added (b₂^WZW matter content, M_GUT not self-consistently derived from WZW crossing, +2.75 corrections origin); sin²θ_W formula clarified (tree-level α_em/α₂, not GUT-norm formula). Phase 6: §7 φ audit — 4 of 5 claims verified; one error found: d_{(2,0)}(G₂,k=6)≠φ (computed=13.825); correct statement is d_{(0,1)}(G₂,k=1)=φ (Fibonacci τ anyon S-matrix verified); §7 table annotated and Logical Chain §1 entry corrected. Phase 7: §6 Paper 2 parameter audit — stored params confirmed to give m_t/m_u=291.5 and m_b/m_d=6.6 (matching F7 claim); Tier-C-consistent params verified to give m_t/m_u=79,978 and m_b/m_d=895.6 (−5.3% and +7.1% vs Tier C targets 84,455 and 836 — params are approximately consistent, not exactly fitted; noted in §6); discrepancy factors ~274× (up) and ~136× (down) confirmed. All §6 entries tagged. Phase 8: §4 Tier A rows 11–12 and §4 Tier C rows 16–21 tagged. Row 16: m_top=193.6 GeV using obs v=246.22 (11.9% off; rounds to '11%') verified. Row 17: m_ν flagged [⚠ unverifiable: M_R fitted]. Row 18: m_t/m_u=84,455 vs 86,500 (2.4% error) verified using PDG m_u=2.0 MeV, m_t=173 GeV pole. Row 19: m_b/m_d=836 verified using PDG m_d=5.0 MeV, m_b=4.18 GeV. Row 21: 8.94−0.44=8.50 arithmetic verified; −0.44 consistent with 9 exotic triplets Δb₃=6 at M_T/M_GUT=1.586. Row 11: carries same [⚠] as §5 M_GUT note. Row 12: proton lifetime tagged as rough estimate; safe vs experimental bound confirmed. Audit now complete — every numerical entry in §2–§7 carries an audit tag.
 
@@ -262,7 +254,7 @@ All trace back to the single derivation: Jones index at n=5 → φ.
 | WL2-A | Derive n=15 | Stalled at foundational gap — three [T] coincidences documented; modular orbit [F]; J-W singularities confirmed but insufficient; blockage is undefined self-modeling map S; recommendation: Option C (accept as [D]) pending foundational work on S | E8_WS_N15.md |
 | WS-CGC | E₆ Clebsch-Gordan coefficients | **COMPLETE — 2026-03-17.** KC-g evaluated. Exotic 5̄_A/5̄_B mixing forbidden by E₆ group theory at renormalizable level. Escape route for F8 closed. See E8_WS_CGC.md. | E8_WS_CGC.md — **archive** |
 | WS-CKM2 | Two-Higgs CKM from (27,3) + (27̄,3̄) in 248 | **CLOSED — 2026-03-17.** Proposal killed. (27̄,3̄_fam) has no SU(3)_fam-invariant Yukawa (3×3×3̄ singlet absent, code-verified). Structural theorem: one Yukawa in 248, V_CKM = I exact. All 248 renormalizable routes exhausted. KC-g decision: partial kill maintained pending WS-3875. | E8_WS_CKM2.md — **archive** |
-| WS-3875 | 3875 of E₈ as source of CKM | **PENDING** — only surviving viable path for CKM. Begins after Phase 2 re-eval. | E8_WS_3875.md — to be created |
+| WS-3875 | 3875 of E₈ as source of CKM | **PENDING** — only surviving viable path for CKM. Begins after F7 back-solve (or as secondary task). | E8_WS_3875.md — to be created |
 
 ---
 
