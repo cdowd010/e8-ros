@@ -85,6 +85,7 @@ Minor issues should NOT trigger major rewrites. Balance flexibility with stabili
 │   ├── PARAMETER_REGISTRY.md
 │   ├── THEORY_EVOLUTION_GRAPH.md       ← theory change log
 │   ├── RESEARCH_DEPENDENCY_GRAPH.md    ← dependency map + research radar
+│   ├── THEORY_AUDIT_CHECKLIST.md       ← theory-specific audit targets (updated each audit)
 │   └── THEORY_SNAPSHOTS/
 ├── 02_WORKSTREAMS/
 │   └── E8_WS_[Name].md                ← ALL active physics derivations live here
@@ -439,7 +440,7 @@ Concrete next steps — specific computation or derivation, not "continue workin
 ### 6.4 Notebooks vs. workstreams
 
 Notebooks (`E8_NB_[Name].md`) accumulate reference material that grows over time without a specific closing condition. Use a notebook when:
-- Building a reference library (e.g., E₈ weight tables, branching rules)
+- Building a reference library (e.g., computed tables, classification results)
 - Recording computational infrastructure that multiple workstreams will use
 
 Use a workstream when:
@@ -621,7 +622,7 @@ At session close, print exact shell commands to move every downloaded file into 
 
 ### 10.3 Git policy
 
-- Commit messages reference session numbers: `session-014: WS-3875 CG coefficient computed`
+- Commit messages reference session numbers: `session-014: <brief description>`
 - No copyrighted material, secrets, credentials, or large binary files
 - Text-only repo
 
@@ -649,7 +650,7 @@ Do NOT run meta-analysis speculatively between triggers. It consumes session cap
 | Interval | What runs |
 |----------|-----------|
 | Every ~10 sessions | Full ROS health check (§11.3) + File system audit (§11.4) |
-| Every ~25 sessions | Theory audit (§11.5) |
+| Session 15, then every 15 sessions (until stabilization) | Theory audit (§12) |
 | Any session meta-analysis is triggered | Cross-file consistency audit (§11.6) — always included |
 
 ### 11.3 ROS health check (~every 10 sessions)
@@ -710,16 +711,13 @@ A structural check of the repository:
 **Cross-file staleness** (run the §11.6 checklist):
 - See §11.6 for the full cross-file consistency audit.
 
-### 11.5 Theory audit (~every 25 sessions)
+### 11.5 Theory audit
 
-A structured attempt to stress-test the theory rather than advance it:
+See **§12 — Theory Audit** for the full protocol. The theory audit runs on its own schedule (separate from ROS health) and is documented separately because it is a different kind of activity — physics stress-testing, not system maintenance.
 
-1. **Falsification attempt** — for each Tier A and Tier B prediction, identify the single most likely way it could be wrong. Is there a computational check that would reveal this? Run it.
-2. **Weakest assumption identification** — list the five weakest `[P]` claims in the logical chain. What would it take to strengthen or refute each?
-3. **Resolved knowledge validation** — has any result in `RESOLVED_KNOWLEDGE.md` been implicitly undermined by subsequent work? Check each RK entry against current theory state.
-4. **Circular dependency scan** — review `RESEARCH_DEPENDENCY_GRAPH.md` for hidden circular reasoning. Are any predictions dependent on inputs that were fitted to match those predictions?
-5. **Kill condition stress test** — for each non-triggered kill condition, is there a concrete computation that would trigger it? If no such computation exists, the kill condition may not be well-defined.
-6. **Update `THEORY_HEALTH.md`** with revised assessment.
+**Schedule:** First audit at session 15, then every 15 sessions until the theory stabilizes (defined as: no tier changes, no new kill condition activity, no active structural workstreams for 10+ consecutive sessions). After stabilization, extend cadence to every 25 sessions.
+
+**Trigger independently:** A theory audit should also be triggered (regardless of schedule) if a kill condition is approached, if a major structural assumption is challenged by new results, or if a re-planning session reveals the theory's predictive scorecard has materially changed.
 
 ### 11.6 Cross-file consistency audit (runs with every meta-analysis)
 
@@ -775,6 +773,220 @@ The ROS version history should be traceable via `META_RESEARCH_LOG.md` and git c
 ### 11.8 AI platform awareness
 
 Claude is the default research platform. Switching to other systems (OpenAI, Gemini) should be rare and justified — only for tasks that do not require project files and benefit from independent reasoning checks. Log platform switches in `META_RESEARCH_LOG.md`.
+
+---
+
+## §12 — Theory Audit
+
+A theory audit is a structured attempt to **stress-test and potentially falsify** the theory — not to advance it. The mindset is that of a hostile referee who has been given access to all the working files. The goal is to find what is weak, wrong, or overstated before a journal reviewer or experimentalist does.
+
+**Always use Opus for a theory audit.** This is the highest-stakes reasoning in the project. A wrong derivation in a theory audit that gets written into THEORY_HEALTH and RESOLVED_KNOWLEDGE could silently corrupt the research direction for many sessions.
+
+**Schedule:** Session 15, then every 15 sessions until stabilization. After stabilization (no tier changes, no active structural workstreams, no kill condition activity for 10+ consecutive sessions), extend to every 25 sessions. Also trigger ad hoc whenever a kill condition is approached, a major structural assumption is challenged, or a re-planning session reveals the scorecard has materially changed.
+
+**Duration:** Plan for a full session. A rushed theory audit is worse than no audit — it creates false confidence.
+
+**Output:** The theory audit session must produce an updated `THEORY_HEALTH.md`, a new `THEORY_SNAPSHOT`, and a written audit report logged in `META_RESEARCH_LOG.md`. These are not optional.
+
+---
+
+### 12.1 Pre-audit preparation
+
+Before beginning the audit, read and have in context:
+- `E8_Reference_Core.md` — the full prediction ledger and logical chain
+- `THEORY_HEALTH.md` — current dashboard (the baseline to compare against)
+- `RESOLVED_KNOWLEDGE.md` — all settled results
+- `RESEARCH_DEPENDENCY_GRAPH.md` — the full dependency map
+- `FAILURE_LEDGER.md` — all open and resolved failures
+- `HYPOTHESIS_TREE.md` — all active and rejected hypotheses
+
+Do not begin any audit step without these files in context. An audit performed from memory is not an audit.
+
+---
+
+### 12.2 Step 1 — Logical chain integrity
+
+The logical chain in Reference Core §1 is the spine of the entire theory. Audit each link.
+
+**For every `[P]` claim:**
+- State precisely what would have to be true for this claim to be false.
+- Is there a published result or computation that could confirm or refute it?
+- Has anything been derived since this claim was made that bears on it?
+- Is there a stronger alternative justification that hasn't been pursued?
+- If it has not been revisited in 10+ sessions, treat it as unreviewed and flag it.
+- Consult `THEORY_AUDIT_CHECKLIST.md` for the current highest-priority `[P]` claims to scrutinize.
+
+**For every `[D]` claim:**
+- Are the stated assumptions still the minimal set, or have later results allowed some to be strengthened?
+- Are all dependencies explicitly listed? Check for hidden inputs that have accumulated since the derivation was first written.
+- Is there a boundary case where this `[D]` should actually be `[P]` — i.e., the derivation contains an unjustified step that is effectively an assumption?
+- Consult `THEORY_AUDIT_CHECKLIST.md` for the current highest-priority `[D]` claims to scrutinize.
+
+**For every `[T]` claim:**
+- Is the cited source correct and accessible?
+- Is the specific result from that source the one being used, or a looser paraphrase?
+- Has the cited result been superseded or qualified in the literature since citation?
+
+---
+
+### 12.3 Step 2 — Prediction accuracy review
+
+PDG values drift. Experimental bounds tighten. A prediction that was 2% off two years ago may be 4% off now, or may now be excluded. For every prediction in the ledger:
+
+**Re-benchmark against current PDG:**
+- Look up the current PDG value for every experimental input used in predictions. Note any that have changed since the last audit date.
+- Recompute every match percentage using current PDG values, not stored ones.
+- If any Tier A or Tier B prediction has degraded past 5%, flag for investigation.
+- If any Tier C prediction has degraded to excluded territory (>3σ from current PDG), escalate to active failure.
+- Note any experimental inputs that carry active measurement controversy — these may shift significantly between audits.
+
+Consult `THEORY_AUDIT_CHECKLIST.md` for the specific predictions to re-benchmark and any known measurement controversies relevant to the current theory state.
+
+---
+
+### 12.4 Step 3 — Tier inflation audit
+
+Over many sessions, claims tend to silently drift upward in confidence. This step actively pushes back.
+
+**For every Tier A claim:**
+- List every input that enters the prediction. Is each input strictly derived from the axioms, or does any rely on an external input, a fitted parameter, or a `[P]` assumption?
+- If ANY input is not strictly derived → the claim does not qualify for Tier A. Downgrade.
+- Apply the zero-parameter test: could this prediction have been made before any experimental data was seen? If not, it is not Tier A.
+
+**For every Tier B claim:**
+- Identify the specific `[D]` or `[T]` dependency that keeps it out of Tier A. Is that dependency still the binding constraint, or has something changed?
+- Is there a path to derive that dependency that hasn't been explored yet?
+
+**For every Tier C claim:**
+- Count the free parameters explicitly. Is the stated parameter count accurate?
+- Is this prediction actually predictive (makes a testable claim given the fitted parameters), or is it just a fit?
+
+**Tier inflation red flags:**
+- A claim upgraded to Tier A in a previous session without a full zero-parameter audit
+- A `[D]` claim where the derivation is in an archived workstream that hasn't been re-examined in 10+ sessions
+- Any claim where the match is suspiciously good (< 0.5%) — this is more likely to indicate hidden fitting than genuine prediction
+
+---
+
+### 12.5 Step 4 — Kill condition stress test
+
+For each kill condition, answer two questions: (1) is it well-defined enough to actually trigger? (2) how close is the theory to triggering it?
+
+**For each non-triggered KC:**
+- Identify the specific computation or observation that would trigger it.
+- If no such computation can be named, the kill condition is not well-defined — rewrite it with a concrete trigger.
+- Estimate how far the theory currently is from the trigger threshold. "Not close" is not an acceptable answer — quantify.
+
+**For each partially-triggered KC:**
+- What exact result would convert it to a full kill?
+- What exact result would clear it entirely?
+- Are the success/failure thresholds in the relevant workstream still the right ones?
+
+**Kill condition inventory check:**
+- Are all known failure modes represented by kill conditions? If a new theoretical vulnerability has been identified since the last audit, does it have a corresponding KC?
+- Are any KCs now redundant or subsumed by other conditions? Consider consolidating.
+
+Consult `THEORY_AUDIT_CHECKLIST.md` for the current kill condition proximity assessments and any KCs flagged for stress-testing.
+
+---
+
+### 12.6 Step 5 — Dependency chain integrity
+
+**Circular reasoning scan:**
+Go through the dependency chain in `RESEARCH_DEPENDENCY_GRAPH.md`. For each prediction, trace its inputs all the way back to axioms. Flag any prediction where:
+- An input was fitted using the same experimental value the prediction is compared against
+- A `[D]` claim uses an intermediate result that itself depends on the prediction (even indirectly)
+- A parameter is described as "derived" but was actually selected to match a known value
+
+**Correction propagation check:**
+For each `[✗ CORRECTED:]` entry in the Reference Core since the last audit:
+- Identify every prediction downstream of the corrected value
+- Verify that downstream predictions have been recomputed with the corrected value
+- Check for any prediction that was benchmarked against the old (wrong) value and now shows an artificially good match
+
+**Fitted parameter contamination:**
+List every fitted parameter in the theory. For each:
+- Which predictions depend on it?
+- Is any Tier A or Tier B prediction downstream of a fitted parameter? (If yes → it should not be Tier A/B.)
+- Has the fitted parameter been used in more predictions than it was originally fitted to? (If yes → the additional predictions are genuine; if no → it may be a hidden overfit.)
+
+---
+
+### 12.7 Step 6 — Assumption age and literature review
+
+**Assumption age check:**
+Some `[P]` claims and `[T]` citations are from the early stages of the project and have never been revisited. For each assumption older than 15 sessions:
+- Is the assumption still the best available justification, or has something been published or derived that changes it?
+- Has the cited paper been read carefully, or just cited by name?
+- Is the specific theorem/result being cited actually present in the cited source?
+
+**Literature scan:**
+Run targeted web searches on the theoretical foundations of the current framework to check for recent developments that could strengthen, weaken, or refute key claims. Flag any relevant result and log in `META_RESEARCH_LOG.md`.
+
+Consult `THEORY_AUDIT_CHECKLIST.md` for the specific literature topics to search at the current audit date — these are updated after each audit to reflect the theory's current most exposed foundations.
+
+---
+
+### 12.8 Step 7 — Open failure triage
+
+Review every entry in `FAILURE_LEDGER.md`:
+
+**For active failures:**
+- Has anything been learned since the failure was opened that changes the approach?
+- Is the failure still correctly classified (active vs. parked vs. low-priority)?
+- Is the stated approach still the right one, or has it been superseded?
+- Should any failure be formally closed as "will not resolve within this theoretical framework"?
+
+**For parked failures:**
+- Is there a concrete unblocking condition stated? If not, is this failure genuinely parked or de facto closed?
+- Has any work in other areas created a new path to resolution?
+- Has the failure been parked long enough that it should either be formally closed or have a workstream opened?
+
+**For resolved failures:**
+- Has the resolution held up under subsequent work? A "resolved" failure whose resolution was later undermined is a silent bug.
+
+---
+
+### 12.9 Step 8 — Theory scope and honesty assessment
+
+This step is deliberately adversarial. The goal is to identify overreach.
+
+**Scope creep check:**
+- Count the `[T]` vs `[D]` vs `[P]` tags in the logical chain. Is the ratio of proven to assumed claims moving in the right direction over time?
+- Has the framework been extended to explain new phenomena without sufficient justification? New `[P]` claims should be scrutinized.
+- Are there claims in the framework that are not in the logical chain but are implicit in predictions?
+
+**Honest scorecard:**
+Construct the most conservative possible version of the theory's predictive record:
+- Count only Tier A predictions where every input is strictly derived (no `[P]` dependencies, no fitted parameters upstream)
+- For those predictions, what is the median match percentage?
+- How many independent predictions are there? (Two predictions from the same formula with different PDG inputs are not fully independent.)
+- What is the probability that this match record occurred by chance? (Order of magnitude estimate — not rigorous, but informative.)
+
+**The adversarial question:**
+Write a one-paragraph summary of the theory's weaknesses as a hostile referee would. This paragraph should be uncomfortable to write. If it isn't, the audit has not been adversarial enough. Log this paragraph in `META_RESEARCH_LOG.md`.
+
+---
+
+### 12.10 Theory audit output (mandatory)
+
+Every theory audit session must produce all of the following before closing:
+
+1. **Updated `THEORY_HEALTH.md`** — full replacement with post-audit metrics. Every metric must change or be explicitly confirmed unchanged with reasoning.
+2. **New `THEORY_SNAPSHOT`** — even if the theory hasn't changed structurally. The snapshot records the theory's state at the audit date as an independent baseline.
+3. **Audit report in `META_RESEARCH_LOG.md`** — structured entry containing:
+   - Session number and date
+   - Summary of what was checked and what was found
+   - All tier changes, with justification
+   - All new `[⚠]` flags raised
+   - All `[⚠]` flags resolved
+   - The adversarial one-paragraph weakness summary (§12.9)
+   - Any new kill conditions proposed
+   - Any kill conditions proposed for removal (with reasoning)
+   - Recommendation: is the theory stronger or weaker than at the last audit? Why?
+4. **Updated `FAILURE_LEDGER.md`** — any status changes from Step 6 (§12.8)
+5. **Updated `REFERENCE_CORE.md`** — any tier changes, corrections, or new flags
+6. **Next audit date** — stated explicitly in `CONTEXT_SNAPSHOT.md §E`
 
 ---
 
