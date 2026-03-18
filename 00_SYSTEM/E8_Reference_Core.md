@@ -8,7 +8,7 @@
 
 ## 0. Audit Status
 
-**Numerical audit COMPLETE** — all entries in §2–§7 tagged. See `E8_Validation_Briefing.md` for full history.
+**Numerical audit COMPLETE** — all entries in §2–§7 tagged. Full session-by-session audit history in `04_META/SESSION_LEDGER.md`.
 
 | Phase | Section | Status | Date |
 |-------|---------|--------|------|
@@ -194,13 +194,13 @@ b₃ = −7,  b₂ = −19/6,  b₁ = +41/6   [✓ code-verified 2026-03-17] (de
 
 **Fitted parameters per sector:**
 
-⚠ **NOTE: The "stored" values below are inconsistent with the Tier C mass ratios (F7). See E8_WS_CKM.md §5 Finding 1. Do not use for quantitative predictions until audited.**
+⚠ **NOTE on parameter status:** The "stored" values in the first two columns below are legacy values from the original Paper 2 notebook and are **incorrect** — do not use them for any computation. The **exact PDG back-solved values** (last two columns) are verified and correct for the quark sectors `[✓ code-verified 2026-03-17]`. The lepton sector has not yet been computed — see `E8_WS_F4_TopMass.md` for tracking, or a dedicated lepton workstream when scoped.
 
 | Sector | P×L (stored — inconsistent) | Q×L (stored — inconsistent) | P×L (Tier-C-consistent) | Q×L (Tier-C-consistent) | P×L (exact PDG back-solve) | Q×L (exact PDG back-solve) |
 |--------|------------------------------|------------------------------|--------------------------|--------------------------|---------------------------|---------------------------|
 | Up quarks | 2.71 | 1.61 | 5.401 | 3.188 | **5.9405** | **2.4571** |
 | Down quarks | 0.80 | 0.68 | 3.533 | 1.498 | **3.2173** | **1.9027** |
-| Leptons | (derived from m_τ/m_μ, m_μ/m_e) | | (not yet recomputed) | | (not yet computed) | |
+| Leptons | (legacy — do not use) | (legacy — do not use) | (not yet recomputed) | (not yet recomputed) | `[⚠ not yet computed — lepton back-solve is open work; see FAILURE_LEDGER F7 and future lepton workstream]` | `[⚠ same]` |
 
 **Session 3 exact PDG back-solve (2026-03-17):**
 
@@ -277,14 +277,7 @@ All trace back to the single derivation: Jones index at n=5 → φ.
 
 ## 10. Workstream Status
 
-| ID | Task | Status | File |
-|----|------|--------|------|
-| PRED-A | CKM from Paper 2 params | **Closed** — partial kill condition on minimal Paper 2. V_CKM=I proved (F8). Two pre-conditions for any CKM prediction: (1) audit §6 parameter table (F7); (2) compute exotic 5̄ mixing via WS-CGC. | E8_WS_CKM.md |
-| WS-α₃ | Two-stage RG for α₃ | **Closed** — α₃ demoted to Tier C; M_T/M_GUT = 1.586 fitted; GUT-breaking sector model deferred | E8_WS_Alpha3.md |
-| WL2-A | Derive n=15 | Stalled at foundational gap — three [T] coincidences documented; modular orbit [F]; J-W singularities confirmed but insufficient; blockage is undefined self-modeling map S; recommendation: Option C (accept as [D]) pending foundational work on S | E8_WS_N15.md |
-| WS-CGC | E₆ Clebsch-Gordan coefficients | **COMPLETE — 2026-03-17.** KC-g evaluated. Exotic 5̄_A/5̄_B mixing forbidden by E₆ group theory at renormalizable level. Escape route for F8 closed. See E8_WS_CGC.md. | E8_WS_CGC.md — **archive** |
-| WS-CKM2 | Two-Higgs CKM from (27,3) + (27̄,3̄) in 248 | **CLOSED — 2026-03-17.** Proposal killed. (27̄,3̄_fam) has no SU(3)_fam-invariant Yukawa (3×3×3̄ singlet absent, code-verified). Structural theorem: one Yukawa in 248, V_CKM = I exact. All 248 renormalizable routes exhausted. KC-g decision: partial kill maintained pending WS-3875. | E8_WS_CKM2.md — **archive** |
-| WS-3875 | 3875 of E₈ as source of CKM | **MECHANISM SPECIFIED (session 5).** Branching rule verified (session 4). Mechanism: The 3875 composite O^{3875} = P^{ab}_{3875}:JᵃJᵇ: at level 2 of vacuum module (h=2) provides CKM mixing through the (27̄,6) component. The (27̄,6) gives a SYMMETRIC Yukawa (6 = Sym²(3)_fam) which corrects the antisymmetric 248 Yukawa → V_CKM ≠ I. The (351,3) gives an ANTISYMMETRIC coupling and does NOT break V_CKM = I. KZ equation: F(z) = [z(z−1)]^{−60/31} [✓ 2026-03-18]. Semi-quantitative V_us ~ 0.33 from dimension-weighted CG [⚠]; observed 0.226 (within 50%). Level-2 vacuum module: 4124 = 1+248+3875 physical states; 27000 null. Next: exact CG coefficient computation; full CKM matrix with RS profiles. | E8_WS_3875.md — to be created |
+**This section has been removed.** Workstream status is session state and is owned by `CONTEXT_SNAPSHOT.md §B`. See that file for the current active workstream list. Completed workstream outcomes are summarized in `04_META/SESSION_LEDGER.md` and detailed in `05_ARCHIVE/completed_workstreams/`.
 
 ---
 

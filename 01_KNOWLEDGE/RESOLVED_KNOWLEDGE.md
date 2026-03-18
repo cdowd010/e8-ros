@@ -1,7 +1,7 @@
 # RESOLVED_KNOWLEDGE.md
 ## Stable Conclusions — Do Not Re-derive
 
-**Last updated:** 2026-03-17 (ROS v2 Session 1 — initial population)
+**Last updated:** 2026-03-18 (Session 6 — RK-008 through RK-012 added)
 
 Contains results considered settled. Re-derivation is unnecessary unless a dependency is invalidated.
 
@@ -40,7 +40,7 @@ Contains results considered settled. Re-derivation is unnecessary unless a depen
 
 ## RK-006: V_CKM = I in the 248 framework (renormalizable order)
 **Verified:** 2026-03-17 (four independent proofs, code-verified)
-**Result:** The 248 of E₈ admits exactly one Yukawa operator. All mass matrices are proportional. V_CKM = I exact.
+**Result:** The 248 of E₈ admits exactly one Yukawa operator. All mass matrices are proportional. V_CKM = I exact. All five escape routes within 248 exhausted (see F8 in Reference Core §8).
 **Dependencies:** E₈ representation theory, SU(3)_fam invariance.
 **Would invalidate if:** Error in 3×3×3̄ decomposition or E₆ Clebsch-Gordan analysis.
 
@@ -49,6 +49,39 @@ Contains results considered settled. Re-derivation is unnecessary unless a depen
 **Result:** Exact algebraic identity. 4cos²(π/5) = (3+√5)/2 = φ².
 **Dependencies:** None (pure mathematics).
 **Would invalidate if:** Never — exact identity.
+
+## RK-008: Level-2 vacuum module structure of (E₈)₁
+**Verified:** 2026-03-17 (code-verified, SageMath)
+**Result:** Sym²(248) = 1 + 248 + 3875 + 27000. The 27000 has a null state at level 2 and decouples entirely. The physical level-2 space has dimension 4124 = 1 + 248 + 3875.
+**Dependencies:** E₈ representation theory; (E₈)₁ WZW null state structure.
+**Would invalidate if:** Error in Sym²(248) decomposition or null state argument.
+
+## RK-009: Conformal weight h(3875) = 48/31
+**Verified:** 2026-03-17 (code-verified; corrected from stored error h=1)
+**Result:** h(3875) = C₂(3875)/(2K) = 96/62 = 48/31 ≈ 1.548 via Weyl formula ⟨ω₇, ω₇+2ρ⟩/(2(k+h∨)) = 96/62. The 3875 is NOT integrable at k=1 (Kac mark a₇=2); it appears as a composite operator :JᵃJᵇ: at level 2 of the vacuum module.
+**Dependencies:** Weyl character formula; E₈ Kac marks.
+**Would invalidate if:** Error in C₂(3875) or Weyl formula application.
+
+## RK-010: (351,3) component of 3875 cannot generate CKM mixing
+**Verified:** 2026-03-18 (code-verified, Session 5)
+**Result:** The (351,3) component of the 3875 under E₆×SU(3)_fam gives an ANTISYMMETRIC Yukawa coupling (3×3×3 → ε_{ijk} singlet). An antisymmetric Yukawa matrix gives V_CKM = I upon diagonalization. The (351,3) does not contribute to CKM mixing. CKM mixing comes exclusively from the (27̄,6) symmetric component.
+**Dependencies:** E₆ representation theory; SU(3)_fam tensor products.
+**Would invalidate if:** Error in antisymmetry argument or 3×3×3 decomposition.
+
+## RK-011: α₂ fitted parameter classification (Session 6)
+**Verified:** 2026-03-18 (Session 6 field content analysis)
+**Result:** Three quantities previously carrying [⚠] flags are now classified:
+- b₂^WZW = +38/3: FITTED. Not derivable from E₈ field content. Naive counting gives 36 Weyl doublets (b₂=50/3) or 24f+12s (b₂=28/3); neither gives 38/3. The value requires exactly 30 Weyl doublets with no physical justification.
+- +2.75 corrections: FITTED. No identified source among threshold, two-loop, or WZW non-perturbative contributions.
+- M_GUT = 5.7×10¹⁶ GeV: EXTERNAL INPUT. The self-consistent WZW α₃=α₂ crossing gives M_GUT = 2.20×10¹⁶ GeV, 1/α₂ = 29.10 (1.6% off observed). The 5.7×10¹⁶ value was taken as an external input.
+**Consequence:** α₂ prediction (Row 3) and sin²θ_W (Row 5) downgraded Tier A → Tier C. The self-consistent prediction (1.6%, 1 free param) is the honest reported value.
+**Would invalidate if:** A physical derivation of b₂^WZW = +38/3 is found, which would upgrade α₂ back toward Tier B.
+
+## RK-012: KZ equation solution for (E₈)₁ adjoint 4-point function
+**Verified:** 2026-03-18 (code-verified, exact, Session 5)
+**Result:** The KZ equation 31·dF/dz = −60·[1/z + 1/(z−1)]·F has exact solution F(z) = [z(z−1)]^{−60/31}. Level-2 vacuum block coefficient c₂ = 2730/961 ≈ 2.841 (exact rational arithmetic).
+**Dependencies:** (E₈)₁ WZW OPE structure; KZ equation at level k=1.
+**Would invalidate if:** Error in KZ equation setup or boundary conditions.
 
 ---
 

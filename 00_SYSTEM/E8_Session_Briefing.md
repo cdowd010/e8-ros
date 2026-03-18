@@ -440,6 +440,7 @@ Use a workstream when:
 - **Never delete failed attempts.** Log them in §D with a `[✗]` tag and a note on why they failed. Failed attempts are scientifically valuable.
 - **Keep §F current.** At every session close, §F must reflect the actual next concrete step — not a vague continuation.
 - **Upload set always includes the active WS file.** If a WS file is not in the upload set, it is not active. If work is needed on it, add it back.
+- **If a workstream blocks mid-session:** Do not abandon the session. Immediately: (1) document the blocker with full detail in §D of the WS file, (2) set Status to BLOCKED in the WS header and describe the specific unblocking requirement in §F, (3) issue a checkpoint, (4) pivot to the secondary task. Do not end a session with a blocked workstream undocumented.
 
 ---
 
@@ -500,14 +501,24 @@ All claims using "unique", "forced", or "only" MUST include at least one alterna
 
 All Tier A and Tier B claims MUST include a falsifiable observation. If none stated → downgrade tier.
 
-### 8.4 Periodic audit triggers
+### 8.4 Periodic audit triggers and procedure
 
-Trigger a **full re-audit** of the Reference Core when:
+**Trigger a full re-audit** of the Reference Core when:
 - (a) 5+ new numerical results since last audit
 - (b) a significant structural result changed (kill condition, tier reclassification)
 - (c) 10+ sessions since last audit
 
-Flag proactively.
+**When a trigger condition is met:** The re-audit runs at the START of the next session, before any new physics work, unless Chris explicitly defers it with a stated reason. Do not silently skip a triggered audit.
+
+**What a re-audit consists of (in order):**
+1. Re-derive every numerical claim in the Reference Core from scratch in code — do not check against stored values, re-derive them. The stored value is what is being audited.
+2. Verify all tier assignments: for each Tier A/B claim, confirm assumptions are minimal, dependencies are derived (not fitted), and a falsifiable observation is stated. Downgrade on any failure.
+3. Check all `[⚠]` flags: are any now resolvable? Flag newly unresolvable ones.
+4. Check RESOLVED_KNOWLEDGE: has any settled result been invalidated by work since the last audit?
+5. Cross-check Reference Core against active workstream §E (Results) tables: are there verified results in workstreams that haven't been migrated yet?
+6. Output a concise audit report: entries confirmed, entries corrected, tier changes, flags added/resolved.
+
+Flag the audit trigger proactively in CONTEXT_SNAPSHOT §E each session.
 
 ### 8.5 Re-planning triggers
 
