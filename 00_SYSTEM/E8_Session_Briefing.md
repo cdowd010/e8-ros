@@ -165,35 +165,37 @@ At the start of each session, perform these steps **in order**:
 
 If context is nearly exhausted, emit the Quick Reference block first before anything else gets cut.
 
-```
-## ⚡ Quick Reference
+---
+**⚡ Quick Reference — template**
 
-### Tasks
+**## ⚡ Quick Reference**
+
+**### Tasks**
 - **Primary:** [specific computation or derivation — not "continue X"]
 - **Secondary:** [fallback if primary completes or blocks]
 
-### Upload (next session)
+**### Upload (next session)**
 - E8_Session_Briefing.md
 - E8_Reference_Core.md
 - CONTEXT_SNAPSHOT.md
-- E8_WS_[Name].md   ← always include the active workstream
+- E8_WS_[Name].md ← always include the active workstream
 
-### Download (this session)
+**### Download (this session)**
 - [list every file output this session]
 
-### Terminal commands
-```bash
-# New files
-mv "/Users/cdowd/Downloads/FILENAME.md" "/Users/cdowd/Projects/E8-THEORY/PATH/FILENAME.md"
-# Updated files
-cp "/Users/cdowd/Downloads/FILENAME.md" "/Users/cdowd/Projects/E8-THEORY/PATH/FILENAME.md"
-# Commit
-cd "/Users/cdowd/Projects/E8-THEORY" && git add -A && git commit -m "session-NNN: <description>"
-```
+**### Terminal commands**
 
-### Model
+    # New files
+    mv "/Users/cdowd/Downloads/FILENAME.md" "/Users/cdowd/Projects/E8-THEORY/PATH/FILENAME.md"
+    # Updated files
+    cp "/Users/cdowd/Downloads/FILENAME.md" "/Users/cdowd/Projects/E8-THEORY/PATH/FILENAME.md"
+    # Commit
+    cd "/Users/cdowd/Projects/E8-THEORY" && git add -A && git commit -m "session-NNN: <description>"
+
+**### Model**
 **[Opus/Sonnet]** — [one-line justification]
-```
+
+---
 
 No narrative in the Quick Reference — details go in the body above.
 
