@@ -213,9 +213,20 @@ Append at every session close:
 
 **FILE STRUCTURE AUDIT:**
 - Routing violations: [list or "none"]
-- WS compliance: [confirm active WS file was used / list violations]
+- WS compliance: [confirmed / list violations]
 - Migrations performed: [MIGRATION: source → destination, justification] or "none"
+- Migrations pending (in WS §E, not yet in Reference Core): [list or "none"]
 - Remaining structural issues: [list or "none"]
+
+**CROSS-FILE CONSISTENCY:**
+- HYPOTHESIS_TREE current: [yes / updated this session / not checked — no hypothesis changes]
+- FAILURE_LEDGER current: [yes / updated this session / not checked — no failure changes]
+- RESOLVED_KNOWLEDGE current: [yes / entries added / not checked — no new settled results]
+- Kill condition files consistent: [yes / updated / not applicable]
+
+**OUTPUT FILE INTEGRITY:**
+- Rendering issues found and fixed: [list or "none"]
+- Rendering issues remaining: [list or "none"]
 ```
 
 No silent fixes. All violations must be named.
@@ -550,15 +561,36 @@ When a contradiction is discovered:
 
 ### 8.9 Self-validation at session close
 
-Before emitting the ROS SELF-AUDIT SUMMARY:
+Before emitting the ROS SELF-AUDIT SUMMARY, run all of the following checks. This is a lightweight version of the full meta-analysis checklists — it runs every session.
 
-**Briefing audit:** Untagged claims → `[F]`. Unsupported `[D]` tags → `[F]`. Unjustified uniqueness claims → `[F]`. State/status content in the Briefing → `[F: Briefing overload]`.
+**Briefing audit:**
+- Untagged claims → `[F]`
+- Unsupported `[D]` tags (no derivation shown) → `[F]`
+- Unjustified uniqueness claims → `[F]`
+- State/status content present in the Briefing → `[F: Briefing overload]`
 
-**Workstream audit:** Physics work done without a WS file → `[F: WS compliance violation]`. WS file modified but not output at session close → `[F: WS compliance violation]`. Active WS not in upload set → `[F: WS compliance violation]`.
+**Workstream audit:**
+- Physics work done without a WS file → `[F: WS compliance violation]`
+- WS file modified but not output at session close → `[F: WS compliance violation]`
+- Active WS not in next session's upload set → `[F: WS compliance violation]`
+- WS §F not updated with concrete next steps → `[F: WS compliance violation]`
 
-**Tier audit:** For each Tier A/B claim — assumptions minimal, no hidden parameters, falsifiability present. If any condition fails → downgrade.
+**Cross-file consistency (lightweight — run every session):**
+- Any result verified this session → confirm it is in WS §E AND queued for migration to Reference Core
+- Any hypothesis state change → confirm HYPOTHESIS_TREE.md is in the output set
+- Any failure opened or resolved → confirm FAILURE_LEDGER.md is in the output set
+- Any kill condition change → confirm Reference Core, FAILURE_LEDGER, RESEARCH_DEPENDENCY_GRAPH, THEORY_HEALTH are all in the output set
+- Any settled result → confirm it is queued for RESOLVED_KNOWLEDGE.md
 
-**Kill condition audit:** All relevant KCs applied, no implicit violations.
+**Output file integrity:**
+- Scan every file being output this session for: nested fenced code blocks (a ` ``` ` block containing another ` ``` ` or ` ```lang ` — renders as raw text), unclosed bold/italic markers (`**` without closing `**`), broken table rows (mismatched `|` counts)
+- Any rendering issue found → fix before output, log in self-audit
+
+**Tier audit:**
+- For each Tier A/B claim touched this session — assumptions minimal, no hidden parameters, falsifiable observation present. Fail → downgrade.
+
+**Kill condition audit:**
+- All relevant KCs applied to this session's results. No implicit violations. Triggered → `[F]`.
 
 ---
 
@@ -597,17 +629,152 @@ At session close, print exact shell commands to move every downloaded file into 
 
 ## §11 — Meta-Evolution
 
-### 11.1 ROS meta-analysis
+Meta-analysis is not continuous — it runs on explicit triggers (§11.1) or on the periodic schedule (§11.2). When it runs, it uses the structured checklists below. All findings and changes are logged in `META_RESEARCH_LOG.md` with session number and rationale.
 
-Periodically (~every 10 sessions, or when friction is noticed), evaluate whether the file architecture, reasoning safeguards, workstream discipline, and knowledge tracking systems are effective. Record improvements in `META_RESEARCH_LOG.md`.
+### 11.1 Meta-analysis triggers
 
-### 11.2 Folder structure review
+Run a meta-analysis when ANY of the following occur:
 
-Every ~10 sessions: check for empty/unused folders, files accumulated outside structure, naming drift, new work categories needing their own folder, archive growth. Log changes in `META_RESEARCH_LOG.md`.
+- A major contradiction appears in the theory
+- Progress stalls across 3+ consecutive sessions
+- A major theory rewrite is being considered
+- Significant friction is noticed in the research workflow (e.g., files hard to navigate, rules unclear, repeated errors of the same type)
+- A pattern of the same class of error appears across sessions (e.g., files repeatedly going stale, the same routing violation recurring)
+- Approaching session 10, 20, 30... (scheduled — see §11.2)
 
-### 11.3 AI platform awareness
+Do NOT run meta-analysis speculatively between triggers. It consumes session capacity that should go to physics.
 
-Claude is the default research platform. Switching to other systems (OpenAI, Gemini) should be rare and justified — only for tasks that do not require project files and benefit from independent reasoning checks.
+### 11.2 Periodic schedule
+
+| Interval | What runs |
+|----------|-----------|
+| Every ~10 sessions | Full ROS health check (§11.3) + File system audit (§11.4) |
+| Every ~25 sessions | Theory audit (§11.5) |
+| Any session meta-analysis is triggered | Cross-file consistency audit (§11.6) — always included |
+
+### 11.3 ROS health check (~every 10 sessions)
+
+Evaluate whether the research operating system itself is working. Go through each question and log findings:
+
+**Session protocol:**
+- Is the session start protocol being followed? Are files being read in the right order?
+- Is the Quick Reference block appearing at every session close?
+- Are checkpoints being issued at the right moments, or too frequently / not enough?
+- Are trigger checks (audit, re-plan, theory audit) being evaluated and acted on, or silently skipped?
+
+**Workstream discipline:**
+- Are workstreams being created proactively, or is physics work happening without them?
+- Are WS §D derivation logs being kept current, or are they sparse?
+- Are WS §F next steps concrete, or vague?
+- Are closed workstreams being properly archived, or lingering in the active set?
+- Is ARCHIVE_MANIFEST being updated when workstreams close?
+
+**Knowledge tracking:**
+- Are RESOLVED_KNOWLEDGE entries being added when results are settled?
+- Is HYPOTHESIS_TREE being updated when hypothesis states change?
+- Is FAILURE_LEDGER reflecting current failure status, or is it stale?
+- Are migrations (WS → Reference Core, WS → Discovery Log) being logged with `[MIGRATION:]` tags?
+
+**File routing:**
+- Is any state accumulating in the Briefing (§§ that should be in CONTEXT_SNAPSHOT)?
+- Is any derivation content appearing in the Reference Core?
+- Is CONTEXT_SNAPSHOT being fully replaced each session, or just appended?
+
+**Efficiency:**
+- Is the upload set minimal, or has it grown?
+- Are sessions reading files they don't need?
+- Is the Briefing growing with one-off rules that should be generalized or removed?
+
+### 11.4 File system audit (~every 10 sessions)
+
+A structural check of the repository:
+
+**Content integrity:**
+- Do any files contain orphaned references (links to files that no longer exist or have been renamed)?
+- Do any files contain open work items (e.g., `(not yet computed)`, `TBD`, `to be created`) that should be in a workstream instead?
+- Do any files contain content that belongs in a different file per §5.1 routing rules?
+- Are there any dead `[⚠]` flags that have been resolved in workstreams but not updated in the Reference Core?
+
+**Markdown and formatting:**
+- Do all files render correctly? Check specifically for: nested fenced code blocks (renders as raw text), unclosed bold/italic markers, broken table formatting, headers at wrong depth.
+- Are tagging conventions consistent across files (§7)?
+- Are all status tags from the known set (`[✓]`, `[⚠]`, `[D]`, `[P]`, `[T]`, `[F]`, `[✗]`)?
+
+**Structural health:**
+- Are any folders consistently empty or unused? Consider removing or consolidating.
+- Have files accumulated outside the defined structure?
+- Are naming conventions consistent? Fix drift.
+- Is the archive growing in a way that needs subcategorization?
+- Is ARCHIVE_MANIFEST current with all archived workstreams?
+
+**Cross-file staleness** (run the §11.6 checklist):
+- See §11.6 for the full cross-file consistency audit.
+
+### 11.5 Theory audit (~every 25 sessions)
+
+A structured attempt to stress-test the theory rather than advance it:
+
+1. **Falsification attempt** — for each Tier A and Tier B prediction, identify the single most likely way it could be wrong. Is there a computational check that would reveal this? Run it.
+2. **Weakest assumption identification** — list the five weakest `[P]` claims in the logical chain. What would it take to strengthen or refute each?
+3. **Resolved knowledge validation** — has any result in `RESOLVED_KNOWLEDGE.md` been implicitly undermined by subsequent work? Check each RK entry against current theory state.
+4. **Circular dependency scan** — review `RESEARCH_DEPENDENCY_GRAPH.md` for hidden circular reasoning. Are any predictions dependent on inputs that were fitted to match those predictions?
+5. **Kill condition stress test** — for each non-triggered kill condition, is there a concrete computation that would trigger it? If no such computation exists, the kill condition may not be well-defined.
+6. **Update `THEORY_HEALTH.md`** with revised assessment.
+
+### 11.6 Cross-file consistency audit (runs with every meta-analysis)
+
+This checklist catches the class of errors where work happens in one file but dependent files are not updated. Run through every item:
+
+**When a workstream produces a verified result:**
+- [ ] Is the result in WS §E (Results)?
+- [ ] Has it been migrated to `E8_Reference_Core.md` with a `[MIGRATION:]` tag?
+- [ ] If it is a major finding, has it been added to `DISCOVERY_LOG.md`?
+- [ ] If it is now settled knowledge, has it been added to `RESOLVED_KNOWLEDGE.md`?
+- [ ] If it corrects a stored error, has the error been corrected in Reference Core with `[✗ CORRECTED:]`?
+
+**When a hypothesis state changes:**
+- [ ] Is `HYPOTHESIS_TREE.md` updated with the new status?
+- [ ] Does the hypothesis description still accurately reflect the current mechanism (not an outdated one)?
+- [ ] Is the workstream pointer current?
+
+**When a failure is resolved or opened:**
+- [ ] Is `FAILURE_LEDGER.md` updated (moved to resolved, or new entry added)?
+- [ ] Is `CONTEXT_SNAPSHOT.md §D` (Open Failures) consistent with FAILURE_LEDGER?
+- [ ] If a workstream was created to address the failure, is it linked in the FAILURE_LEDGER entry?
+
+**When a kill condition status changes:**
+- [ ] Is `FAILURE_LEDGER.md` KC tracker updated?
+- [ ] Is `RESEARCH_DEPENDENCY_GRAPH.md` KC table updated?
+- [ ] Is `THEORY_HEALTH.md` scorecard updated?
+- [ ] Is `CONTEXT_SNAPSHOT.md` updated?
+
+**When the theory structure changes (new mechanism, reclassification, new derivation):**
+- [ ] Is a new entry added to `THEORY_EVOLUTION_GRAPH.md`?
+- [ ] Is the dependency chain in `RESEARCH_DEPENDENCY_GRAPH.md` updated?
+- [ ] Is `THEORY_HEALTH.md` updated if metrics changed?
+- [ ] If major enough, is a `THEORY_SNAPSHOT` warranted?
+
+**File-level staleness check:**
+- [ ] Does `RESOLVED_KNOWLEDGE.md` contain entries for all results settled in recent sessions?
+- [ ] Does `HYPOTHESIS_TREE.md` reflect the current state of all active/rejected hypotheses?
+- [ ] Does the Reference Core contain any references to files that no longer exist?
+- [ ] Does the Reference Core contain any `(not yet computed)` or open work items that should be in a workstream?
+- [ ] Is `ARCHIVE_MANIFEST.md` current with all files in `05_ARCHIVE/completed_workstreams/`?
+
+### 11.7 ROS improvement policy
+
+When a meta-analysis identifies a problem with the research operating system itself:
+
+1. **Diagnose the root cause**, not just the symptom. A stale HYPOTHESIS_TREE is a symptom — the root cause is that there is no rule requiring it to be updated when a WS session produces hypothesis-relevant results.
+2. **Fix the rule, not just the instance.** Update the Briefing to prevent recurrence. A one-off fix that doesn't change the system will produce the same error again.
+3. **Log the change in `META_RESEARCH_LOG.md`**: what was broken, what the root cause was, what rule was added or changed, and the session number.
+4. **Bump the ROS version** in the Briefing header (e.g., v3.1 → v3.2) when a substantive rule change is made. Minor clarifications do not require a version bump.
+
+The ROS version history should be traceable via `META_RESEARCH_LOG.md` and git commit messages.
+
+### 11.8 AI platform awareness
+
+Claude is the default research platform. Switching to other systems (OpenAI, Gemini) should be rare and justified — only for tasks that do not require project files and benefit from independent reasoning checks. Log platform switches in `META_RESEARCH_LOG.md`.
 
 ---
 
