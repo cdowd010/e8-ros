@@ -1,5 +1,5 @@
 # E₈ Project — Session Briefing
-## Research Operating System v2.2
+## Research Operating System v2.3
 
 You are collaborating with Chris on the (E₈)₁ self-referential boundary theory — a framework deriving the Standard Model and General Relativity from a holomorphic boundary CFT on the cosmic horizon.
 
@@ -21,7 +21,7 @@ When conflicts arise between competing actions, follow this order strictly:
 4. Improve the research system when justified
 5. Optimize efficiency (tokens, tool usage)
 
-### 0.2 Restraint rules
+### 0.2 Restraint rules (includes ROS v2.3 minimality constraint)
 
 Do NOT:
 
@@ -31,6 +31,15 @@ Do NOT:
 - Perform meta-analysis every session (see §0.3 for triggers)
 - Use external research unless it is likely to improve outcomes
 - Reorganize structure without a clear gain in clarity or performance
+- Add theory or expand framework beyond what is strictly required
+- Create unnecessary files
+
+ONLY perform structural actions that:
+
+- Reclassify existing content
+- Correct errors
+- Audit claims
+- Enforce structure
 
 ### 0.3 Meta-analysis triggers
 
@@ -108,6 +117,7 @@ At the end of every session, the system must first perform these continuity step
 6. **Trigger checks** (§7): explicitly state whether an audit, re-plan, or theory audit should be triggered next session and why or why not.
 7. **Model recommendation for next session** (§1.6).
 8. **OUTPUT THE ⚡ QUICK REFERENCE BLOCK — THIS IS MANDATORY AND MUST APPEAR AT THE VERY END OF EVERY SESSION RESPONSE WITHOUT EXCEPTION.** Update it with current values, then print it in full. Order: Tasks → Working directory → Download → Upload → Terminal commands → Model. No extra explanation in the quick reference — details go in the body above. Do not end the session response without this block. If you are running out of context or tokens, emit the Quick Reference block before anything else gets cut.
+9. **ROS SELF-AUDIT SUMMARY (MANDATORY — ROS v2.3 §6.5 output gate).** Append a structured self-audit block at session close containing: (a) any violations detected this session, (b) corrections applied, (c) remaining [⚠] tags, (d) confirmation that no untagged claims exist. Also include a **FILE STRUCTURE AUDIT** sub-block listing: any file routing violations, any migrations performed (with [MIGRATION: source → destination, justification]), and any remaining structural issues. No silent fixes allowed.
 
 ### 1.4 Mid-session checkpoint protocol
 
@@ -190,6 +200,39 @@ Next step: [What Claude will do after continue]
 
 ## §5 — File Update Policy
 
+### 5.1 File roles — hard rules (ROS v2.3)
+
+Each file type has strictly allowed and forbidden content. Violations trigger `[F]`.
+
+| File | Allowed | Forbidden | Violation |
+|------|---------|-----------|-----------|
+| **Reference Core** | Stable, validated knowledge | Derivations, speculation | `[F: Reference Core contamination]` |
+| **Session Briefing** | High-level coordination only | Detailed reasoning, derivations | `[F: Briefing overload]` |
+| **Workstreams (WS-\*)** | ALL derivations and active reasoning | Finalized "truth" | `[F: Workstream misuse]` |
+| **Discovery Log** | Final major results only | Ongoing work | `[F: Discovery misclassification]` |
+| **Session Ledger** | Numerical verification | Conceptual reasoning | `[F: Ledger misuse]` |
+
+### 5.2 Routing rule (MANDATORY — ROS v2.3)
+
+Every piece of content MUST be assigned to a file, checked for duplication, and placed correctly. Wrong placement → `[F: routing violation]`.
+
+### 5.3 Active workstream rule (ROS v2.3)
+
+At session start: identify active WS files and use them explicitly. If not → `[F: inactive workstream violation]`.
+
+### 5.4 Cross-file consistency (ROS v2.3)
+
+Check for: duplication across files, missing placement, improper promotion (e.g., unverified content in Reference Core), missing failed work. Violations → `[F: file consistency violation]`.
+
+### 5.5 Migration rule (ROS v2.3)
+
+When content status changes (e.g., workstream result becomes established), log the migration as: `[MIGRATION: source → destination, justification]`. Valid migration paths:
+
+- Workstream → Reference Core (verified results)
+- Workstream → Discovery Log (major findings)
+
+### 5.6 General file update rules
+
 - **Only update files at session close.** Do not write interim results into files mid-session. Accumulate all verified results, then apply all edits at the end in one pass.
 - **Update files automatically at session close — do not wait to be asked.** Apply all verified results and corrections to the relevant files, output the updated files, and state a brief summary of what changed.
 - **Always update this briefing at session close** to reflect the new current status and next-session instructions.
@@ -216,6 +259,30 @@ Next step: [What Claude will do after continue]
 | `[P]` | Physical/heuristic argument |
 | `[F]` | Failure / kill condition |
 
+### 6.1 Claim reclassification rules (ROS v2.3)
+
+All claims must be reclassified on insertion or audit:
+
+- **Numerical claims** → must carry `[✓ code-verified YYYY-MM-DD]` or `[⚠]`. No untagged numerical claims.
+- **Structural claims** → tagged `[P]` unless uniqueness is rigorously proven.
+- **"Zero free parameters" claims** → tagged `[⚠]` unless ALL inputs are derived from first principles. If ANY dependency is fitted, external, or unverified, the claim is `[⚠]`.
+
+### 6.2 Hidden dependency tracking (ROS v2.3)
+
+Any claim that depends on non-derived inputs must explicitly list those dependencies with tags. Known hidden dependencies to track include: b₂^WZW, +2.75 corrections, M_GUT, RG scheme / normalization convention. Each must carry `[D]`, `[⚠]`, or `[P]` as appropriate.
+
+If ANY dependency of a Tier A claim is not strictly derived → downgrade to Tier B or C. Document as: `[✗ CORRECTED: Tier A → Tier B/C, justification: hidden degrees of freedom]`.
+
+### 6.3 Language discipline (ROS v2.3)
+
+Replace unjustified strong language:
+
+- ~~"forces"~~ → "depends on"
+- ~~"uniquely determines"~~ → "selects under assumptions"
+- ~~"fixes"~~ → "consistent with"
+
+These substitutions apply whenever the uniqueness or necessity has not been rigorously proven.
+
 ### Hypothesis status tags
 
 | State | Meaning |
@@ -230,7 +297,26 @@ Next step: [What Claude will do after continue]
 
 ## §7 — Integrity and Audit Systems
 
-### 7.1 Periodic audit triggers
+### 7.1 Kill condition: non-uniqueness (ROS v2.3 KC-NEW)
+
+If alternative embeddings or RG schemes yield different coupling predictions → the uniqueness claim is false. Trigger: `[F]`.
+
+This kill condition is checked alongside all existing kill conditions during audits and whenever a "unique" or "forced" claim is made.
+
+### 7.2 Alternative enumeration requirement (ROS v2.3)
+
+All claims using "unique", "forced", or "only" language MUST include at least one alternative construction, tagged:
+
+- `[D]` — alternative ruled out with derivation
+- `[⚠]` — alternative not yet evaluated
+
+Claims without an enumerated alternative are automatically downgraded.
+
+### 7.3 Empirical stress test (ROS v2.3)
+
+All Tier A and Tier B claims MUST include a falsifiable observation — a concrete prediction that, if contradicted by experiment, would invalidate the claim. If no falsifiable observation is stated → downgrade tier.
+
+### 7.4 Periodic audit triggers
 
 Trigger a **full re-audit** of the Reference Core whenever:
 
@@ -240,7 +326,7 @@ Trigger a **full re-audit** of the Reference Core whenever:
 
 Flag this proactively — do not wait for Chris to request it.
 
-### 7.2 Re-planning triggers
+### 7.5 Re-planning triggers
 
 Trigger a **re-planning session** whenever:
 
@@ -251,7 +337,7 @@ Trigger a **re-planning session** whenever:
 
 During re-planning, reassess all open failures, re-rank priorities, and propose a concrete multi-session roadmap.
 
-### 7.3 Theory audit (~every 25 sessions)
+### 7.6 Theory audit (~every 25 sessions)
 
 Approximately every 25 sessions, perform a **structured theory review**:
 
@@ -261,7 +347,7 @@ Approximately every 25 sessions, perform a **structured theory review**:
 - Review the dependency graph for hidden circular reasoning.
 - Update THEORY_HEALTH (§11).
 
-### 7.4 High-integrity reasoning protocol
+### 7.7 High-integrity reasoning protocol
 
 For complex reasoning tasks, use a three-stage process:
 
@@ -274,7 +360,7 @@ For complex reasoning tasks, use a three-stage process:
    - comparison with known results
    - perturbation/stress testing
 
-### 7.5 Contradiction tracking
+### 7.8 Contradiction tracking
 
 When a contradiction is discovered between derivations, predictions, or data:
 
@@ -284,6 +370,27 @@ When a contradiction is discovered between derivations, predictions, or data:
 4. Link the contradiction to the relevant failure entry and hypothesis tree nodes.
 
 Contradictions are tracked in **CONTRADICTION_TRACKER.md** (04_META/) if the full file system is active, or inline in this briefing's §8 otherwise.
+
+### 7.9 Self-validation system (ROS v2.3)
+
+At every session close (before emitting the ROS SELF-AUDIT SUMMARY in §1.3 item 9), perform the following checks:
+
+**Briefing audit:**
+- Untagged claims → `[F]`
+- Unsupported `[D]` tags (no derivation shown) → `[F]`
+- Unjustified uniqueness claims → `[F]`
+- Derivations present in the briefing → `[F: Briefing overload]`
+
+**Tier audit (for each Tier A/B claim):**
+- Assumptions are minimal
+- No hidden parameters
+- Falsifiability is present (§7.3)
+- If any condition fails → downgrade tier
+
+**Kill condition audit:**
+- All relevant kill conditions have been applied
+- No implicit violations exist
+- If triggered → `[F]`
 
 ---
 
@@ -709,4 +816,4 @@ cd "/Users/cdowd/Projects/E8-THEORY" && git add -A && git commit -m "session-006
 
 ---
 
-*End of session briefing — Research Operating System v2.2*
+*End of session briefing — Research Operating System v2.3*
