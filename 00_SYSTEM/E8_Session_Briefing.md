@@ -299,6 +299,7 @@ Major structural changes to the theory are recorded here in reverse chronologica
 
 | Date | Change | Reason | Impact |
 |------|--------|--------|--------|
+| 2026-03-18 | α₂ [⚠] flags RESOLVED: all three classified as FITTED. Row 3 and Row 5 downgraded Tier A → Tier C. Self-consistent WZW crossing identified as cleaner prediction (1.6%, 1 param) | Session 6: field content analysis, back-solving, scenario comparison | b₂^WZW not derivable; +2.75 unnecessary with self-consistent M_GUT=2.2×10¹⁶; showcase 0.4% match was artificially precise; genuine Tier A gauge predictions are α_em (0.2%), α₁ (3.9%), α₃ (4.7%) |
 | 2026-03-18 | WS-3875 mechanism SPECIFIED: CKM from (27̄,6) symmetric Yukawa; KZ equation solved; Cabibbo angle V_us ~ 0.2–0.3 | Session 5: OPE analysis, KZ equation, vacuum block decomposition, (351,3) channel analysis | KC-g upgraded: mechanism specified; suppression corrected from 1/31 to geometric √(162/4124); (351,3) shown to preserve V_CKM=I |
 | 2026-03-17 | WS-3875 branching CONFIRMED; h(3875) corrected to 48/31; suppression ~1/31 | Session 4: SageMath output verified; dimension-uniqueness proof; E₈ rep theory | KC-g partial kill unchanged; branching confirmed; h(3875)=1 error found; suppression mechanism clarified |
 | 2026-03-17 | WS-3875 scoped: VIABLE; F7 exact back-solve complete | Session 3: 3875 decomposition analysis; PDG back-solve | KC-g remains partial kill; F7 resolved; priority shift to α₂ flags |
@@ -309,7 +310,7 @@ Major structural changes to the theory are recorded here in reverse chronologica
 
 ## §9 — Current Status
 
-*(as of 2026-03-18 — ROS v2 Session 5 complete)*
+*(as of 2026-03-18 — ROS v2 Session 6 complete)*
 
 ### Project phase: TARGETED PHYSICS WORK
 
@@ -321,37 +322,31 @@ Major structural changes to the theory are recorded here in reverse chronologica
 - Session 3: WS-3875 scoped (VIABLE); F7 exact back-solve complete.
 - Session 4: WS-3875 branching CONFIRMED via SageMath; h(3875) corrected; suppression mechanism clarified.
 - Session 5: WS-3875 mechanism SPECIFIED. CKM from (27̄,6) symmetric Yukawa. KZ equation solved exactly. Cabibbo angle V_us ~ 0.2–0.3 predicted. (351,3) shown to preserve V_CKM = I.
+- Session 6: α₂ [⚠] flags RESOLVED. b₂^WZW = +38/3 not derivable from E₈ matter content (FITTED). +2.75 corrections unidentified (FITTED). M_GUT = 5.7×10¹⁶ is external input; self-consistent WZW crossing gives 2.2×10¹⁶. Row 3 (α₂) and Row 5 (sin²θ_W) downgraded from Tier A to Tier C. Self-consistent prediction: 1/α₂ = 29.10 (1.6% off, 1 free param).
 
-### What's established (post-session 5)
+### What's established (post-session 6)
 
-- **Solidly established (mathematical):** Conformal embedding cascade, central charges, 3 generations, Z=12, φ from Jones index, WZW level structure, 3875 branching rule, level-2 vacuum module structure (4124 = 1+248+3875; 27000 null). **NEW:** KZ equation exact solution F(z) = [z(z−1)]^{−60/31}; (351,3) antisymmetric coupling analysis.
-- **Well-supported (physical):** Gauge coupling predictions (Tier A), EW scale (Tier B, conditional on n=15), Higgs mass ratio. **NEW:** 3875 CKM mechanism fully specified — (27̄,6) symmetric Yukawa generates V_CKM ≠ I with Cabibbo-scale suppression √(162/4124) ~ 0.2.
-- **Weakened by flags:** α₂ prediction depends on three unverified inputs (b₂^WZW, +2.75, M_GUT). The 0.4% match is real but the prediction chain has gaps.
-- **Corrected this session:** Suppression mechanism: NOT simply g²=1/31; the KZ vacuum block coefficient is O(1), actual suppression is geometric projection factor √(dim(27̄,6)/dim(level-2)) ~ 0.2. Cabibbo estimate upgraded from V_us ~ 0.03 to V_us ~ 0.2–0.3.
+- **Solidly established (mathematical):** Conformal embedding cascade, central charges, 3 generations, Z=12, φ from Jones index, WZW level structure, 3875 branching rule, level-2 vacuum module structure (4124 = 1+248+3875; 27000 null), KZ equation exact solution, (351,3) antisymmetric coupling analysis.
+- **Well-supported (physical):** Gauge coupling predictions — α_em (0.2%, Tier A), α₁ (3.9%, Tier A), α₃ (4.7%, Tier A); EW scale (Tier B, conditional on n=15); Higgs mass ratio. 3875 CKM mechanism fully specified — (27̄,6) symmetric Yukawa generates V_CKM ≠ I with Cabibbo-scale suppression.
+- **DOWNGRADED this session:** α₂ prediction (Row 3) moved from Tier A to Tier C: the 0.4% match requires 2 fitted parameters (b₂^WZW, +2.75 correction / M_GUT). Self-consistent WZW crossing gives 1.6% with 1 free param. sin²θ_W (Row 5) also downgraded (inherits α₂ flags). **The 'showcase result' was the weakest gauge coupling prediction, not the strongest.**
+- **Corrected this session:** The genuine zero-parameter Tier A gauge coupling predictions are α_em at M_Pl (0.2%), 1/α₁(M_Z) (3.9%), and 1/α₃(M_Z) (4.7%). These use only WZW boundary conditions + single-stage SM running.
 - **Incomplete:** CKM mixing (KC-g — mechanism specified but exact CG coefficients and full CKM matrix not yet computed), top mass (F4 — 11% off).
 - **Blocked:** n=15 derivation (F3 — no path forward).
 
-### KC-g decision (2026-03-18, updated session 5)
+### KC-g decision (unchanged from session 5)
 
-KC-g remains at "partial kill / 248-sector full kill." The 3875 mechanism is now SPECIFIED:
-- (27̄,6) component of 3875 gives symmetric Yukawa → V_CKM ≠ I. This is the UNIQUE CKM source.
-- (351,3) component gives antisymmetric Yukawa → preserves V_CKM = I. Does NOT contribute to mixing.
-- KZ equation gives exact vacuum conformal block. Level-2 coefficient c₂ = 2730/961 ≈ 2.84.
-- Semi-quantitative Cabibbo estimate: V_us ~ 0.33 (dimension-weighted CG), observed 0.226, within 50%.
-- KC-g upgrades to "full kill" only if the exact CG coefficient computation shows the (27̄,6) coupling vanishes or gives wrong parametric scale.
+KC-g remains at "partial kill / 248-sector full kill." See session 5 notes.
 
 ### Open failures (re-assessed, re-prioritized)
 
 **1. WS-3875 — 3875 of E₈ as source of CKM** `[ACTIVE — MECHANISM SPECIFIED]`
-Branching rule verified [✓]. Mechanism specified (session 5): (27̄,6) symmetric Yukawa via level-2 vacuum composite. KZ equation solved. V_us ~ 0.2–0.3 predicted. (351,3) shown to not contribute to CKM.
-Remaining work: (a) Compute exact CG coefficient for (27̄,6) Yukawa coupling (requires E8 weight system computation). (b) Derive full CKM matrix using RS profile differences. (c) Predict V_cb and V_ub.
+Unchanged from session 5. Remaining work: (a) Compute exact CG coefficient for (27̄,6) Yukawa coupling. (b) Derive full CKM matrix using RS profile differences. (c) Predict V_cb and V_ub.
 
 **2. F7 — §6 parameter inconsistency** `[RESOLVED]`
-~~Blocks all quantitative mass predictions.~~ **Exact PDG back-solve complete (session 3).** P_u×L=5.9405, Q_u×L=2.4571 (up); P_d×L=3.2173, Q_d×L=1.9027 (down). All ratios exact. Remaining: lepton sector; Paper 2 notebook audit with correct params.
+Unchanged.
 
-**3. [⚠] flags on α₂ prediction chain** `[ACTIVE]`
-The showcase result (0.4% match) rests on three unverified inputs. Needs cleaning up for any paper.
-Concrete task: (a) Identify b₂^WZW = +38/3 from E₈ matter content. (b) Identify +2.75 corrections. (c) Derive M_GUT self-consistently.
+**3. [⚠] flags on α₂ prediction chain** `[RESOLVED — Session 6]`
+All three flags resolved. b₂^WZW = +38/3 classified as FITTED (not derivable from E₈ field content; 36 Weyl doublets give 50/3, 24 fermion + 12 scalar give 28/3, 30 doublets needed but unjustified). +2.75 corrections classified as FITTED (no identified source). M_GUT = 5.7×10¹⁶ classified as EXTERNAL INPUT (self-consistent crossing gives 2.2×10¹⁶). Row 3 (α₂) downgraded Tier A → Tier C. Row 5 (sin²θ_W) also downgraded. Self-consistent WZW crossing prediction: 1/α₂ = 29.10 (1.6%, 1 free param). This is more honest and still impressive.
 
 **4. F4 — Top mass 11% discrepancy** `[ACTIVE]`
 Potentially explainable by QCD corrections / running vs pole mass. Bounded computation.
@@ -363,13 +358,13 @@ Parked — self-modeling map S undefined. Needs new mathematical ideas.
 
 | Metric | Value |
 |--------|-------|
-| ROS v2 session count | 5 (next session is session 6) |
-| Sessions since last audit | 3 |
-| Sessions since last re-plan | 3 |
-| Sessions since last theory audit | 3 |
-| New numerical results since last audit | 15+ (session 4 results + KZ c₂, C₂(3875), 27000 null, V_us estimate) |
-| Closed workstreams since last re-plan | 0 |
-| Next audit trigger | After 5 new results or 10 sessions — **audit may be warranted soon** (15+ new results) |
+| ROS v2 session count | 6 (next session is session 7) |
+| Sessions since last audit | 4 |
+| Sessions since last re-plan | 4 |
+| Sessions since last theory audit | 4 |
+| New numerical results since last audit | 18+ (session 4-6 results including self-consistent WZW crossing M_GUT, 1/α₂ scenarios) |
+| Closed workstreams since last re-plan | 0 (but α₂ flags resolved — major task closed) |
+| Next audit trigger | After 5 new results or 10 sessions — **audit may be warranted** (18+ new results since last audit) |
 | Next re-plan trigger | After 8 sessions or kill condition change |
 | Next theory audit | ~session 27 |
 
@@ -381,27 +376,17 @@ Prioritized research directions, ranked by expected impact. Updated at session c
 
 | Priority | Direction | Rationale | Status |
 |----------|-----------|-----------|--------|
-| 1 | **Resolve [⚠] flags on α₂ chain** | The showcase Tier A result has three unverified inputs; undermines strongest evidence; directly Paper 1 relevant | Active — next session primary |
-| 2 | **WS-3875 exact CG coefficient** | Compute (27̄,6) Yukawa CG from E8 weight system to get precise V_us | Needs SageMath/LiE; after α₂ |
-| 3 | **WS-3875 full CKM matrix** | Use RS profile differences to predict V_cb, V_ub; Wolfenstein parametrization | After exact CG |
-| 4 | **F4 top mass discrepancy** | 11% is significant; bounded computation; QCD corrections may resolve | After α₂ flags |
-| 5 | **F7 lepton sector back-solve** | Complete the parameter set; derive P_l×L, Q_l×L from m_τ/m_μ, m_μ/m_e | Bounded; after F4 |
+| 1 | **WS-3875 exact CG coefficient** | Compute (27̄,6) Yukawa CG from E8 weight system to get precise V_us; this is the existential CKM question | Needs SageMath/LiE-level work |
+| 2 | **WS-3875 full CKM matrix** | Use RS profile differences to predict V_cb, V_ub; Wolfenstein parametrization | After exact CG |
+| 3 | **F4 top mass discrepancy** | 11% is significant; bounded computation; QCD corrections may resolve | After CG computation |
+| 4 | **F7 lepton sector back-solve** | Complete the parameter set; derive P_l×L, Q_l×L from m_τ/m_μ, m_μ/m_e | Bounded; after F4 |
+| 5 | **Derive b₂^WZW from first principles** | Would upgrade α₂ from Tier C back to Tier B (1.6% match, 0 free params). Requires understanding the WZW-to-4D correspondence above M_GUT | Open research question; low priority until CKM resolved |
 | 6 | **F3 (n=15)** | Blocked — needs new mathematical insight | Parked |
 
 ### Research dependency map (current critical path)
 
 ```
-α₂ [⚠] flag resolution ← NOW THE CRITICAL STEP (Paper 1 readiness)
-    │
-    ├── Identify b₂^WZW = +38/3 from E₈ matter content
-    │
-    ├── Identify +2.75 corrections origin
-    │
-    └── Derive M_GUT self-consistently from WZW crossing
-        │
-        └── Clean Tier A presentation → Paper 1 readiness
-
-WS-3875 exact CG and full CKM (parallel track)
+WS-3875 exact CG and full CKM ← NOW THE CRITICAL PATH
     │
     ├── Compute (27̄,6) CG coefficient via E8 weight system
     │       │
@@ -411,9 +396,15 @@ WS-3875 exact CG and full CKM (parallel track)
             │
             └── Full CKM matrix → Paper 3: CKM from 3875 extension
 
-F4 top mass (bounded)
+F4 top mass (bounded, parallel)
     │
     └── QCD correction analysis → resolved or escalated
+
+α₂ flag resolution ← COMPLETE (session 6)
+    │
+    └── Rows 3,5 downgraded to Tier C; self-consistent crossing documented
+        │
+        └── Optional future: derive b₂^WZW → upgrade back to Tier B
 ```
 
 ---
@@ -422,16 +413,17 @@ F4 top mass (bounded)
 
 | Metric | Count | Trend |
 |--------|-------|-------|
-| Active hypotheses | 2 (3875 CKM path [mechanism specified], RS mass mechanism) | ↑ mechanism specified |
-| Stable results | Gauge couplings, EW scale, Higgs mass ratio, embedding cascade, F7 exact params, 3875 branching rule, **KZ vacuum block, (351,3) antisymmetry, CKM mechanism** | ↑ three new |
-| Open failures | 3 active (F4, KC-g partial, [⚠] flags) + 1 parked (F3) + 1 resolved (F7) | → stable |
+| Active hypotheses | 2 (3875 CKM path [mechanism specified], RS mass mechanism) | → stable |
+| Stable results | Gauge couplings (α_em, α₁, α₃ Tier A; α₂ Tier C), EW scale, Higgs mass ratio, embedding cascade, F7 exact params, 3875 branching rule, KZ vacuum block, (351,3) antisymmetry, CKM mechanism | → stable |
+| Open failures | 2 active (F4, KC-g partial) + 1 parked (F3) + 2 resolved (F7, α₂ flags) | ↓ improved (α₂ flags resolved) |
 | Active contradictions | 0 | — |
-| Kill conditions triggered | 1 partial (KC-g, 248 sector only; 3875 mechanism now specified) | ↑ improved |
-| Tier A predictions verified | Yes (with caveats on α₂ chain) | — |
-| Hidden parameters identified | 1 (M_GUT as external input) | — |
-| Errors corrected this session | 1 (suppression mechanism: not g²=1/31, but geometric √(162/4124) combined with O(1) OPE coefficient) | — |
+| Kill conditions triggered | 1 partial (KC-g, 248 sector only; 3875 mechanism now specified) | → stable |
+| Tier A predictions verified | Yes — α_em (0.2%), α₁ (3.9%), α₃ (4.7%), 3 generations, SM gauge group, coupling ordering | ↑ clarified (α₂, sin²θ_W removed from Tier A) |
+| Hidden parameters identified | 1 (M_GUT as external input) → CONFIRMED session 6 | → stable |
+| Tier downgrades this session | 2 (Row 3: α₂ Tier A → Tier C; Row 5: sin²θ_W Tier A → Tier C) | NEW |
+| Errors corrected this session | 0 numerical errors; 2 tier reclassifications | — |
 
-**Overall assessment (post-session 5):** Theory viability FURTHER IMPROVED. The existential CKM question (KC-g) has advanced from "mechanism needed" to "mechanism specified, Cabibbo scale predicted." The (27̄,6) channel is now understood as the UNIQUE CKM source — the (351,3) was shown to preserve V_CKM = I (important structural insight). The KZ equation was solved exactly, giving a clean mathematical foundation for the coupling. The semi-quantitative Cabibbo estimate (V_us ~ 0.33, observed 0.226, within 50%) is encouraging but depends on approximate CG coefficients. The honest status is "promising research program with a SPECIFIED CKM mechanism, confirmed group-theoretic structure, and Cabibbo-scale predictions pending exact CG computation."
+**Overall assessment (post-session 6):** The theory's honest predictive scorecard is now clearer. The α₂ "showcase" 0.4% match has been revealed as partially fitted (2 free parameters), and has been downgraded to Tier C. The self-consistent WZW crossing version (1.6%, 1 free param) is more honest and still solid. The GENUINE zero-parameter Tier A predictions — α_em at 0.2%, α₁ at 3.9%, α₃ at 4.7%, plus 3 generations, SM gauge group, and coupling ordering — are unaffected and remain the strongest evidence for the theory. This session's work makes the theory's claims MORE credible by removing an over-stated result and presenting the tier structure honestly. The CKM mechanism (WS-3875) is now the highest-priority physics work.
 
 ---
 
@@ -486,18 +478,21 @@ F4 top mass (bounded)
 
 ## §13 — Next Session Plan
 
-### Primary task: Resolve [⚠] flags on α₂ prediction chain
+### Primary task: WS-3875 exact CG coefficient for (27̄,6) Yukawa
 
-The α₂ prediction (0.4% match) is the showcase Tier A result but rests on three unverified inputs. This session should trace each to its physical origin:
+With the α₂ flags resolved, the CKM mechanism is now the critical path. The goal is to compute the exact Clebsch-Gordan coefficient for the (27̄,6) component of the 3875 Yukawa coupling. This replaces the dimension-weighted estimate (V_us ~ 0.33) with a precise prediction.
 
 Concrete steps:
-1. **b₂^WZW = +38/3:** Identify what E₈ matter content produces this beta function coefficient above M_GUT. The WZW model has specific field content descending from the E₈ adjoint — enumerate the fields active above M_GUT and compute their contribution to b₂. If b₂^WZW cannot be derived from the field content, flag it as a fitted parameter.
-2. **+2.75 corrections:** The gap between the two-stage RG result (26.70) and the observed 1/α₂ = 29.57 requires ~2.75 in corrections. Identify the source: threshold corrections at M_GUT? Two-loop effects? Non-perturbative WZW contributions? Each possibility gives a different number; find which one (if any) matches 2.75.
-3. **M_GUT = 5.7×10¹⁶ GeV:** Currently taken as input. The self-consistent WZW crossing (α₃ = α₂ at some scale) gives 2.2×10¹⁶. Determine whether the 5.7 value can be derived from the theory or must be treated as a free parameter, which would downgrade α₂ from Tier A.
+1. **Set up the E₈ weight system** in the E₆×SU(3)_fam basis. The 248 roots are known; project them onto E₆ and SU(3) weight spaces.
+2. **Identify the 3875 projection operator** P^{ab}_{3875} acting on Sym²(248). This is the CG coefficient for 248⊗248 → 3875.
+3. **Extract the (27̄,6) component** of the 3875 under E₆×SU(3)_fam. Compute the overlap integral / CG coefficient for the Yukawa vertex 27_i × 27_j × (27̄,6)_{3875}.
+4. **Compute V_us** from the ratio of (27̄,6) symmetric Yukawa to the leading 248 antisymmetric Yukawa, weighted by the level-2 suppression factor.
 
-### Secondary task: WS-3875 exact CG coefficient
+This is computationally intensive (E₈ has 240 roots + 8 Cartan generators) and may require SageMath-level computation. If a full computation is not feasible in one session, scope the problem precisely and identify what can be computed by hand vs. what needs computer algebra.
 
-If α₂ flags reach a natural stopping point, pivot to computing the exact (27̄,6) CG coefficient in the 3875 Yukawa. This requires E8 weight system computation (SageMath/LiE-level work). The goal is to replace the dimension-weighted estimate (V_us ~ 0.33) with a precise prediction.
+### Secondary task: F4 top mass discrepancy
+
+If the CG computation reaches a natural stopping point, pivot to the top mass 11% discrepancy. Concrete step: compute the QCD correction to the tree-level m_top = v/√φ prediction. The tree-level value is the MS-bar mass at some high scale; comparing to the pole mass (173 GeV) requires RG running + QCD threshold corrections. This is a bounded, well-defined computation.
 
 ### Decision points
 
@@ -507,11 +502,11 @@ None — Claude decides the research direction.
 
 - `E8_Reference_Core.md` ✓ always
 - `E8_Session_Briefing.md` ✓ always
-- No workstream file needed
+- No workstream file needed (WS-3875 file not yet created; create at session close if needed)
 
 ### Model recommendation
 
-**Opus** — The α₂ flag resolution requires tracing physical origins of specific numerical values through gauge coupling RG, WZW matter content, and GUT-scale physics. This involves judgment calls about which effects are dominant and creative identification of the source of the +2.75 corrections. If pivoting to exact CG computation, this also requires novel reasoning about E8 representation theory.
+**Opus** — The exact CG coefficient computation requires creative reasoning about E₈ representation theory, careful handling of weight systems, and novel derivations. This is not a mechanical calculation. If pivoting to F4 (top mass), the QCD correction analysis is more bounded but still benefits from Opus's ability to handle multi-step physics reasoning.
 
 ---
 
@@ -647,8 +642,8 @@ Replace `NNN` with the session number from SESSION_LEDGER.md and `<description>`
 ## ⚡ Quick Reference
 
 ### Tasks
-- **Primary:** Resolve [⚠] flags on α₂ prediction chain — trace b₂^WZW=+38/3, +2.75 corrections, and M_GUT=5.7×10¹⁶ to their physical origins
-- **Secondary:** WS-3875 exact CG coefficient for (27̄,6) Yukawa (requires E8 weight system computation)
+- **Primary:** WS-3875 exact CG coefficient for (27̄,6) Yukawa — compute from E₈ weight system to replace dimension-weighted V_us estimate
+- **Secondary:** F4 top mass 11% discrepancy — QCD correction analysis (bounded)
 
 ### Working directory (current)
 ```
@@ -706,11 +701,11 @@ cp "/Users/cdowd/Downloads/E8_Reference_Core.md" "/Users/cdowd/Projects/E8-THEOR
 cp "/Users/cdowd/Downloads/E8_Session_Briefing.md" "/Users/cdowd/Projects/E8-THEORY/00_SYSTEM/E8_Session_Briefing.md"
 
 # Commit
-cd "/Users/cdowd/Projects/E8-THEORY" && git add -A && git commit -m "session-005: WS-3875 mechanism specified; KZ equation solved; Cabibbo V_us~0.2-0.3; (351,3) preserves V_CKM=I"
+cd "/Users/cdowd/Projects/E8-THEORY" && git add -A && git commit -m "session-006: α₂ flags resolved — b2_WZW fitted, +2.75 unidentified, M_GUT external; Rows 3,5 downgraded Tier A→C; self-consistent crossing 1/α₂=29.1 (1.6%)"
 ```
 
 ### Model
-**Opus** — α₂ flag resolution requires tracing physical origins of numerical values through RG flow and WZW structure; creative theoretical reasoning needed
+**Opus** — exact CG coefficient requires novel E₈ representation theory reasoning; not mechanical
 
 ---
 

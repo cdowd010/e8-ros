@@ -1,7 +1,7 @@
 # E₈ Reference Core
 ## Condensed Results & Status — Always Upload This File
 
-**Last updated:** March 18, 2026 — Session 5 (WS-3875 mechanism SPECIFIED: CKM from (27̄,6) symmetric Yukawa via level-2 vacuum composite; KZ equation solved exactly; Cabibbo angle predicted V_us ~ 0.2–0.3; (351,3) shown to preserve V_CKM = I; KC-g upgraded to mechanism-specified)
+**Last updated:** March 18, 2026 — Session 6 (α₂ [⚠] flags RESOLVED: b₂^WZW=+38/3 not derivable from E₈ field content; +2.75 corrections unidentified; M_GUT=5.7×10¹⁶ not self-consistent; Row 3 downgraded from Tier A to Tier C; self-consistent WZW crossing gives M_GUT=2.2×10¹⁶ and 1/α₂=29.1 (1.6% off, 1 free param); Row 5 sin²θ_W also downgraded)
 **Rule:** No derivations here. Results only. For derivations, see workstream files or archived notebooks.
 
 ---
@@ -122,9 +122,9 @@ SM factor effective levels (K = k + h∨, all k=1):
 |---|-----------|---------|-------|----------|-------|
 | 1 | 1/α_em(M_Pl) | 4π × 5 × 5/3 = 100π/3 | 104.72 | 104.94 | **0.2%** | [✓ code-verified 2026-03-17] (calc: 104.7198) |
 | 2 | 1/α₃(M_Z) | 16π − 41.37 | 8.90 | 8.50 | 4.7% [see Tier C #21] | [✓ code-verified 2026-03-17] (calc: 8.8968; ref stated 8.94/5.2% — minor rounding) |
-| 3 | 1/α₂(M_Z) | Two-stage WZW/RG | 29.45 | 29.57 | **0.4%** | [✓ code-verified 2026-03-17] (Stage1: 12π→43.88 ✓; Stage2: →26.70 ✓; gap=2.745 matches '+2.75') [⚠ b₂^WZW=+38/3 origin unverified: E₈ matter content not specified] [⚠ +2.75 corrections: origin unverified] [⚠ M_GUT=5.7×10¹⁶ taken as input, not self-consistently derived from WZW α₃=α₂ crossing (which gives 2.2×10¹⁶)] |
+| 3 | 1/α₂(M_Z) | Two-stage WZW/RG | 29.45 | 29.57 | **0.4%** | [✗ DOWNGRADED Session 6: Tier A → Tier C. Three unverified inputs resolved as FITTED: (1) b₂^WZW=+38/3 not derivable from E₈ field content (36 Weyl doublets give 50/3; 24 fermion+12 scalar give 28/3; 30 doublets needed but not justified), (2) +2.75 corrections have no identified source, (3) M_GUT=5.7×10¹⁶ is external input. Self-consistent WZW crossing (b₂^WZW with b₃ above M_GUT) gives M_GUT=2.2×10¹⁶ and 1/α₂=29.10 (1.6% off) with 1 free param (b₂^WZW). Parameter-free single-stage gives 19.0 (36% off). The 0.4% match requires 2 free parameters.] **→ MOVED TO TIER C** |
 | 4 | 1/α₁(M_Z) | 20π/3 + 40.38 | 61.33 | 59.00 | 3.9% | [✓ code-verified 2026-03-17] (calc: 61.3277; ref stated 61.43/4.1% — minor rounding) |
-| 5 | sin²θ_W | α_em/α₂ | 0.230 | 0.231 | **0.3%** | [✓ code-verified 2026-03-17] (calc: 0.2285 using tree-level sin²θ_W = α_em/α₂ = (1/α_em(M_Z))/(1/α₂) = 128.9/inv_a₂; using 1/α_em(M_Z)=128.9, 1/α₂=29.45 → 29.45/128.9=0.228; GUT-norm formula (3/5)α₁/(α₂+(3/5)α₁) gives 0.224 — reference uses tree-level formula) |
+| 5 | sin²θ_W | α_em/α₂ | 0.230 | 0.231 | **0.3%** | [✗ DOWNGRADED Session 6: inherits Tier C status from Row 3 (α₂). Self-consistent WZW crossing gives sin²θ_W = 0.226 (2.3% off). Tree-level formula sin²θ_W = α_em/α₂ confirmed; but α₂ value carries free parameters.] **→ MOVED TO TIER C** |
 | 6 | Coupling ordering | α₃ > α₂ > α₁ at M_Z | ✓ | ✓ | exact | [✓ code-verified 2026-03-17] |
 | 7 | 3 generations | dim(3) of SU(3)_fam | 3 | 3 | exact |
 | 8 | SM gauge group | Conformal embedding | SU(3)×SU(2)×U(1) | ✓ | exact |
@@ -142,6 +142,11 @@ SM factor effective levels (K = k + h∨, all k=1):
 | 15 | m_H/M_W | φ | 1.618 | 1.556 | 3.8% | [✓ code-verified 2026-03-17][D, n=15 not derived — see F3] (ratio = φ exactly by construction; obs ratio = 1.558, 3.7% off φ) |
 
 ### Tier C: Partially fitted / structural
+
+| # | Prediction | Free params | Value | Observed | Match |
+|---|-----------|-------------|-------|----------|-------|
+| 3 | 1/α₂(M_Z) (moved from Tier A, session 6) | b₂^WZW fitted (+M_GUT, +2.75) | 29.45 (fitted) / 29.10 (self-consistent) | 29.57 | 0.4% fitted / **1.6% self-consistent** | [✓ numerical values code-verified 2026-03-18; self-consistent WZW crossing: M_GUT=2.20×10¹⁶, 1/α₂=29.10]
+| 5 | sin²θ_W (moved from Tier A, session 6) | inherits from Row 3 | 0.228 (fitted) / 0.226 (self-consistent) | 0.231 | 1.2% fitted / **2.3% self-consistent** | [✓ code-verified 2026-03-18]
 
 | # | Prediction | Free params | Value | Observed | Match |
 |---|-----------|-------------|-------|----------|-------|
@@ -171,7 +176,7 @@ b₃ = −7,  b₂ = −19/6,  b₁ = +41/6   [✓ code-verified 2026-03-17] (de
 Δ(1/α₁) = (+41/12π)(37.14) = +40.38  [✗ CORRECTED: old=+40.49, new=+40.38, code-verified 2026-03-17]
 ```
 
-**Two-stage α₂:** b₂^{WZW} = +38/3 from E₈ matter content [⚠ b₂^WZW=+38/3 origin unverified: E₈ matter content assumed but not specified]. Runs 12π → 43.88 (M_Pl→M_GUT) [✓ code-verified 2026-03-17] (calc: 43.875 using M_GUT=5.7×10¹⁶), then 43.88 → 26.70 (M_GUT→M_Z) [✓ code-verified 2026-03-17] (calc: 26.705), plus ~2.75 corrections → 29.45 [⚠ +2.75 corrections: origin unverified; gap of 2.745 confirmed numerically but source not stated]. M_GUT = 5.7×10¹⁶ GeV taken as input [⚠ M_GUT not self-consistently derived: WZW α₃=α₂ crossing gives 2.2×10¹⁶ GeV; 5.7×10¹⁶ appears to be the SM GUT-scale input used as a fixed parameter].
+**Two-stage α₂:** b₂^{WZW} = +38/3 [✗ RESOLVED Session 6: NOT derivable from E₈ matter content. Naive counting gives 36 Weyl fermion SU(2) doublets from (27,3)+(27̄,3̄) → b₂=50/3; mixed fermion+scalar gives 28/3; neither matches 38/3. The value 38/3 requires exactly 30 Weyl doublets with no physical justification. Classified as FITTED.]. Runs 12π → 43.88 (M_Pl→M_GUT) [✓ code-verified 2026-03-17] (calc: 43.875 using M_GUT=5.7×10¹⁶), then 43.88 → 26.70 (M_GUT→M_Z) [✓ code-verified 2026-03-17] (calc: 26.705), plus ~2.75 corrections → 29.45 [✗ RESOLVED Session 6: +2.75 corrections have no identified source; threshold, two-loop, and WZW non-perturbative contributions all plausible but none computed; classified as FITTED]. M_GUT = 5.7×10¹⁶ GeV taken as input [✗ RESOLVED Session 6: self-consistent WZW crossing (α₃=α₂ at scale where b₂^WZW and b₃ trajectories meet) gives M_GUT = 2.20×10¹⁶ GeV with 1/α(crossing) = 45.79; using this self-consistent scale gives 1/α₂(M_Z) = 29.10 (1.6% off observed) WITHOUT needing the +2.75 correction; 5.7×10¹⁶ classified as EXTERNAL INPUT].
 
 ---
 
