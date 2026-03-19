@@ -927,49 +927,73 @@ This register is the institutional memory of the system's self-improvement. It a
 
 ## §12 — Theory Audit
 
-A theory audit is a structured attempt to **stress-test and potentially falsify** the theory — not to advance it. The mindset is that of a hostile referee who has been given access to all the working files. The goal is to find what is weak, wrong, or overstated before a journal reviewer or experimentalist does.
+A theory audit is a structured attempt to **stress-test and potentially falsify** the theory — not to advance it. The mindset is that of a hostile referee who has been given access to all working files. The goal is to find what is weak, wrong, or overstated before a journal reviewer or experimentalist does.
 
 **Always use Opus for a theory audit.** This is the highest-stakes reasoning in the project. A wrong derivation in a theory audit that gets written into THEORY_HEALTH and RESOLVED_KNOWLEDGE could silently corrupt the research direction for many sessions.
 
-**Schedule:** Session 15, then every 15 sessions until stabilization. After stabilization (no tier changes, no active structural workstreams, no kill condition activity for 10+ consecutive sessions), extend to every 25 sessions. Also trigger ad hoc whenever a kill condition is approached, a major structural assumption is challenged, or a re-planning session reveals the scorecard has materially changed.
+**Schedule:** Session 20, then every 15 sessions until stabilization. After stabilization (no tier changes, no active structural workstreams, no kill condition activity for 10+ consecutive sessions), extend to every 25 sessions. Also trigger ad hoc whenever a kill condition is approached, a major structural assumption is challenged, or a re-planning session reveals the theory's predictive scorecard has materially changed.
+
+> **Note on first audit timing:** The first audit is at session 20 (not 15) to allow the theory sufficient development to have meaningful, stable audit targets. An audit of an immature theory risks locking in early framing prematurely.
 
 **Duration:** Plan for a full session. A rushed theory audit is worse than no audit — it creates false confidence.
 
-**Output:** The theory audit session must produce an updated `THEORY_HEALTH.md`, a new `THEORY_SNAPSHOT`, and a written audit report logged in `META_RESEARCH_LOG.md`. These are not optional.
+**Output:** The theory audit session must produce an updated `THEORY_HEALTH.md`, a new `THEORY_SNAPSHOT`, and a written audit report logged in `META_RESEARCH_LOG.md`. These are not optional. Full output requirements are in §12.10.
 
 ---
 
 ### 12.1 Pre-audit preparation
 
 Before beginning the audit, read and have in context:
+
 - `E8_Reference_Core.md` — the full prediction ledger and logical chain
 - `THEORY_HEALTH.md` — current dashboard (the baseline to compare against)
 - `RESOLVED_KNOWLEDGE.md` — all settled results
 - `RESEARCH_DEPENDENCY_GRAPH.md` — the full dependency map
 - `FAILURE_LEDGER.md` — all open and resolved failures
 - `HYPOTHESIS_TREE.md` — all active and rejected hypotheses
+- `CONTRADICTION_TRACKER.md` — all open and resolved contradictions
 - `THEORY_AUDIT_CHECKLIST.md` — the current theory-specific audit targets (highest-risk claims, KC proximity, PDG benchmarks, literature topics)
 
 Do not begin any audit step without these files in context. An audit performed from memory is not an audit.
+
+**Before reading any of these files**, write a one-paragraph cold-start answer to:
+
+> *"If a hostile referee were handed this project today with no prior context, what would their first three objections be?"*
+
+Write the answer before reviewing any files. Context contaminates adversarial perspective. This paragraph anchors the audit's critical posture. Log it in `META_RESEARCH_LOG.md` as the opening entry for this audit.
 
 ---
 
 ### 12.2 Step 1 — Logical chain integrity
 
-The logical chain in Reference Core §1 is the spine of the entire theory. Audit each link.
+The logical chain in Reference Core §1 is the spine of the entire theory. This step audits each link and checks that the chain is complete and correctly classified.
+
+#### 12.2a — Full chain reconstruction (mandatory)
+
+Do not rely on the stored logical chain as authoritative. Reconstruct it independently:
+
+1. Start from the axioms. List them explicitly — if an axiom is not named as such somewhere, it is a hidden axiom and must be surfaced.
+2. For each subsequent claim, identify which prior claims it directly depends on. Build the dependency graph from scratch.
+3. Compare the reconstructed graph to the stored one in `RESEARCH_DEPENDENCY_GRAPH.md`. Any discrepancy is a finding — either the stored graph is wrong, or an implicit dependency has been missed.
+4. Every logical step in the reconstructed chain must carry a tag. Any step that is not tagged `[P]`, `[D]`, or `[T]` is an **untagged hidden assumption** — flag it `[⚠ UNTAGGED ASSUMPTION]` and require resolution before the audit closes.
+
+The goal is to find steps that were treated as obvious transitions but are actually assumptions. These are the most dangerous elements of the logical chain because they are invisible to routine checking.
+
+#### 12.2b — Per-claim audit
 
 **For every `[P]` claim:**
 - State precisely what would have to be true for this claim to be false.
 - Is there a published result or computation that could confirm or refute it?
 - Has anything been derived since this claim was made that bears on it?
 - Is there a stronger alternative justification that hasn't been pursued?
-- If it has not been revisited in 10+ sessions, treat it as unreviewed and flag it.
+- If it has not been revisited in 10+ sessions, treat it as unreviewed and flag it `[⚠ UNREVIEWED P-CLAIM]`.
+- Is this claim **load-bearing** (downstream predictions depend on it) or **decorative** (present in the framework but nothing downstream uses it)? Decorative `[P]` claims should be pruned or promoted to load-bearing status. See the theory shrinkage test (§12.9b).
 - Consult `THEORY_AUDIT_CHECKLIST.md` for the current highest-priority `[P]` claims to scrutinize.
 
 **For every `[D]` claim:**
 - Are the stated assumptions still the minimal set, or have later results allowed some to be strengthened?
 - Are all dependencies explicitly listed? Check for hidden inputs that have accumulated since the derivation was first written.
-- Is there a boundary case where this `[D]` should actually be `[P]` — i.e., the derivation contains an unjustified step that is effectively an assumption?
+- Is there a boundary case where this `[D]` should actually be `[P]` — i.e., does the derivation contain an unjustified step that is effectively an assumption?
 - Consult `THEORY_AUDIT_CHECKLIST.md` for the current highest-priority `[D]` claims to scrutinize.
 
 **For every `[T]` claim:**
@@ -977,13 +1001,24 @@ The logical chain in Reference Core §1 is the spine of the entire theory. Audit
 - Is the specific result from that source the one being used, or a looser paraphrase?
 - Has the cited result been superseded or qualified in the literature since citation?
 
+#### 12.2c — Internal consistency test
+
+The logical chain must not only be derivationally valid — the axioms must be **mutually consistent** under all the constraints the theory places on them. This is a separate check from whether individual predictions match experiment.
+
+For each axiom, identify every constraint the theory places on it (directly or downstream). Ask: can all constraints be simultaneously satisfied? If two constraints from different parts of the theory jointly overconstrain the same axiom, flag `[⚠ INTERNAL TENSION: axiom X overconstrained by constraints Y and Z]`.
+
+This check is most important when the theory has been extended since the last audit — new mechanisms can introduce constraints that conflict with old ones silently.
+
 ---
 
 ### 12.3 Step 2 — Prediction accuracy review
 
-PDG values drift. Experimental bounds tighten. A prediction that was 2% off two years ago may be 4% off now, or may now be excluded. For every prediction in the ledger:
+PDG values drift. Experimental bounds tighten. A prediction that was 2% off two years ago may be 4% off now, or may now be excluded.
 
-**Re-benchmark against current PDG:**
+#### 12.3a — Re-benchmark against current PDG
+
+For every prediction in the ledger:
+
 - Look up the current PDG value for every experimental input used in predictions. Note any that have changed since the last audit date.
 - Recompute every match percentage using current PDG values, not stored ones.
 - If any Tier A or Tier B prediction has degraded past 5%, flag for investigation.
@@ -992,11 +1027,30 @@ PDG values drift. Experimental bounds tighten. A prediction that was 2% off two 
 
 Consult `THEORY_AUDIT_CHECKLIST.md` for the specific predictions to re-benchmark and any known measurement controversies relevant to the current theory state.
 
+#### 12.3b — Retrodiction vs. prediction separation
+
+Predictions made before the relevant experimental value was known are fundamentally different from predictions fitted or tuned after the value was known. These must be tracked separately and never conflated in the scorecard.
+
+For every prediction in the ledger:
+- Was this prediction made before or after the relevant PDG value was in scope? Tag each as `[PRED: pre-data]` or `[RETRO: post-data]`.
+- If `[RETRO]`: was any parameter tuned (even partially) to improve this match? If so, it is not a genuine retrodiction — it is a fit. Tag `[FIT]` and downgrade tier accordingly.
+- The honest scorecard in §12.9a must count only `[PRED: pre-data]` results as genuine predictions.
+
+#### 12.3c — Correlation audit
+
+Two predictions are not independent if they share a common parameter or intermediate result. Overcounting independent successes is a form of implicit p-hacking.
+
+- List every pair of predictions that share a common fitted parameter, `[P]` claim, or derived intermediate.
+- For each such pair, count them as a single independent test, not two.
+- Update the "number of independent predictions" figure in `THEORY_HEALTH.md` to reflect the correlation-corrected count.
+
 ---
 
 ### 12.4 Step 3 — Tier inflation audit
 
 Over many sessions, claims tend to silently drift upward in confidence. This step actively pushes back.
+
+#### 12.4a — Current tier assignments
 
 **For every Tier A claim:**
 - List every input that enters the prediction. Is each input strictly derived from the axioms, or does any rely on an external input, a fitted parameter, or a `[P]` assumption?
@@ -1011,16 +1065,37 @@ Over many sessions, claims tend to silently drift upward in confidence. This ste
 - Count the free parameters explicitly. Is the stated parameter count accurate?
 - Is this prediction actually predictive (makes a testable claim given the fitted parameters), or is it just a fit?
 
-**Tier inflation red flags:**
+#### 12.4b — Tier A graveyard audit
+
+The `THEORY_AUDIT_CHECKLIST.md` maintains a **Tier A graveyard**: a log of every claim that was ever Tier A and was subsequently downgraded, with the reason. This graveyard must be reviewed at every theory audit.
+
+- Are there patterns in the graveyard? (E.g., claims consistently downgraded because of hidden `[P]` dependencies — this suggests the zero-parameter test is not being applied rigorously enough at promotion time.)
+- Has any claim been re-promoted to Tier A after being in the graveyard? If so, is the re-promotion justified by a genuine new derivation, or by a softening of standards?
+
+If no graveyard exists yet in `THEORY_AUDIT_CHECKLIST.md`, create it now. Populate it from the audit history.
+
+#### 12.4c — Grandfathering check
+
+Claims that achieved Tier A in early sessions (before the current zero-parameter standard was fully established) may have been promoted under a less strict criterion. Do not accept early Tier A status as valid by default.
+
+- Identify every Tier A claim that was promoted before session 10 (or before the last major standards revision — check `META_RESEARCH_LOG.md` for ROS version history).
+- Re-audit each against the current zero-parameter standard from scratch. Prior Tier A status is not evidence of current Tier A status.
+- Downgrade any that do not pass the current standard. Log as `[✗ CORRECTED: Tier A → Tier B, reason: grandfathering audit, session N]`.
+
+#### 12.4d — Tier inflation red flags
+
 - A claim upgraded to Tier A in a previous session without a full zero-parameter audit
 - A `[D]` claim where the derivation is in an archived workstream that hasn't been re-examined in 10+ sessions
 - Any claim where the match is suspiciously good (< 0.5%) — this is more likely to indicate hidden fitting than genuine prediction
+- A claim that has survived multiple audits without ever having its dependencies explicitly re-verified
 
 ---
 
 ### 12.5 Step 4 — Kill condition stress test
 
 For each kill condition, answer two questions: (1) is it well-defined enough to actually trigger? (2) how close is the theory to triggering it?
+
+#### 12.5a — Per-KC stress test
 
 **For each non-triggered KC:**
 - Identify the specific computation or observation that would trigger it.
@@ -1032,9 +1107,28 @@ For each kill condition, answer two questions: (1) is it well-defined enough to 
 - What exact result would clear it entirely?
 - Are the success/failure thresholds in the relevant workstream still the right ones?
 
-**Kill condition inventory check:**
+#### 12.5b — KC completeness check (new at each audit)
+
+The existing kill conditions catch only the failure modes that were anticipated when they were written. This step asks whether there are failure modes with no KC coverage.
+
+For each major theoretical mechanism:
+1. Ask: *"What is the most parsimonious way this mechanism could be wrong that does not already have a kill condition?"*
+2. If a plausible failure mode exists with no corresponding KC, it must either be assigned a new KC or be explicitly documented as an accepted risk with reasoning.
+3. Log all new proposed KCs in the audit report. Chris approves new KCs before they are added to the formal list.
+
+#### 12.5c — Near-miss log
+
+A KC that approaches its trigger threshold and then retreats without firing is scientifically significant — it records a tension in the theory that is being absorbed rather than resolved. These should not disappear from the record.
+
+`THEORY_AUDIT_CHECKLIST.md` maintains a **KC near-miss log**. At each audit:
+- Review the log for patterns: does the same KC keep getting close? This is evidence of a structural tension, not a series of independent events.
+- A KC that has appeared in the near-miss log 3+ times without resolution should be escalated: either derive a result that clears it definitively, or treat it as a soft partial trigger.
+
+#### 12.5d — Kill condition inventory check
+
 - Are all known failure modes represented by kill conditions? If a new theoretical vulnerability has been identified since the last audit, does it have a corresponding KC?
 - Are any KCs now redundant or subsumed by other conditions? Consider consolidating.
+- Are any KCs no longer meaningful given theory evolution? Mark as `[RETIRED: reason]` rather than deleting — the reason a KC was retired is part of the theory's history.
 
 Consult `THEORY_AUDIT_CHECKLIST.md` for the current kill condition proximity assessments and any KCs flagged for stress-testing.
 
@@ -1042,35 +1136,60 @@ Consult `THEORY_AUDIT_CHECKLIST.md` for the current kill condition proximity ass
 
 ### 12.6 Step 5 — Dependency chain integrity
 
-**Circular reasoning scan:**
+#### 12.6a — Circular reasoning scan
+
 Go through the dependency chain in `RESEARCH_DEPENDENCY_GRAPH.md`. For each prediction, trace its inputs all the way back to axioms. Flag any prediction where:
+
 - An input was fitted using the same experimental value the prediction is compared against
 - A `[D]` claim uses an intermediate result that itself depends on the prediction (even indirectly)
 - A parameter is described as "derived" but was actually selected to match a known value
 
-**Correction propagation check:**
+#### 12.6b — Correction propagation check
+
 For each `[✗ CORRECTED:]` entry in the Reference Core since the last audit:
 - Identify every prediction downstream of the corrected value
 - Verify that downstream predictions have been recomputed with the corrected value
 - Check for any prediction that was benchmarked against the old (wrong) value and now shows an artificially good match
 
-**Fitted parameter contamination:**
+#### 12.6c — Fitted parameter contamination
+
 List every fitted parameter in the theory. For each:
 - Which predictions depend on it?
 - Is any Tier A or Tier B prediction downstream of a fitted parameter? (If yes → it should not be Tier A/B.)
-- Has the fitted parameter been used in more predictions than it was originally fitted to? (If yes → the additional predictions are genuine; if no → it may be a hidden overfit.)
+- Has the fitted parameter been used in more predictions than it was originally fitted to? (If yes → the additional predictions are potentially genuine; if no → it may be a hidden overfit.)
+
+#### 12.6d — Parameter budget audit
+
+This is a global check that no per-prediction audit can catch.
+
+1. List every fitted parameter and every external empirical input `[E]` in the theory.
+2. Count the total **degrees of freedom** introduced (number of free parameters).
+3. Count the total number of **independent predictions** (use the correlation-corrected count from §12.3c).
+4. If the parameter count approaches or exceeds the independent prediction count, the theory's predictive claim collapses regardless of tier assignments. Flag `[⚠ PARAMETER BUDGET WARNING: N parameters, M independent predictions]`.
+5. The parameter budget must be explicitly stated in `THEORY_HEALTH.md` after every audit.
 
 ---
 
 ### 12.7 Step 6 — Assumption age and literature review
 
-**Assumption age check:**
+#### 12.7a — Assumption age check
+
 Some `[P]` claims and `[T]` citations are from the early stages of the project and have never been revisited. For each assumption older than 15 sessions:
+
 - Is the assumption still the best available justification, or has something been published or derived that changes it?
 - Has the cited paper been read carefully, or just cited by name?
 - Is the specific theorem/result being cited actually present in the cited source?
 
-**Literature scan:**
+#### 12.7b — Dead assumption check
+
+A dead assumption is a `[P]` claim that is present in the framework but has never been used downstream and has never been tested. These are epistemically inert — they contribute neither evidence for the theory nor load-bearing structure.
+
+For each `[P]` claim that is not in the dependency chain of any prediction:
+- Is it genuinely unused, or has a dependency been missed in the reconstruction (§12.2a)?
+- If genuinely unused: either establish a use for it, or prune it from the framework with a note. Inert assumptions accumulate silently and make the theory appear more developed than it is.
+
+#### 12.7c — Literature scan
+
 Run targeted web searches on the theoretical foundations of the current framework to check for recent developments that could strengthen, weaken, or refute key claims. Flag any relevant result and log in `META_RESEARCH_LOG.md`.
 
 Consult `THEORY_AUDIT_CHECKLIST.md` for the specific literature topics to search at the current audit date — these are updated after each audit to reflect the theory's current most exposed foundations.
@@ -1080,6 +1199,8 @@ Consult `THEORY_AUDIT_CHECKLIST.md` for the specific literature topics to search
 ### 12.8 Step 7 — Open failure triage
 
 Review every entry in `FAILURE_LEDGER.md`:
+
+#### 12.8a — Per-failure review
 
 **For active failures:**
 - Has anything been learned since the failure was opened that changes the approach?
@@ -1095,26 +1216,88 @@ Review every entry in `FAILURE_LEDGER.md`:
 **For resolved failures:**
 - Has the resolution held up under subsequent work? A "resolved" failure whose resolution was later undermined is a silent bug.
 
+#### 12.8b — Failure clustering analysis
+
+Failures are not always independent. Review the full failure ledger for clusters:
+
+- Do any failures share a common root cause? (E.g., multiple failures all downstream of the same `[P]` claim, or all arising from the same mechanism.)
+- If a cluster is identified: is the common root cause itself a kill condition or a hypothesis? It should be.
+- A cluster of 3+ failures with the same root cause constitutes a structural vulnerability — it must be addressed as a single problem, not as separate open items.
+
+Log any clusters found in the audit report. A cluster that has appeared in two consecutive audits without resolution should be escalated to a formal kill condition.
+
 ---
 
 ### 12.9 Step 8 — Theory scope and honesty assessment
 
 This step is deliberately adversarial. The goal is to identify overreach.
 
-**Scope creep check:**
+#### 12.9a — Honest scorecard
+
+Construct the most conservative possible version of the theory's predictive record:
+
+- Count only Tier A predictions where every input is strictly derived (no `[P]` dependencies, no fitted parameters upstream)
+- Among those, count only `[PRED: pre-data]` predictions (§12.3b) — not retrodictions, not fits
+- Apply the correlation-corrected independent count (§12.3c)
+- For those predictions, what is the median match percentage?
+- Estimate the probability that this match record occurred by chance. (Order of magnitude estimate — not rigorous, but informative.) Include the look-elsewhere correction: if the theory made N total predictions (before filtering) and k passed after filtering, the k successes are drawn from N attempts.
+
+This scorecard must be stated explicitly in the audit report and in `THEORY_HEALTH.md`. The uncorrected scorecard (all predictions at face value) may also be stated, but the corrected scorecard must appear first.
+
+#### 12.9b — Theory shrinkage exercise
+
+The goal is to identify which `[P]` claims are genuinely load-bearing vs. which could be removed without collapsing the theory's predictive record.
+
+For each `[P]` claim in the logical chain:
+1. Remove it (hypothetically). Which predictions lose their derivation path?
+2. If removing it collapses 0 predictions: it is **decorative** — either derive it properly or remove it. A decorative `[P]` claim gives the theory false depth.
+3. If removing it collapses multiple predictions via a single dependency: it is **high-leverage**. These are the highest-priority derivation targets. Log them in `THEORY_AUDIT_CHECKLIST.md` as `[HIGH-LEVERAGE P-CLAIM: derive first]`.
+4. Prune all decorative `[P]` claims from the framework, with a note on why they were removed. Simpler theories are stronger theories.
+
+#### 12.9c — Scope creep check
+
 - Count the `[T]` vs `[D]` vs `[P]` tags in the logical chain. Is the ratio of proven to assumed claims moving in the right direction over time?
 - Has the framework been extended to explain new phenomena without sufficient justification? New `[P]` claims should be scrutinized.
 - Are there claims in the framework that are not in the logical chain but are implicit in predictions?
 
-**Honest scorecard:**
-Construct the most conservative possible version of the theory's predictive record:
-- Count only Tier A predictions where every input is strictly derived (no `[P]` dependencies, no fitted parameters upstream)
-- For those predictions, what is the median match percentage?
-- How many independent predictions are there? (Two predictions from the same formula with different PDG inputs are not fully independent.)
-- What is the probability that this match record occurred by chance? (Order of magnitude estimate — not rigorous, but informative.)
+#### 12.9d — Alternative model comparison
 
-**The adversarial question:**
-Write a one-paragraph summary of the theory's weaknesses as a hostile referee would. This paragraph should be uncomfortable to write. If it isn't, the audit has not been adversarial enough. Log this paragraph in `META_RESEARCH_LOG.md`.
+A theory audit that never asks "is there a simpler theory that makes the same predictions?" is not adversarial enough.
+
+For each cluster of predictions:
+1. Is there a model with fewer axioms or fewer parameters that makes the same predictions to the same precision?
+2. Even a sketch of the most competitive alternative is valuable. Name it, state its parameter count, and state whether it is excluded or not.
+3. If no alternative has ever been formally considered, that is a gap. The audit report must include at least one named alternative for each major prediction cluster.
+
+This is not a request to build a competing theory — it is a request to confirm that the existing theory has been compared against its alternatives, even informally.
+
+#### 12.9e — Experimental exclusion audit
+
+For each prediction:
+1. What future experimental result would specifically exclude it (not just "falsify the theory" in general, but exclude this prediction at this precision)?
+2. What experiment or analysis would produce that result? Name the experiment, the observable, and the precision required.
+3. If no such experiment can be named, the prediction is not testable at present. It should be tagged `[⚠ NOT CURRENTLY TESTABLE]` and must not be counted in the honest scorecard (§12.9a).
+
+Predictions that are untestable are not worthless — they may become testable — but they must be clearly labelled and not inflating the apparent predictive power of the theory.
+
+#### 12.9f — Fine-tuning assessment
+
+For each fitted parameter:
+1. What is its value?
+2. Is this value natural — i.e., does dimensional analysis suggest it should be roughly this size, or is it many orders of magnitude away from the naive estimate?
+3. If fine-tuned: is there a theoretical explanation for the tuning, or is it unexplained?
+
+Fine-tuning is not a kill condition, but unexplained fine-tuning is a flag `[⚠ FINE-TUNING: parameter X, expected O(N), actual O(M)]`. Multiple fine-tuning flags without explanations are a structural weakness.
+
+#### 12.9g — The adversarial paragraph
+
+Write a one-paragraph summary of the theory's weaknesses as a hostile referee would. This paragraph should be uncomfortable to write. If it isn't, the audit has not been adversarial enough. Log this paragraph in `META_RESEARCH_LOG.md`. It must appear verbatim in the audit report.
+
+The paragraph must address at minimum:
+- The weakest `[P]` claim in the logical chain, and why it is weak
+- The most questionable tier assignment, and what a skeptic would say about it
+- The most important prediction that has not yet been made but should be
+- The most plausible way the entire framework could be wrong at a structural level
 
 ---
 
@@ -1122,21 +1305,46 @@ Write a one-paragraph summary of the theory's weaknesses as a hostile referee wo
 
 Every theory audit session must produce all of the following before closing:
 
-1. **Updated `THEORY_HEALTH.md`** — full replacement with post-audit metrics. Every metric must change or be explicitly confirmed unchanged with reasoning.
+1. **Updated `THEORY_HEALTH.md`** — full replacement with post-audit metrics. Every metric must change or be explicitly confirmed unchanged with reasoning. The honest scorecard (§12.9a) and parameter budget (§12.6d) must appear explicitly.
 2. **New `THEORY_SNAPSHOT`** — even if the theory hasn't changed structurally. The snapshot records the theory's state at the audit date as an independent baseline.
 3. **Audit report in `META_RESEARCH_LOG.md`** — structured entry containing:
    - Session number and date
+   - Pre-audit cold-start adversarial paragraph (§12.1)
    - Summary of what was checked and what was found
+   - Logical chain reconstruction findings (§12.2a): discrepancies, untagged steps
+   - Internal consistency findings (§12.2c): any overconstrained axioms
+   - Prediction accuracy summary: any degradations, exclusions (§12.3)
+   - Retrodiction/prediction separation results (§12.3b)
+   - Correlation-corrected independent prediction count (§12.3c)
    - All tier changes, with justification
+   - Grandfathering check results (§12.4c)
+   - Tier A graveyard update (§12.4b)
    - All new `[⚠]` flags raised
    - All `[⚠]` flags resolved
-   - The adversarial one-paragraph weakness summary (§12.9)
-   - Any new kill conditions proposed
-   - Any kill conditions proposed for removal (with reasoning)
+   - Parameter budget (§12.6d)
+   - Near-miss KC log update (§12.5c)
+   - New KCs proposed (§12.5b), pending Chris's approval
+   - Any KCs proposed for removal or retirement (with reasoning)
+   - Failure clustering findings (§12.8b)
+   - Theory shrinkage results: decorative `[P]` claims pruned, high-leverage targets identified (§12.9b)
+   - Alternative model comparison (§12.9d)
+   - Experimental exclusion audit (§12.9e): any predictions tagged `[⚠ NOT CURRENTLY TESTABLE]`
+   - Fine-tuning flags (§12.9f)
+   - The adversarial one-paragraph weakness summary (§12.9g)
+   - Honest scorecard (§12.9a): corrected and uncorrected versions
    - Recommendation: is the theory stronger or weaker than at the last audit? Why?
-4. **Updated `FAILURE_LEDGER.md`** — any status changes from Step 7 (§12.8)
-5. **Updated `E8_Reference_Core.md`** — any tier changes, corrections, or new flags
-6. **Updated `THEORY_AUDIT_CHECKLIST.md`** — refreshed with new highest-risk targets, current KC proximity estimates, updated PDG benchmark list, and updated literature topics. The checklist must reflect the theory's state *after* this audit, not before it.
+4. **Updated `FAILURE_LEDGER.md`** — any status changes from Step 7 (§12.8), including any newly identified failure clusters
+5. **Updated `E8_Reference_Core.md`** — any tier changes, corrections, or new flags; any `[⚠ NOT CURRENTLY TESTABLE]` tags added; `[RETRO]` / `[PRED]` / `[FIT]` tags added or corrected
+6. **Updated `THEORY_AUDIT_CHECKLIST.md`** — refreshed with:
+   - New highest-risk `[P]` and `[D]` targets
+   - Current KC proximity estimates and near-miss log
+   - Updated PDG benchmark list (which predictions are now most at risk)
+   - Updated literature topics (theory's current most exposed foundations)
+   - Updated Tier A graveyard
+   - Updated high-leverage `[P]` claim list from theory shrinkage exercise
+   - Updated parameter budget figures
+   - Audit history table (§G of the checklist) updated with this audit's findings
+   The checklist must reflect the theory's state *after* this audit, not before it.
 7. **Next audit date** — stated explicitly in `CONTEXT_SNAPSHOT.md §E`
 
 ---

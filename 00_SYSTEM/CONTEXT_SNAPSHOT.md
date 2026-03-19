@@ -83,6 +83,7 @@ Parked — self-modeling map S undefined.
 | Sessions since last re-plan | 4 |
 | Sessions since last theory audit | 4 |
 | New numerical results since last audit | 18+ (sessions 4–6) |
+| **Execution backcheck status** | **⚠ PENDING** — all prior `[✓ code-verified]` tags must be treated as `[⚠ execution-unverified]` until re-run under ROS v3.3 (§3.1). Schedule as dedicated audit session after WS-3875 CKM work completes or at next available meta session. Do NOT interrupt current physics work. See BS-005 in META_RESEARCH_LOG. |
 | **Audit status** | **⚠ MAY BE WARRANTED — 18+ results since last audit (trigger = 5)** |
 | Next re-plan trigger | After 8 sessions or kill condition change |
 | Next theory audit | **Session 15** (first scheduled audit) |

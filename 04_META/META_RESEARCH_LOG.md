@@ -40,11 +40,39 @@ This section is maintained at the top of the file so it is always the first thin
 **Detection mechanism added:** §11.9 System Design Audit added with five techniques: fresh-eyes simulation, failure mode enumeration (inversion), adversarial audit of the audit, historical pattern scan, and the researcher question test.
 **Status:** ADDRESSED — Session 6 equivalent (2026-03-18)
 
+### BS-005: Code execution was never verified — simulation indistinguishable from execution
+**Discovered:** Session 7 equivalent (2026-03-18, ROS v3.2 → v3.3 transition)
+**Description:** The ROS required "code-verified math" and "unit tests for all non-trivial code" but contained no rule distinguishing actually running code from narrating what code would produce. An AI system could write Python, fill in results from reasoning, and satisfy the letter of §3 while producing completely unverified numbers. No compliance check, self-audit question, or violation tag existed for this failure mode.
+**Root cause:** The original §3 rules assumed "execute code" was unambiguous. It is not for an AI system that can convincingly simulate execution. The distinction between real stdout and narrated output was never made explicit, and no protocol existed for the case where execution is blocked (library unavailable, runtime error, etc.).
+**Detection mechanism added:** §3.1 added to Session Briefing (ROS v3.3) with: explicit definition of execution vs. simulation, zero-tolerance violation tag `[F: execution violation]`, and a mandatory file-and-hard-pause protocol when execution is blocked. §2 working style bullet updated to cross-reference §3.1.
+**Backcheck required:** All prior numerical results tagged `[✓ code-verified]` must be treated as `[⚠ execution-unverified]` until re-run under ROS v3.3 conditions. This is a scheduled task — see CONTEXT_SNAPSHOT §E for trigger. Do NOT interrupt current WS-3875 work to run this; schedule it as a dedicated audit session.
+**Status:** ADDRESSED (rule) — 2026-03-18. **BACKCHECK PENDING** — scheduled for next available meta/audit session.
+
 ---
 
 ## Session Log
 
 Each entry records what changed, why, and what was learned. Entries are in reverse chronological order.
+
+---
+
+### Session 7 — 2026-03-18 — ROS v3.2 → v3.3 (meta-analysis session — execution integrity)
+
+**What ran:** Targeted meta-analysis — execution verification gap identified and addressed.
+
+**Changes made:**
+
+| Change | Root cause | Files modified |
+|--------|-----------|----------------|
+| §3.1 added: execution vs. simulation hard rule, file-and-pause protocol, `[F: execution violation]` tag | §3 never distinguished actual code execution from AI simulation of execution; no protocol for blocked execution | E8_Session_Briefing.md |
+| §2 working style bullet updated to cross-reference §3.1 | Execution rule needed to be visible at working-style level, not only buried in §3 | E8_Session_Briefing.md |
+| BS-005 added to Known Blind Spots | Structural gap now documented with backcheck requirement | META_RESEARCH_LOG.md |
+| CONTEXT_SNAPSHOT §E updated with backcheck trigger | Backcheck must not be lost but must not interrupt WS-3875 | CONTEXT_SNAPSHOT.md |
+
+**§11.9 note:** This blind spot was caught by researcher question (Level 3 detection), not by self-examination. BS-004 was supposed to address the system's inability to find its own blind spots. The fact that this one required external prompting suggests BS-004's fix (§11.9 System Design Audit) needs to be actually exercised — it was added but may not have run.
+
+**ROS version:** v3.3
+**Known blind spots added:** BS-005
 
 ---
 

@@ -1,7 +1,7 @@
 # PROJECT_INDEX.md
 ## Research Project Navigation Map
 
-**Last updated:** 2026-03-18 (Session 6 — ROS v3.1)
+**Last updated:** 2026-03-18 (Session 7 — ROS v3.3)
 
 ---
 
@@ -39,7 +39,7 @@ This file should remain **short, stable, and easy to scan**. Detailed workflow r
 
 | File | Role | Changes |
 |------|------|---------|
-| `E8_Session_Briefing.md` | Operating rules and protocols (ROS v3.1) | Rarely — only when rules change |
+| `E8_Session_Briefing.md` | Operating rules and protocols (ROS v3.3) | Rarely — only when rules change |
 | `E8_Reference_Core.md` | Stable verified results and predictions | Every session (new results) |
 | `CONTEXT_SNAPSHOT.md` | Current session state + active WS list | Every session (full replacement) |
 | `THEORY_HEALTH.md` | Theory health dashboard | When health metrics change |
