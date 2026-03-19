@@ -1,7 +1,7 @@
 # PROJECT_INDEX.md
 ## Research Project Navigation Map
 
-**Last updated:** 2026-03-18 (Session 7 — ROS v3.3)
+**Last updated:** 2026-03-18 (Admin Session — ROS v3.3)
 
 ---
 
@@ -88,6 +88,18 @@ Full workstream protocol in `E8_Session_Briefing.md §6`.
 | `FAILURE_LEDGER.md` | Unresolved problems and theoretical failures | When failures open or close |
 | `CONTRADICTION_TRACKER.md` | Conflicts between theoretical results | When contradictions found/resolved |
 | `META_RESEARCH_LOG.md` | Improvements to the research operating system | When ROS changes made |
+
+### `06_PROTOCOLS/` — On-Demand Procedure Files
+
+Protocol files contain full step-by-step procedures for infrequent but structured activities. They are **not** part of the standard upload set. Upload only when the relevant trigger has fired.
+
+| File | Triggered by | Upload when |
+|------|-------------|-------------|
+| `PROTOCOL_TheoryAudit.md` | §12 schedule/triggers in Briefing | Theory audit session |
+| `PROTOCOL_ROSHealth.md` | §11 schedule/triggers in Briefing | ROS health check session |
+| `PROTOCOL_ReferenceAudit.md` | §8.4 triggers in Briefing | Reference Core re-audit session |
+
+---
 
 ### `05_ARCHIVE/` — Historical Material
 
