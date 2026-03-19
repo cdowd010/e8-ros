@@ -677,7 +677,7 @@ Do NOT run meta-analysis speculatively between triggers. It consumes session cap
 | Interval | What runs |
 |----------|-----------|
 | Every ~10 sessions | Full ROS health check (§11.3) + File system audit (§11.4) + Cross-file consistency audit (§11.6) |
-| Session 15, then every 15 sessions (until stabilization) | Theory audit (§12) + Cross-file consistency audit (§11.6) |
+| Per §12 schedule | Theory audit (§12) + Cross-file consistency audit (§11.6) |
 | Any session meta-analysis is triggered | Cross-file consistency audit (§11.6) — always included |
 
 **When schedules coincide** (e.g., session 30 triggers both ROS health and theory audit): run both in the same session if feasible, or split across two sessions with the ROS health check first. Do not skip either.
@@ -744,11 +744,7 @@ A structural check of the repository:
 
 ### 11.5 Theory audit
 
-See **§12 — Theory Audit** for the full protocol. The theory audit runs on its own schedule (separate from ROS health) and is documented separately because it is a different kind of activity — physics stress-testing, not system maintenance.
-
-**Schedule:** First audit at session 15, then every 15 sessions until the theory stabilizes (defined as: no tier changes, no new kill condition activity, no active structural workstreams for 10+ consecutive sessions). After stabilization, extend cadence to every 25 sessions.
-
-**Trigger independently:** A theory audit should also be triggered (regardless of schedule) if a kill condition is approached, if a major structural assumption is challenged by new results, or if a re-planning session reveals the theory's predictive scorecard has materially changed.
+See **§12 — Theory Audit** for the full protocol, schedule, triggers, and output requirements.
 
 ### 11.6 Cross-file consistency audit (runs with every meta-analysis)
 
@@ -772,16 +768,8 @@ This checklist catches the class of errors where work happens in one file but de
 - [ ] If a workstream was created to address the failure, is it linked in the FAILURE_LEDGER entry?
 
 **When a theory audit completes:**
-- [ ] Is `THEORY_AUDIT_CHECKLIST.md` updated with new highest-risk [P] and [D] targets?
-- [ ] Is the KC proximity table updated to reflect current statuses and any cleared or newly triggered conditions?
-- [ ] Are the PDG re-benchmark targets updated to reflect which predictions are now most at risk?
-- [ ] Are the literature search topics updated to reflect the theory's current most exposed foundations?
-- [ ] Is the audit history table (§G of the checklist) updated with the completed audit's findings?
-- [ ] Is the next audit date updated in `CONTEXT_SNAPSHOT.md §E`?
-- [ ] Is `FAILURE_LEDGER.md` KC tracker updated?
-- [ ] Is `RESEARCH_DEPENDENCY_GRAPH.md` KC table updated?
-- [ ] Is `THEORY_HEALTH.md` scorecard updated?
-- [ ] Is `CONTEXT_SNAPSHOT.md` updated?
+
+See **§12.10** for the full mandatory output list. At minimum, confirm that all files listed there have been updated before closing the theory audit session.
 
 **When the theory structure changes (new mechanism, reclassification, new derivation):**
 - [ ] Is a new entry added to `THEORY_EVOLUTION_GRAPH.md`?
